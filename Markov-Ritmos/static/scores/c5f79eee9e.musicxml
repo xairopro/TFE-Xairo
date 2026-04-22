@@ -1,0 +1,6789 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN"
+  "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <work>
+    <work-title>Ritmos de Markov</work-title>
+  </work>
+  <identification>
+    <creator type="composer">Xairo Campos Blanco</creator>
+    <creator type="lyricist">Semente: 1234 — Modo espello</creator>
+  </identification>
+  <part-list>
+    <score-part id="P1">
+      <part-name>Ritmo</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>Percusión</instrument-name>
+      </score-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>12</divisions>
+        <time>
+          <beats>6</beats>
+          <beat-type>8</beat-type>
+        </time>
+        <clef>
+          <sign>percussion</sign>
+        </clef>
+        <staff-details>
+          <staff-lines>1</staff-lines>
+        </staff-details>
+      </attributes>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+    </measure>
+    <measure number="2">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+    </measure>
+    <measure number="3">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="4">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="5">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="6">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+      </note>
+    </measure>
+    <measure number="7">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+    </measure>
+    <measure number="8">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+      </note>
+    </measure>
+    <measure number="9">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+    </measure>
+    <measure number="10">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+    </measure>
+    <measure number="11">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+    </measure>
+    <measure number="12">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+    </measure>
+    <measure number="13">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+    </measure>
+    <measure number="14">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="15">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="16">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="17">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="18">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+    </measure>
+    <measure number="19">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+    </measure>
+    <measure number="20">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+    </measure>
+    <measure number="21">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="22">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="23">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="24">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="25">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="26">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="27">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="28">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="29">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="30">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="31">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="32">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="33">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="34">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="35">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="36">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="37">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="38">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="39">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="40">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="41">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="42">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="43">
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="44">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="45">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="46">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="47">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="48">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="49">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="50">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="51">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="52">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="53">
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="54">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="55">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="56">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="57">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="58">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="59">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="60">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="61">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="62">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="63">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="64">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="65">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="66">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="67">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="68">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="69">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="70">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="71">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="72">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="73">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="74">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="75">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="76">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="77">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="78">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="79">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="80">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="81">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="82">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="83">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="84">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="85">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="86">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="87">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="88">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="89">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="90">
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="91">
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="92">
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note color="#FF0000">
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead color="#FF0000">normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="93">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="94">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="95">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="96">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="97">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="98">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="99">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="100">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="101">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="102">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="103">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="104">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="105">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="106">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="107">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="108">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="109">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="110">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="111">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="112">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="113">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="114">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="115">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="116">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="117">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="118">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="119">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="120">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="121">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="122">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>18</duration>
+        <tie type="start"/>
+        <type>quarter</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="123">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>12</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>quarter</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>8</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="124">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>24</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="125">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>6</duration>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="126">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>36</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>half</type>
+        <dot/>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="127">
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>4</duration>
+        <tie type="stop"/>
+        <tie type="start"/>
+        <type>eighth</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>E</display-step>
+          <display-octave>4</display-octave>
+        </unpitched>
+        <duration>3</duration>
+        <tie type="stop"/>
+        <type>16th</type>
+        <stem>up</stem>
+        <notehead>normal</notehead>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>

@@ -1,0 +1,22 @@
+# Arquivos temporais
+temp/
+temp_*
+*.pyc
+__pycache__/
+
+# Arquivos do sistema
+.DS_Store
+.vscode/
+.idea/
+
+# Configuración local
+.env
+venv/
+.venv/
+
+# Saídas de análise
+analise_movementos_muineira.png
+partitura_markov_web*
+
+# Logs
+*.log

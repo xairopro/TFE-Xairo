@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muiñeira – Cadea rítmica de Markov</title>
+  <style>
+    :root{--bg:#0f1117;--card:#1a1d27;--accent:#6c63ff;--accent2:#ff6584;--text:#e0e0e0;--muted:#888;--border:#2a2d3a}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    .container{max-width:1200px;margin:0 auto;padding:24px}
+    h1{font-size:2rem;margin-bottom:4px;color:#fff}
+    h1 span{color:var(--accent)}
+    .subtitle{color:var(--muted);margin-bottom:24px;font-size:.95rem}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:28px}
+    .stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center}
+    .stat-card .num{font-size:2rem;font-weight:700;color:var(--accent)}
+    .stat-card .lbl{color:var(--muted);font-size:.85rem;margin-top:2px}
+    h2{font-size:1.3rem;margin:24px 0 12px;color:#fff}
+
+    /* Matrix table */
+    .matrix-wrap{overflow:auto;border:1px solid var(--border);border-radius:10px;margin-bottom:28px;max-height:540px}
+    .matrix{width:100%;border-collapse:collapse;font-size:.82rem;white-space:nowrap}
+    .matrix thead{position:sticky;top:0;z-index:2}
+    .matrix th{background:var(--card);color:var(--accent);font-weight:600;padding:8px 10px;border:1px solid var(--border);text-align:center}
+    .matrix td{padding:6px 10px;border:1px solid var(--border);text-align:center}
+    .matrix td.state-cell{background:var(--card);font-weight:600;color:#fff;position:sticky;left:0;z-index:1;text-align:left}
+    .matrix td.total-cell{background:var(--card);font-weight:600;color:var(--accent2)}
+    .matrix td.empty{color:#333}
+    .matrix .pct{color:var(--text);font-weight:600}
+    .matrix .cnt{color:var(--muted);font-size:.72rem;display:block}
+    .matrix th.corner{position:sticky;left:0;z-index:3;background:var(--card)}
+
+    /* Generator */
+    .gen-panel{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:28px}
+    .gen-row{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin-bottom:14px}
+    .gen-row label{color:var(--muted);font-size:.82rem;display:block;margin-bottom:4px}
+    .gen-row select,.gen-row input{background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:.92rem}
+    .gen-row input[type=number]{width:80px}
+    button{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:10px 24px;font-size:.95rem;cursor:pointer;transition:background .2s}
+    button:hover{background:#5a52e0}
+    #result{margin-top:16px}
+    .seq-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:'Fira Code',monospace;font-size:.9rem;word-break:break-all;margin-top:8px}
+    .score-img{margin-top:14px;max-width:100%;border-radius:8px;border:1px solid var(--border)}
+    .tag{display:inline-block;background:var(--accent);color:#fff;border-radius:6px;padding:2px 8px;font-size:.78rem;margin:2px}
+    .tag.r{background:var(--accent2)}
+    .tag.noise{background:#FF4444;color:#fff}
+    .file-list{list-style:none;padding:0;margin-bottom:18px}
+    .file-list li{padding:6px 0;border-bottom:1px solid var(--border);font-size:.9rem;color:var(--muted)}
+    .file-list li strong{color:var(--text)}
+    .spinner{display:none;width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite;margin-left:12px;vertical-align:middle}
+    .btn-pdf{display:inline-block;background:var(--accent2);color:#fff;text-decoration:none;border-radius:8px;padding:10px 24px;font-size:.95rem;font-weight:600;transition:background .2s}
+    .btn-pdf:hover{background:#e0456e}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1><span>♫</span> Muiñeira – Cadea rítmica de Markov</h1>
+  <p class="subtitle">Cadea de Markov de segunda orde construída a partir das razóns dos intervalos entre ataques presentes nos ficheiros MIDI</p>
+
+  <!-- Estatísticas -->
+  <div class="cards">
+    <div class="stat-card"><div class="num">{{ file_stats|length }}</div><div class="lbl">Ficheiros MIDI</div></div>
+    <div class="stat-card"><div class="num">{{ total_tracks }}</div><div class="lbl">Pistas analizadas</div></div>
+    <div class="stat-card"><div class="num">{{ n_states }}</div><div class="lbl">Estados de Markov</div></div>
+    <div class="stat-card"><div class="num">{{ allowed|length }}</div><div class="lbl">Razóns permitidas</div></div>
+  </div>
+
+  <!-- Ficheiros -->
+  <h2>Ficheiros procesados</h2>
+  <ul class="file-list">
+    {% for f in file_stats %}
+    <li><strong>{{ f.name }}</strong> — {{ f.tracks }} pistas útiles</li>
+    {% endfor %}
+  </ul>
+
+  <!-- Matriz de probabilidades presentada como grade -->
+  <h2>Matriz de probabilidades de transición</h2>
+  <p style="color:var(--muted);font-size:.85rem;margin-bottom:10px">
+    Cada cela amosa a <strong>probabilidade %</strong> e o <em>(número)</em> de exemplos.
+    As columnas son a seguinte razón posíbel; as filas son o estado actual de dúas razóns.
+  </p>
+  <div class="matrix-wrap">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th class="corner">Estado (r₍ₙ₋₂₎, r₍ₙ₋₁₎)</th>
+          {% for r in target_ratios %}
+          <th>{{ ratio_label[r] }}</th>
+          {% endfor %}
+          <th>n</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in matrix_rows %}
+        <tr>
+          <td class="state-cell">({{ row.label[0] }}, {{ row.label[1] }})</td>
+          {% for r in target_ratios %}
+            {% set pct, cnt = row.cells[r] %}
+            {% if cnt > 0 %}
+          <td><span class="pct">{{ pct }}%</span><span class="cnt">({{ cnt }})</span></td>
+            {% else %}
+          <td class="empty">–</td>
+            {% endif %}
+          {% endfor %}
+          <td class="total-cell">{{ row.total }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Generator -->
+  <h2>Xerar un ritmo</h2>
+  <div class="gen-panel">
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:12px">
+      Escolle dúas figuras rítmicas iniciais. O algoritmo emprégaas como estado
+      inicial de Markov e xera o número de eventos rítmicos solicitados.
+    </p>
+    <div class="gen-row">
+      <div>
+        <label>1ª nota (r₍ₙ₋₂₎)</label>
+        <select id="r1">
+          {% for slug, name, val in note_names %}
+          <option value="{{ val }}"{% if val == 1.0 %} selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label>2ª nota (r₍ₙ₋₁₎)</label>
+        <select id="r2">
+          {% for slug, name, val in note_names %}
+          <option value="{{ val }}"{% if val == 1.0 %} selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label>Eventos</label>
+        <input type="number" id="length" value="16" min="1" max="200">
+      </div>
+      <div>
+        <label>Semente</label>
+        <input type="number" id="seed" value="42" min="0" max="999999">
+      </div>
+      <div>
+        <label>Modo</label>
+        <div style="display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;height:38px">
+          <label style="margin:0;padding:6px 14px;cursor:pointer;font-size:.88rem;display:flex;align-items:center;gap:4px;background:var(--bg);transition:background .2s" id="lbl-normal">
+            <input type="radio" name="mode" value="normal" checked style="accent-color:var(--accent)"> Normal
+          </label>
+          <label style="margin:0;padding:6px 14px;cursor:pointer;font-size:.88rem;display:flex;align-items:center;gap:4px;background:var(--bg);transition:background .2s" id="lbl-mirror">
+            <input type="radio" name="mode" value="mirror" style="accent-color:var(--accent2)"> 🪞 Espello
+          </label>
+        </div>
+      </div>
+      <div>
+        <button onclick="doGenerate()">Xerar</button>
+        <div class="spinner" id="spinner"></div>
+      </div>
+    </div>
+    <div id="result"></div>
+  </div>
+</div>
+
+<script>
+async function doGenerate(){
+  const sp = document.getElementById('spinner');
+  const res = document.getElementById('result');
+  sp.style.display = 'inline-block';
+  res.innerHTML = '';
+
+  const body = {
+    r1: parseFloat(document.getElementById('r1').value),
+    r2: parseFloat(document.getElementById('r2').value),
+    length: parseInt(document.getElementById('length').value),
+    seed: parseInt(document.getElementById('seed').value),
+    mirror: document.querySelector('input[name="mode"]:checked').value === 'mirror',
+  };
+
+  try {
+    const resp = await fetch('/generate', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+    const data = await resp.json();
+
+    let html = '<h3 style="margin-bottom:6px">Secuencia de razóns';
+    if(data.mirror){
+      html += ' <span style="background:var(--accent2);color:#fff;border-radius:6px;padding:2px 10px;font-size:.75rem;vertical-align:middle;margin-left:8px">🪞 Espello</span>';
+    }
+    html += '</h3>';
+    html += '<div class="seq-box">' + data.ratios.map((r,i) => {
+      const cls = data.noise[i] ? 'tag noise' : 'tag';
+      return `<span class="${cls}">${r}</span>`;
+    }).join(' → ') + '</div>';
+
+    const noiseCount = data.noise.filter(Boolean).length;
+    if(noiseCount > 0){
+      html += `<p style="color:var(--muted);font-size:.85rem;margin-top:10px"><span style="color:#FF4444;font-weight:700">■</span> As notas en <strong style="color:#FF4444">vermello</strong> son <em>ruído</em>: foron substituídas aleatoriamente (10% de probabilidade por evento) para introducir variación imprevisíbel na secuencia. Total de ruído: <strong>${noiseCount}</strong> de ${data.ratios.length} eventos.</p>`;
+    }
+
+    /* Fila de accións: descarga do PDF e aplicación de alturas */
+    html += '<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px" id="action-row">';
+    if(data.pdf_url){
+      html += `<a href="${data.pdf_url}" download class="btn-pdf" id="pdf-link">⬇ Descargar o PDF</a>`;
+    }
+    html += `<label class="btn-pdf" style="background:var(--accent);cursor:pointer;margin:0"><input type="file" accept=".mid,.midi" id="midi-upload" style="display:none"> 🎵 Cargar un MIDI e aplicar as duracións</label>`;
+    html += '</div>';
+
+    if(data.score_url){
+      html += `<h3 style="margin:14px 0 6px">Partitura en liña única de percusión</h3><img class="score-img" src="${data.score_url}?t=${Date.now()}" alt="Partitura xerada">`;    
+    }
+
+    /* Espazo reservado para a partitura con alturas */
+    html += '<div id="pitched-result"></div>';
+
+    res.innerHTML = html;
+
+    /* Gardar os pulsos e o ruído actuais para a chamada a apply-pitches */
+    window._lastBeats = data.beats;
+    window._lastNoise = data.noise;
+    window._lastSeed  = parseInt(document.getElementById('seed').value);
+    window._lastModeLabel = data.mirror ? 'Modo espello' : 'Modo normal';
+
+    /* Conectar a carga do MIDI */
+    const fileInput = document.getElementById('midi-upload');
+    if(fileInput){
+      fileInput.addEventListener('change', async function(){
+        if(!this.files.length) return;
+        const fd = new FormData();
+        fd.append('midi', this.files[0]);
+        fd.append('beats', JSON.stringify(window._lastBeats));
+        fd.append('noise', JSON.stringify(window._lastNoise));
+        fd.append('seed', window._lastSeed);
+        fd.append('mode_label', window._lastModeLabel || 'Modo normal');
+        const pr = document.getElementById('pitched-result');
+        pr.innerHTML = '<p style="color:var(--muted)">Xerando a partitura con alturas…</p>';
+        try{
+          const r2 = await fetch('/apply-pitches', {method:'POST', body:fd});
+          const d2 = await r2.json();
+          let h2 = '';
+          if(d2.score_url){
+            h2 += `<h3 style="margin:14px 0 6px">Partitura con alturas aplicadas</h3>`;
+            h2 += `<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px">`;
+            if(d2.pdf_url){
+              h2 += `<a href="${d2.pdf_url}" download class="btn-pdf">⬇ Descargar o PDF con alturas</a>`;
+            }
+            h2 += `</div>`;
+            h2 += `<img class="score-img" src="${d2.score_url}?t=${Date.now()}" alt="Partitura con alturas">`;
+          }
+          if(d2.error){
+            h2 += `<p style="color:#ff6584">${d2.error}</p>`;
+          }
+          pr.innerHTML = h2;
+        }catch(e){
+          pr.innerHTML = '<p style="color:#ff6584">Erro: '+e.message+'</p>';
+        }
+      });
+    }
+  } catch(e){
+    res.innerHTML = '<p style="color:#ff6584">Erro: '+e.message+'</p>';
+  }
+  sp.style.display = 'none';
+}
+</script>
+</body>
+</html>

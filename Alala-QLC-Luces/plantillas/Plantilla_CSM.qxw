@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Workspace>
+<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="FIXANDFUNC">
+ <Creator>
+  <Name>Q Light Controller Plus</Name>
+  <Version>5.0.1</Version>
+  <Author>Xairo Campos Blanco</Author>
+ </Creator>
+ <Engine>
+  <InputOutputMap>
+   <BeatGenerator BeatType="Disabled" BPM="120"/>
+   <Universe Name="Universe 1SAIDA" ID="0">
+    <Input Plugin="MIDI" UID="None" Line="1"/>
+    <Output Plugin="DMX USB" UID="None" Line="0"/>
+   </Universe>
+  </InputOutputMap>
+  <Fixture>
+   <Manufacturer>Varytec</Manufacturer>
+   <Model>Typhoon True Kid 720Z RGBW IP65</Model>
+   <Mode>8 Channel</Mode>
+   <ID>0</ID>
+   <Name>Typhoon True Kid 720Z RGBW IP65 #1</Name>
+   <Universe>0</Universe>
+   <Address>0</Address>
+   <Channels>8</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Varytec</Manufacturer>
+   <Model>Typhoon True Kid 720Z RGBW IP65</Model>
+   <Mode>8 Channel</Mode>
+   <ID>1</ID>
+   <Name>Typhoon True Kid 720Z RGBW IP65 #2</Name>
+   <Universe>0</Universe>
+   <Address>8</Address>
+   <Channels>8</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Varytec</Manufacturer>
+   <Model>Typhoon True Kid 720Z RGBW IP65</Model>
+   <Mode>8 Channel</Mode>
+   <ID>2</ID>
+   <Name>Typhoon True Kid 720Z RGBW IP65 #3</Name>
+   <Universe>0</Universe>
+   <Address>16</Address>
+   <Channels>8</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Varytec</Manufacturer>
+   <Model>Typhoon True Kid 720Z RGBW IP65</Model>
+   <Mode>8 Channel</Mode>
+   <ID>3</ID>
+   <Name>Typhoon True Kid 720Z RGBW IP65 #4</Name>
+   <Universe>0</Universe>
+   <Address>24</Address>
+   <Channels>8</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Showtec</Manufacturer>
+   <Model>Compact Par 18 MKII</Model>
+   <Mode>6 Channel</Mode>
+   <ID>4</ID>
+   <Name>Compact Par 18 MKII #1</Name>
+   <Universe>0</Universe>
+   <Address>32</Address>
+   <Channels>6</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Showtec</Manufacturer>
+   <Model>Compact Par 18 MKII</Model>
+   <Mode>6 Channel</Mode>
+   <ID>5</ID>
+   <Name>Compact Par 18 MKII #2</Name>
+   <Universe>0</Universe>
+   <Address>38</Address>
+   <Channels>6</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Showtec</Manufacturer>
+   <Model>Compact Par 18 MKII</Model>
+   <Mode>6 Channel</Mode>
+   <ID>6</ID>
+   <Name>Compact Par 18 MKII #3</Name>
+   <Universe>0</Universe>
+   <Address>44</Address>
+   <Channels>6</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Showtec</Manufacturer>
+   <Model>Compact Par 18 MKII</Model>
+   <Mode>6 Channel</Mode>
+   <ID>7</ID>
+   <Name>Compact Par 18 MKII #4</Name>
+   <Universe>0</Universe>
+   <Address>50</Address>
+   <Channels>6</Channels>
+  </Fixture>
+  <ChannelsGroup ID="0" Name="Zoom Grupo" Value="0">0,6,1,6,2,6,3,6</ChannelsGroup>
+  <Function ID="0" Type="Chaser" Name="Proxecto 1">
+   <Speed FadeIn="10000" FadeOut="10000" Duration="4294967294"/>
+   <Direction>Forward</Direction>
+   <RunOrder>PingPong</RunOrder>
+   <SpeedModes FadeIn="Common" FadeOut="Common" Duration="Common"/>
+   <Step Number="0" FadeIn="0" Hold="4294967294" FadeOut="0">15</Step>
+   <Step Number="1" FadeIn="10000" Hold="4294967294" FadeOut="10000">24</Step>
+   <Step Number="2" FadeIn="0" Hold="4294967294" FadeOut="0">17</Step>
+   <Step Number="3" FadeIn="10000" Hold="4294967294" FadeOut="10000">25</Step>
+   <Step Number="4" FadeIn="0" Hold="4294967294" FadeOut="0">18</Step>
+   <Step Number="5" FadeIn="0" Hold="4294967294" FadeOut="0">19</Step>
+   <Step Number="6" FadeIn="0" Hold="4294967294" FadeOut="0">20</Step>
+   <Step Number="7" FadeIn="0" Hold="4294967294" FadeOut="0">21</Step>
+   <Step Number="8" FadeIn="0" Hold="4294967294" FadeOut="0">22</Step>
+   <Step Number="9" FadeIn="0" Hold="4294967294" FadeOut="0">23</Step>
+  </Function>
+  <Function ID="1" Type="Chaser" Name="Proxecto 2 - Xairo">
+   <Speed FadeIn="60000" FadeOut="1000" Duration="4294967294"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <SpeedModes FadeIn="PerStep" FadeOut="Common" Duration="PerStep"/>
+   <Step Number="0" FadeIn="0" Hold="4294967294" FadeOut="1000">6</Step>
+  </Function>
+  <Function ID="2" Type="Chaser" Name="Proxecto 3">
+   <Speed FadeIn="3000" FadeOut="0" Duration="10000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <SpeedModes FadeIn="PerStep" FadeOut="PerStep" Duration="Common"/>
+  </Function>
+  <Function ID="3" Type="Chaser" Name="Proxecto 4">
+   <Speed FadeIn="0" FadeOut="0" Duration="5000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>SingleShot</RunOrder>
+   <SpeedModes FadeIn="PerStep" FadeOut="PerStep" Duration="PerStep"/>
+  </Function>
+  <Function ID="4" Type="Chaser" Name="Proxecto 5">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <SpeedModes FadeIn="Common" FadeOut="Common" Duration="Common"/>
+  </Function>
+  <Function ID="5" Type="Chaser" Name="Proxecto 6">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <SpeedModes FadeIn="Common" FadeOut="Common" Duration="Common"/>
+  </Function>
+  <Function ID="6" Type="Scene" Name="escena proba 1">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="4"/>
+   <FixtureVal ID="5"/>
+   <FixtureVal ID="6"/>
+   <FixtureVal ID="7"/>
+   <FixtureVal ID="0">0,255,4,255</FixtureVal>
+   <FixtureVal ID="1"/>
+   <FixtureVal ID="2"/>
+   <FixtureVal ID="3"/>
+  </Function>
+  <Function ID="15" Type="Scene" Name="1. Debussy">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,1,7,2,34,3,29,4,0,5,0,6,219,7,0</FixtureVal>
+   <FixtureVal ID="1">1,0,2,0,3,0,4,60,5,0,6,187,7,0</FixtureVal>
+   <FixtureVal ID="2">1,0,2,0,3,0,4,60,5,0,6,187,7,0</FixtureVal>
+   <FixtureVal ID="3">0,255,1,7,2,34,3,29,4,0,5,0,6,214,7,0</FixtureVal>
+  </Function>
+  <Function ID="17" Type="Scene" Name="3 Scelsi">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,1,0,2,0,3,0,4,16,5,0,6,157,7,0</FixtureVal>
+   <FixtureVal ID="1">0,171,1,232,2,209,3,26,4,13,5,0,6,164,7,0</FixtureVal>
+   <FixtureVal ID="2">0,176,1,232,2,209,3,26,4,0,5,0,6,164,7,0</FixtureVal>
+   <FixtureVal ID="3">0,255,1,0,2,0,3,0,4,16,5,0,6,146,7,0</FixtureVal>
+  </Function>
+  <Function ID="18" Type="Scene" Name="4 Elert">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">1,0,2,0,3,0</FixtureVal>
+   <FixtureVal ID="1">1,11,2,19,3,41,4,0,5,0,6,87,7,0</FixtureVal>
+   <FixtureVal ID="2">1,11,2,19,3,41,4,0,6,61</FixtureVal>
+   <FixtureVal ID="3"/>
+  </Function>
+  <Function ID="19" Type="Scene" Name="5 Hindemith">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,193,1,0,2,96,3,114,4,0,5,0,6,215,7,0</FixtureVal>
+   <FixtureVal ID="1">0,224,1,0,2,96,3,114,4,0,5,0,6,193,7,0</FixtureVal>
+   <FixtureVal ID="2">0,222,1,0,2,94,3,114,4,0,5,0,6,205,7,0</FixtureVal>
+   <FixtureVal ID="3">0,202,1,0,2,96,3,114,4,0,5,0,6,207,7,0</FixtureVal>
+  </Function>
+  <Function ID="20" Type="Scene" Name="6 Varese">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0"/>
+   <FixtureVal ID="1">0,149,1,0,2,0,3,0,4,255,5,0,6,67,7,0</FixtureVal>
+   <FixtureVal ID="2">0,145,1,0,2,0,3,0,4,255,5,0,6,63,7,0</FixtureVal>
+   <FixtureVal ID="3"/>
+  </Function>
+  <Function ID="21" Type="Scene" Name="7 González">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0</FixtureVal>
+   <FixtureVal ID="1">0,170,1,0,2,0,3,237,4,207,5,0,6,67,7,0</FixtureVal>
+   <FixtureVal ID="2">0,170,1,0,2,0,3,231,4,207,5,0,6,67,7,0</FixtureVal>
+   <FixtureVal ID="3">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0</FixtureVal>
+  </Function>
+  <Function ID="22" Type="Scene" Name="8 Hoover">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0</FixtureVal>
+   <FixtureVal ID="1">0,226,1,0,2,0,3,69,4,227,5,0,6,207,7,0</FixtureVal>
+   <FixtureVal ID="2">0,223,1,0,2,0,3,71,4,231,5,0,6,209,7,0</FixtureVal>
+   <FixtureVal ID="3">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0</FixtureVal>
+  </Function>
+  <Function ID="23" Type="Scene" Name="9 Dick">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,235,1,0,2,0,3,251,4,131,5,0,6,217,7,0</FixtureVal>
+   <FixtureVal ID="1">0,254,1,0,2,52,3,251,4,196,5,0,6,184</FixtureVal>
+   <FixtureVal ID="2">0,252,1,0,2,96,3,251,4,196,5,0,6,158</FixtureVal>
+   <FixtureVal ID="3">0,242,1,0,2,0,3,251,4,139,5,0,6,255,7,0</FixtureVal>
+  </Function>
+  <Function ID="24" Type="Scene" Name="2. Ferrad">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,1,0,2,0,3,0,4,0,5,0,6,183,7,0</FixtureVal>
+   <FixtureVal ID="1">0,255,1,9,2,42,3,45,4,0,5,0,6,255,7,0</FixtureVal>
+   <FixtureVal ID="2">0,255,1,9,2,42,3,45,4,0,5,0,6,255,7,0</FixtureVal>
+   <FixtureVal ID="3">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0</FixtureVal>
+  </Function>
+  <Function ID="25" Type="Scene" Name="3.5 Entrada Elert">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+  </Function>
+  <Monitor DisplayMode="1" ShowLabels="1">
+   <Font>Arial,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1</Font>
+   <ChannelStyle>0</ChannelStyle>
+   <ValueStyle>0</ValueStyle>
+   <BackgroundItem ID="6">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/1.png</BackgroundItem>
+   <BackgroundItem ID="7">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/7.png</BackgroundItem>
+   <BackgroundItem ID="8">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/8.png</BackgroundItem>
+   <BackgroundItem ID="9">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/9.png</BackgroundItem>
+   <BackgroundItem ID="10">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/2.png</BackgroundItem>
+   <BackgroundItem ID="11">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/3.png</BackgroundItem>
+   <BackgroundItem ID="12">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/4.png</BackgroundItem>
+   <BackgroundItem ID="13">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/5.png</BackgroundItem>
+   <BackgroundItem ID="14">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/6.png</BackgroundItem>
+   <Grid Width="5" Height="3" Depth="5" Units="0" POV="1"/>
+   <StageItem>0</StageItem>
+   <FxItem ID="0" XPos="928.571" YPos="1000" ZPos="2685.71" GelColor="#000000"/>
+   <FxItem ID="1" XPos="1814.29" YPos="1000" ZPos="2728.57"/>
+   <FxItem ID="2" XPos="2671.43" YPos="1000" ZPos="2728.57"/>
+   <FxItem ID="3" XPos="3471.43" YPos="1000" ZPos="2742.86"/>
+   <FxItem ID="4" XPos="0" YPos="1000" ZPos="0"/>
+   <FxItem ID="5" XPos="300" YPos="1000" ZPos="0"/>
+   <FxItem ID="6" XPos="600" YPos="1000" ZPos="0"/>
+   <FxItem ID="7" XPos="900" YPos="1000" ZPos="0"/>
+  </Monitor>
+ </Engine>
+ <VirtualConsole>
+  <Frame Caption="Página 1" ID="0">
+   <Appearance>
+    <BackgroundColor>4294945407</BackgroundColor>
+    <Font>Roboto Condensed,16,-1,5,400,0,0,0,0,0,0,0,0,0,0,1</Font>
+   </Appearance>
+   <WindowState Visible="True" X="0" Y="0" Width="1850" Height="980"/>
+   <AllowResize>False</AllowResize>
+   <ShowHeader>False</ShowHeader>
+   <ShowEnableButton>True</ShowEnableButton>
+   <Collapsed>False</Collapsed>
+   <Disabled>False</Disabled>
+   <Frame Caption="COR Focos Fronte" ID="8">
+    <Appearance>
+     <BackgroundColor>4294945407</BackgroundColor>
+    </Appearance>
+    <WindowState Visible="True" X="230" Y="510" Width="400" Height="300"/>
+    <AllowResize>True</AllowResize>
+    <ShowHeader>True</ShowHeader>
+    <ShowEnableButton>False</ShowEnableButton>
+    <Collapsed>False</Collapsed>
+    <Disabled>False</Disabled>
+    <Multipage PagesNum="5" CurrentPage="0" PagesLoop="True"/>
+    <Shortcut Page="0" Name="TODOS"/>
+    <Shortcut Page="1" Name="Foco 1"/>
+    <Shortcut Page="2" Name="Foco 2"/>
+    <Shortcut Page="3" Name="Foco 3"/>
+    <Shortcut Page="4" Name="Foco 4"/>
+    <Slider Caption="RGB" ID="9" WidgetStyle="Slider" InvertedAppearance="false">
+     <WindowState Visible="True" X="0" Y="50" Width="70" Height="250"/>
+     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="Colors">Level</SliderMode>
+     <Level LowLimit="0" HighLimit="255" Value="128">
+      <Channel Fixture="0">1</Channel>
+      <Channel Fixture="0">2</Channel>
+      <Channel Fixture="0">3</Channel>
+      <Channel Fixture="1">1</Channel>
+      <Channel Fixture="1">2</Channel>
+      <Channel Fixture="1">3</Channel>
+      <Channel Fixture="2">1</Channel>
+      <Channel Fixture="2">2</Channel>
+      <Channel Fixture="2">3</Channel>
+      <Channel Fixture="3">1</Channel>
+      <Channel Fixture="3">2</Channel>
+      <Channel Fixture="3">3</Channel>
+     </Level>
+    </Slider>
+    <Slider Caption="RGB" ID="14" Page="1" WidgetStyle="Slider" InvertedAppearance="false">
+     <WindowState Visible="False" X="10" Y="40" Width="70" Height="250"/>
+     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="Colors" Monitor="true">Level</SliderMode>
+     <Level LowLimit="0" HighLimit="255" Value="0">
+      <Channel Fixture="0">1</Channel>
+      <Channel Fixture="0">2</Channel>
+      <Channel Fixture="0">3</Channel>
+     </Level>
+    </Slider>
+    <Slider Caption="RGB" ID="15" Page="2" WidgetStyle="Slider" InvertedAppearance="false">
+     <WindowState Visible="False" X="10" Y="40" Width="70" Height="250"/>
+     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="Colors" Monitor="true">Level</SliderMode>
+     <Level LowLimit="0" HighLimit="255" Value="0">
+      <Channel Fixture="1">1</Channel>
+      <Channel Fixture="1">2</Channel>
+      <Channel Fixture="1">3</Channel>
+     </Level>
+    </Slider>
+    <Slider Caption="RGB" ID="16" Page="3" WidgetStyle="Slider" InvertedAppearance="false">
+     <WindowState Visible="False" X="10" Y="40" Width="70" Height="250"/>
+     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="Colors" Monitor="true">Level</SliderMode>
+     <Level LowLimit="0" HighLimit="255" Value="0">
+      <Channel Fixture="2">1</Channel>
+      <Channel Fixture="2">2</Channel>
+      <Channel Fixture="2">3</Channel>
+     </Level>
+    </Slider>
+    <Slider Caption="RGB" ID="17" Page="4" WidgetStyle="Slider" InvertedAppearance="false">
+     <WindowState Visible="False" X="10" Y="40" Width="70" Height="250"/>
+     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="Colors" Monitor="true">Level</SliderMode>
+     <Level LowLimit="0" HighLimit="255" Value="0">
+      <Channel Fixture="3">1</Channel>
+      <Channel Fixture="3">2</Channel>
+      <Channel Fixture="3">3</Channel>
+     </Level>
+    </Slider>
+   </Frame>
+   <Frame Caption="COR - Focos Traseira" ID="27">
+    <WindowState Visible="True" X="695" Y="515" Width="400" Height="300"/>
+    <AllowResize>True</AllowResize>
+    <ShowHeader>True</ShowHeader>
+    <ShowEnableButton>False</ShowEnableButton>
+    <Collapsed>False</Collapsed>
+    <Disabled>False</Disabled>
+    <Multipage PagesNum="5" CurrentPage="0" PagesLoop="True"/>
+    <Shortcut Page="0" Name="TODOS"/>
+    <Shortcut Page="1" Name="Foco 1"/>
+    <Shortcut Page="2" Name="Foco 2"/>
+    <Shortcut Page="3" Name="Foco 3"/>
+    <Shortcut Page="4" Name="Foco 4"/>
+    <Slider Caption="RGB" ID="21" WidgetStyle="Slider" InvertedAppearance="false">
+     <WindowState Visible="True" X="0" Y="50" Width="70" Height="250"/>
+     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="Colors">Level</SliderMode>
+     <Level LowLimit="0" HighLimit="255" Value="128">
+      <Channel Fixture="4">1</Channel>
+      <Channel Fixture="4">2</Channel>
+      <Channel Fixture="4">3</Channel>
+      <Channel Fixture="5">1</Channel>
+      <Channel Fixture="5">2</Channel>
+      <Channel Fixture="5">3</Channel>
+      <Channel Fixture="6">1</Channel>
+      <Channel Fixture="6">2</Channel>
+      <Channel Fixture="6">3</Channel>
+      <Channel Fixture="7">1</Channel>
+      <Channel Fixture="7">2</Channel>
+      <Channel Fixture="7">3</Channel>
+     </Level>
+    </Slider>
+    <Slider Caption="RGB" ID="22" Page="1" WidgetStyle="Slider" InvertedAppearance="false">
+     <WindowState Visible="False" X="10" Y="40" Width="70" Height="250"/>
+     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="Colors" Monitor="true">Level</SliderMode>
+     <Level LowLimit="0" HighLimit="255" Value="0">
+      <Channel Fixture="0">1</Channel>
+      <Channel Fixture="0">2</Channel>
+      <Channel Fixture="0">3</Channel>
+     </Level>
+    </Slider>
+    <Slider Caption="RGB" ID="23" Page="2" WidgetStyle="Slider" InvertedAppearance="false">
+     <WindowState Visible="False" X="10" Y="40" Width="70" Height="250"/>
+     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="Colors" Monitor="true">Level</SliderMode>
+     <Level LowLimit="0" HighLimit="255" Value="0">
+      <Channel Fixture="1">1</Channel>
+      <Channel Fixture="1">2</Channel>
+      <Channel Fixture="1">3</Channel>
+     </Level>
+    </Slider>
+    <Slider Caption="RGB" ID="24" Page="3" WidgetStyle="Slider" InvertedAppearance="false">
+     <WindowState Visible="False" X="10" Y="40" Width="70" Height="250"/>
+     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="Colors" Monitor="true">Level</SliderMode>
+     <Level LowLimit="0" HighLimit="255" Value="0">
+      <Channel Fixture="2">1</Channel>
+      <Channel Fixture="2">2</Channel>
+      <Channel Fixture="2">3</Channel>
+     </Level>
+    </Slider>
+    <Slider Caption="RGB" ID="25" Page="4" WidgetStyle="Slider" InvertedAppearance="false">
+     <WindowState Visible="False" X="10" Y="40" Width="70" Height="250"/>
+     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="Colors" Monitor="true">Level</SliderMode>
+     <Level LowLimit="0" HighLimit="255" Value="0">
+      <Channel Fixture="3">1</Channel>
+      <Channel Fixture="3">2</Channel>
+      <Channel Fixture="3">3</Channel>
+     </Level>
+    </Slider>
+   </Frame>
+   <Frame Caption="Control de Escenas" ID="31">
+    <Appearance>
+     <BackgroundColor>4292662743</BackgroundColor>
+    </Appearance>
+    <WindowState Visible="True" X="1200" Y="50" Width="580" Height="400"/>
+    <AllowResize>True</AllowResize>
+    <ShowHeader>True</ShowHeader>
+    <ShowEnableButton>False</ShowEnableButton>
+    <Collapsed>False</Collapsed>
+    <Disabled>False</Disabled>
+    <Multipage PagesNum="6" CurrentPage="0"/>
+    <Shortcut Page="0" Name="Proxecto 1"/>
+    <Shortcut Page="1" Name="Proxecto 2"/>
+    <Shortcut Page="2" Name="Proxecto 3"/>
+    <Shortcut Page="3" Name="Proxecto 4"/>
+    <Shortcut Page="4" Name="Proxecto 5"/>
+    <Shortcut Page="5" Name="Proxecto 6"/>
+    <CueList Caption="Proxecto_1" ID="32">
+     <WindowState Visible="True" X="0" Y="35" Width="400" Height="365"/>
+     <Chaser>0</Chaser>
+     <NextPrevBehavior>1</NextPrevBehavior>
+     <Next>
+      <Input ID="0" Universe="0" Channel="44"/>
+     </Next>
+     <Previous>
+      <Input ID="1" Universe="0" Channel="43"/>
+     </Previous>
+     <Playback>
+      <Input ID="2" Universe="0" Channel="41"/>
+     </Playback>
+     <Stop>
+      <Input ID="3" Universe="0" Channel="42"/>
+     </Stop>
+    </CueList>
+    <CueList Caption="Proxecto_2" ID="45" Page="1">
+     <WindowState Visible="False" X="0" Y="35" Width="400" Height="365"/>
+     <Chaser>1</Chaser>
+     <NextPrevBehavior>1</NextPrevBehavior>
+     <Next>
+      <Input ID="0" Universe="0" Channel="65580"/>
+     </Next>
+     <Previous>
+      <Input ID="1" Universe="0" Channel="65579"/>
+     </Previous>
+     <Playback>
+      <Input ID="2" Universe="0" Channel="65577"/>
+     </Playback>
+     <Stop>
+      <Input ID="3" Universe="0" Channel="65578"/>
+     </Stop>
+    </CueList>
+    <CueList Caption="Proxecto_3" ID="50" Page="2">
+     <WindowState Visible="False" X="0" Y="35" Width="400" Height="365"/>
+     <Chaser>2</Chaser>
+     <NextPrevBehavior>1</NextPrevBehavior>
+     <Next>
+      <Input ID="0" Universe="0" Channel="131116"/>
+     </Next>
+     <Previous>
+      <Input ID="1" Universe="0" Channel="131115"/>
+     </Previous>
+     <Playback>
+      <Input ID="2" Universe="0" Channel="131113"/>
+     </Playback>
+     <Stop>
+      <Input ID="3" Universe="0" Channel="131114"/>
+     </Stop>
+    </CueList>
+    <CueList Caption="Proxecto_4" ID="55" Page="3">
+     <WindowState Visible="False" X="0" Y="35" Width="400" Height="365"/>
+     <Chaser>3</Chaser>
+     <NextPrevBehavior>1</NextPrevBehavior>
+     <Next>
+      <Input ID="0" Universe="0" Channel="196652"/>
+     </Next>
+     <Previous>
+      <Input ID="1" Universe="0" Channel="196651"/>
+     </Previous>
+     <Playback>
+      <Input ID="2" Universe="0" Channel="196649"/>
+     </Playback>
+     <Stop>
+      <Input ID="3" Universe="0" Channel="196650"/>
+     </Stop>
+    </CueList>
+    <CueList Caption="Proxecto_5" ID="60" Page="4">
+     <WindowState Visible="False" X="0" Y="35" Width="400" Height="365"/>
+     <Chaser>4</Chaser>
+     <NextPrevBehavior>1</NextPrevBehavior>
+     <Next>
+      <Input ID="0" Universe="0" Channel="262188"/>
+     </Next>
+     <Previous>
+      <Input ID="1" Universe="0" Channel="262187"/>
+     </Previous>
+     <Playback>
+      <Input ID="2" Universe="0" Channel="262185"/>
+     </Playback>
+     <Stop>
+      <Input ID="3" Universe="0" Channel="262186"/>
+     </Stop>
+    </CueList>
+    <CueList Caption="Proxecto_6" ID="65" Page="5">
+     <WindowState Visible="False" X="0" Y="35" Width="400" Height="365"/>
+     <Chaser>5</Chaser>
+     <NextPrevBehavior>1</NextPrevBehavior>
+     <Next>
+      <Input ID="0" Universe="0" Channel="327724"/>
+     </Next>
+     <Previous>
+      <Input ID="1" Universe="0" Channel="327723"/>
+     </Previous>
+     <Playback>
+      <Input ID="2" Universe="0" Channel="327721"/>
+     </Playback>
+     <Stop>
+      <Input ID="3" Universe="0" Channel="327722"/>
+     </Stop>
+    </CueList>
+    <SpeedDial Caption="Duración Fundidos" ID="62" Page="4">
+     <WindowState Visible="False" X="395" Y="240" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>0</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="6" FadeOut="6" Duration="0">4</Function>
+    </SpeedDial>
+    <SpeedDial Caption="Duración escenas" ID="66" Page="5">
+     <WindowState Visible="False" X="395" Y="60" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>0</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="0" FadeOut="0" Duration="6">5</Function>
+    </SpeedDial>
+    <SpeedDial Caption="Duración Fundidos" ID="52" Page="2">
+     <WindowState Visible="False" X="395" Y="240" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>0</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="6" FadeOut="6" Duration="0">2</Function>
+    </SpeedDial>
+    <SpeedDial Caption="Duración escenas" ID="56" Page="3">
+     <WindowState Visible="False" X="395" Y="60" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>0</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="0" FadeOut="0" Duration="6">3</Function>
+    </SpeedDial>
+    <SpeedDial Caption="Duración Fundidos" ID="57" Page="3">
+     <WindowState Visible="False" X="395" Y="240" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>0</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="6" FadeOut="6" Duration="0">3</Function>
+    </SpeedDial>
+    <SpeedDial Caption="Duración escenas" ID="61" Page="4">
+     <WindowState Visible="False" X="395" Y="60" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>0</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="0" FadeOut="0" Duration="6">4</Function>
+    </SpeedDial>
+    <SpeedDial Caption="Duración escenas" ID="51" Page="2">
+     <WindowState Visible="False" X="395" Y="60" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>3000</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="0" FadeOut="0" Duration="6">2</Function>
+    </SpeedDial>
+    <SpeedDial Caption="Duración Fundidos" ID="67" Page="5">
+     <WindowState Visible="False" X="395" Y="240" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>0</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="6" FadeOut="6" Duration="0">5</Function>
+    </SpeedDial>
+    <SpeedDial Caption="Duración escenas" ID="38">
+     <WindowState Visible="True" X="395" Y="60" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>0</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="0" FadeOut="0" Duration="6">0</Function>
+    </SpeedDial>
+    <SpeedDial Caption="Duración Fundidos" ID="39">
+     <WindowState Visible="True" X="395" Y="240" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>879</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="6" FadeOut="6" Duration="0">0</Function>
+    </SpeedDial>
+    <SpeedDial Caption="Duración escenas" ID="46" Page="1">
+     <WindowState Visible="False" X="395" Y="60" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>0</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="0" FadeOut="0" Duration="6">1</Function>
+    </SpeedDial>
+    <SpeedDial Caption="Duración Fundidos" ID="47" Page="1">
+     <WindowState Visible="False" X="395" Y="240" Width="180" Height="155"/>
+     <Appearance>
+      <BackgroundColor>4294967295</BackgroundColor>
+     </Appearance>
+     <Visibility>52</Visibility>
+     <Time>60000</Time>
+     <AbsoluteValue Minimum="0" Maximum="10000"/>
+     <Function FadeIn="6" FadeOut="6" Duration="0">1</Function>
+    </SpeedDial>
+    <Label Caption="Duración Pasos" ID="63" Page="4">
+     <WindowState Visible="False" X="395" Y="35" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+    <Label Caption="Duración Fundidos" ID="59" Page="3">
+     <WindowState Visible="False" X="395" Y="215" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+    <Label Caption="Duración Pasos" ID="58" Page="3">
+     <WindowState Visible="False" X="395" Y="35" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+    <Label Caption="Duración Fundidos" ID="54" Page="2">
+     <WindowState Visible="False" X="395" Y="215" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+    <Label Caption="Duración Pasos" ID="53" Page="2">
+     <WindowState Visible="False" X="395" Y="35" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+    <Label Caption="Duración Fundidos" ID="49" Page="1">
+     <WindowState Visible="False" X="395" Y="215" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+    <Label Caption="Duración Pasos" ID="48" Page="1">
+     <WindowState Visible="False" X="395" Y="35" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+    <Label Caption="Duración Fundidos" ID="44">
+     <WindowState Visible="True" X="395" Y="215" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+    <Label Caption="Duración Pasos" ID="43">
+     <WindowState Visible="True" X="395" Y="35" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+    <Label Caption="Duración Fundidos" ID="64" Page="4">
+     <WindowState Visible="False" X="395" Y="215" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+    <Label Caption="Duración Pasos" ID="68" Page="5">
+     <WindowState Visible="False" X="395" Y="35" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+    <Label Caption="Duración Fundidos" ID="69" Page="5">
+     <WindowState Visible="False" X="395" Y="215" Width="180" Height="25"/>
+     <Appearance>
+      <BackgroundColor>4287268487</BackgroundColor>
+     </Appearance>
+    </Label>
+   </Frame>
+   <Slider Caption="Strobo_1" ID="34" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="1300" Y="515" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="0">5</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_2" ID="35" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="1390" Y="515" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="1">5</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_3" ID="36" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="1480" Y="515" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="2">5</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_4" ID="37" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="1570" Y="515" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="3">5</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_5" ID="40" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="1300" Y="630" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="4">4</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_6" ID="41" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="1390" Y="630" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="5">4</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_7" ID="42" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="1480" Y="630" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="6">4</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_8" ID="70" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="1570" Y="630" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="7">4</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="NIVEL TRASEIRA COMPLETA" ID="33" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="55" Y="395" Width="105" Height="140"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="23"/>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="4">0</Channel>
+     <Channel Fixture="5">0</Channel>
+     <Channel Fixture="6">0</Channel>
+     <Channel Fixture="7">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="NIVEL TRASEIRA COMPLETA" ID="71" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="55" Y="235" Width="105" Height="140"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="23"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="0">0</Channel>
+     <Channel Fixture="1">0</Channel>
+     <Channel Fixture="2">0</Channel>
+     <Channel Fixture="3">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Estrobo Frontal" ID="6" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="785" Y="80" Width="110" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="20"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="0">5</Channel>
+     <Channel Fixture="1">5</Channel>
+     <Channel Fixture="2">5</Channel>
+     <Channel Fixture="3">5</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Estrobo Traseira" ID="5" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="900" Y="80" Width="110" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="21"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="4">4</Channel>
+     <Channel Fixture="5">4</Channel>
+     <Channel Fixture="6">4</Channel>
+     <Channel Fixture="7">4</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Zoom - 1" ID="1" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="210" Y="115" Width="105" Height="120"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="16"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="0">6</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Zoom TODOS" ID="0" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="345" Y="20" Width="155" Height="90"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="196">
+     <Channel Fixture="0">6</Channel>
+     <Channel Fixture="1">6</Channel>
+     <Channel Fixture="2">6</Channel>
+     <Channel Fixture="3">6</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Zoom - 2" ID="2" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="320" Y="115" Width="105" Height="120"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="17"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="1">6</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Zoom - 3" ID="3" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="430" Y="115" Width="105" Height="120"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="18"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="2">6</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Zoom - 4" ID="4" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="540" Y="115" Width="105" Height="120"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="19"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="3">6</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 1" ID="10" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="210" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="0"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="0">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 2" ID="11" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="320" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="1"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="1">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 3" ID="12" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="430" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="2"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="2">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 4" ID="13" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="540" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="3"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="3">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 1" ID="7" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="680" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="4"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="4">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 2" ID="18" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="790" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="5"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="5">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 3" ID="19" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="900" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="6"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="38">
+     <Channel Fixture="6">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 4" ID="20" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="1010" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="7"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="94">
+     <Channel Fixture="7">0</Channel>
+    </Level>
+   </Slider>
+   <Label Caption="Control Estrobo" ID="29">
+    <WindowState Visible="True" X="775" Y="45" Width="245" Height="30"/>
+    <Appearance>
+     <BackgroundColor>4294929281</BackgroundColor>
+    </Appearance>
+   </Label>
+   <Label Caption="Focos Traseira" ID="28">
+    <WindowState Visible="True" X="680" Y="465" Width="435" Height="35"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+   </Label>
+   <Label Caption="Focos Frontais" ID="26">
+    <WindowState Visible="True" X="210" Y="465" Width="435" Height="35"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+   </Label>
+   <Label Caption="" ID="30">
+    <WindowState Visible="True" X="775" Y="75" Width="245" Height="125"/>
+    <Appearance>
+     <BackgroundColor>4294929281</BackgroundColor>
+    </Appearance>
+   </Label>
+  </Frame>
+ </VirtualConsole>
+</Workspace>

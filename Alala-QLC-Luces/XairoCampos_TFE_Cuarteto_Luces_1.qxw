@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Workspace>
+<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="FIXANDFUNC">
+ <Creator>
+  <Name>Q Light Controller Plus</Name>
+  <Version>5.0.1</Version>
+  <Author>Xairo Campos Blanco</Author>
+ </Creator>
+ <Engine>
+  <InputOutputMap>
+   <BeatGenerator BeatType="Disabled" BPM="120"/>
+   <Universe Name="Universe 1SAIDA" ID="0">
+    <Input Plugin="MIDI" UID="None" Line="1"/>
+    <Output Plugin="DMX USB" UID="None" Line="0"/>
+   </Universe>
+  </InputOutputMap>
+  <Fixture>
+   <Manufacturer>Varytec</Manufacturer>
+   <Model>Typhoon True Kid 720Z RGBW IP65</Model>
+   <Mode>8 Channel</Mode>
+   <ID>0</ID>
+   <Name>Typhoon True Kid 720Z RGBW IP65 #1</Name>
+   <Universe>0</Universe>
+   <Address>0</Address>
+   <Channels>8</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Varytec</Manufacturer>
+   <Model>Typhoon True Kid 720Z RGBW IP65</Model>
+   <Mode>8 Channel</Mode>
+   <ID>1</ID>
+   <Name>Typhoon True Kid 720Z RGBW IP65 #2</Name>
+   <Universe>0</Universe>
+   <Address>8</Address>
+   <Channels>8</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Varytec</Manufacturer>
+   <Model>Typhoon True Kid 720Z RGBW IP65</Model>
+   <Mode>8 Channel</Mode>
+   <ID>2</ID>
+   <Name>Typhoon True Kid 720Z RGBW IP65 #3</Name>
+   <Universe>0</Universe>
+   <Address>16</Address>
+   <Channels>8</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Varytec</Manufacturer>
+   <Model>Typhoon True Kid 720Z RGBW IP65</Model>
+   <Mode>8 Channel</Mode>
+   <ID>3</ID>
+   <Name>Typhoon True Kid 720Z RGBW IP65 #4</Name>
+   <Universe>0</Universe>
+   <Address>24</Address>
+   <Channels>8</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Showtec</Manufacturer>
+   <Model>Compact Par 18 MKII</Model>
+   <Mode>6 Channel</Mode>
+   <ID>4</ID>
+   <Name>Compact Par 18 MKII #1</Name>
+   <Universe>0</Universe>
+   <Address>32</Address>
+   <Channels>6</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Showtec</Manufacturer>
+   <Model>Compact Par 18 MKII</Model>
+   <Mode>6 Channel</Mode>
+   <ID>5</ID>
+   <Name>Compact Par 18 MKII #2</Name>
+   <Universe>0</Universe>
+   <Address>38</Address>
+   <Channels>6</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Showtec</Manufacturer>
+   <Model>Compact Par 18 MKII</Model>
+   <Mode>6 Channel</Mode>
+   <ID>6</ID>
+   <Name>Compact Par 18 MKII #3</Name>
+   <Universe>0</Universe>
+   <Address>44</Address>
+   <Channels>6</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Showtec</Manufacturer>
+   <Model>Compact Par 18 MKII</Model>
+   <Mode>6 Channel</Mode>
+   <ID>7</ID>
+   <Name>Compact Par 18 MKII #4</Name>
+   <Universe>0</Universe>
+   <Address>50</Address>
+   <Channels>6</Channels>
+  </Fixture>
+  <ChannelsGroup ID="0" Name="Zoom Grupo" Value="0">0,6,1,6,2,6,3,6</ChannelsGroup>
+  <Function ID="0" Type="Chaser" Name="XairoCampos_TFE_Cuarteto">
+   <Speed FadeIn="16" FadeOut="0" Duration="4294967294"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <SpeedModes FadeIn="PerStep" FadeOut="PerStep" Duration="PerStep"/>
+   <Step Number="0" FadeIn="0" Hold="4294967294" FadeOut="0" Note="Preparacións, montaxe e recepción público">51</Step>
+   <Step Number="1" FadeIn="0" Hold="4294967294" FadeOut="100" Note="Antes de comezar">2</Step>
+   <Step Number="2" FadeIn="100" Hold="4294967294" FadeOut="100">3</Step>
+   <Step Number="3" FadeIn="100" Hold="4294967294" FadeOut="100">4</Step>
+   <Step Number="4" FadeIn="100" Hold="4294967294" FadeOut="4000">5</Step>
+   <Step Number="5" FadeIn="4000" Hold="4294967294" FadeOut="2000">1</Step>
+   <Step Number="6" FadeIn="2000" Hold="4294967294" FadeOut="4000" Note="Ó remate da 1ª sección (silencio total)">6</Step>
+   <Step Number="7" FadeIn="4000" Hold="4294967294" FadeOut="2000" Note="Entrada da corda de novo">8</Step>
+   <Step Number="8" FadeIn="0" Hold="4294967294" FadeOut="10000" Note="Ó introducirse de novo o tema">10</Step>
+   <Step Number="9" FadeIn="10000" Hold="4294967294" FadeOut="0" Note="Comeza na última célula do tema (vla)">11</Step>
+   <Step Number="10" FadeIn="0" Hold="4294967294" FadeOut="0" Note="Inmediatamente na entrada">12</Step>
+   <Step Number="11" FadeIn="0" Hold="4294967294" FadeOut="0" Note="Ó remate da pasaxe &quot;agresiva&quot;">16</Step>
+   <Step Number="12" FadeIn="100" Hold="4294967294" FadeOut="100" Note="Cando comezan os harmónicos">13</Step>
+   <Step Number="13" FadeIn="100" Hold="4294967294" FadeOut="0" Note="Tema violín. Pendente estudar strobe para lfo">14</Step>
+   <Step Number="14" FadeIn="0" Hold="4294967294" FadeOut="0" Note="Cando comeza pasaxe rítmica. Flash (0) a brancas">18</Step>
+   <Step Number="15" FadeIn="0" Hold="4294967294" FadeOut="0" Note="Ó cesar voces intermedias">17</Step>
+   <Step Number="16" FadeIn="0" Hold="4294967294" FadeOut="100" Note="Ó deterse os harmónicos">19</Step>
+   <Step Number="17" FadeIn="100" Hold="4294967294" FadeOut="100" Note="No silencio">20</Step>
+   <Step Number="18" FadeIn="100" Hold="4294967294" FadeOut="0" Note="Ó comezar todos de novo">21</Step>
+   <Step Number="19" FadeIn="0" Hold="800" FadeOut="0" Note="No corte.">22</Step>
+   <Step Number="20" FadeIn="0" Hold="4294967294" FadeOut="100" Note="Accionamento automático">23</Step>
+   <Step Number="21" FadeIn="100" Hold="4294967294" FadeOut="0" Note="Ídem">24</Step>
+   <Step Number="22" FadeIn="0" Hold="800" FadeOut="0">25</Step>
+   <Step Number="23" FadeIn="0" Hold="4294967294" FadeOut="100">26</Step>
+   <Step Number="24" FadeIn="100" Hold="4294967294" FadeOut="0">27</Step>
+   <Step Number="25" FadeIn="0" Hold="800" FadeOut="0">28</Step>
+   <Step Number="26" FadeIn="0" Hold="4294967294" FadeOut="100">29</Step>
+   <Step Number="27" FadeIn="100" Hold="4294967294" FadeOut="0">30</Step>
+   <Step Number="28" FadeIn="0" Hold="800" FadeOut="0">31</Step>
+   <Step Number="29" FadeIn="0" Hold="500" FadeOut="0" Note="Automático">34</Step>
+   <Step Number="30" FadeIn="10000" Hold="4294967294" FadeOut="0">32</Step>
+   <Step Number="31" FadeIn="0" Hold="800" FadeOut="0" Note="Activar no corte (queda vl1 só)">35</Step>
+   <Step Number="32" FadeIn="0" Hold="4294967294" FadeOut="0">38</Step>
+   <Step Number="33" FadeIn="0" Hold="4294967294" FadeOut="0" Note="Activar no silencio. Flashes reactivos a intérpretes. Orde: 1,2,3,4,1,3,2,1">37</Step>
+   <Step Number="34" FadeIn="0" Hold="4294967294" FadeOut="0" Note="Activar escena. Lento. Controlar con faders 5-8 subida intensidade">44</Step>
+   <Step Number="35" FadeIn="0" Hold="4294967294" FadeOut="0" Note="Ó chegar ó 100% no anterior, activar esta escena e repetir con 1-4. Lento">43</Step>
+   <Step Number="36" FadeIn="0" Hold="4294967294" FadeOut="100" Note="Activar esta escena ó estar con toda a luz ó 100%">45</Step>
+   <Step Number="37" FadeIn="100" Hold="4294967294" FadeOut="0" Note="No clímax">46</Step>
+   <Step Number="38" FadeIn="0" Hold="4294967294" FadeOut="30000">47</Step>
+   <Step Number="39" FadeIn="30000" Hold="4294967294" FadeOut="100" Note="Ó inicio da baixada de volume">48</Step>
+   <Step Number="40" FadeIn="100" Hold="4294967294" FadeOut="10000" Note="Á reexposición do tema">49</Step>
+   <Step Number="41" FadeIn="10000" Hold="4294967294" FadeOut="100" Note="Ó remate do tema (queda sonido)">50</Step>
+   <Step Number="42" FadeIn="100" Hold="4294967294" FadeOut="0" Note="Aplausos - fin">52</Step>
+  </Function>
+  <Function ID="1" Type="EFX" Name="4. oscilación intensidade">
+   <Fixture>
+    <ID>0</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>40</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>130</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>20</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>179</StartOffset>
+   </Fixture>
+   <PropagationMode>Parallel</PropagationMode>
+   <Speed FadeIn="0" FadeOut="0" Duration="20000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <Algorithm>Line</Algorithm>
+   <Width>0</Width>
+   <Height>15</Height>
+   <Rotation>0</Rotation>
+   <StartOffset>0</StartOffset>
+   <IsRelative>0</IsRelative>
+   <Axis Name="X">
+    <Offset>127</Offset>
+    <Frequency>2</Frequency>
+    <Phase>90</Phase>
+   </Axis>
+   <Axis Name="Y">
+    <Offset>100</Offset>
+    <Frequency>3</Frequency>
+    <Phase>0</Phase>
+   </Axis>
+  </Function>
+  <Function ID="2" Type="Scene" Name="0. escuridade">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,6,0</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,0</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="3" Type="Scene" Name="1. inicio vla">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,2,255,4,80,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,2,255,4,80,6,0</FixtureVal>
+   <FixtureVal ID="2">0,100,2,255,4,80,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,2,255,4,80,6,0</FixtureVal>
+  </Function>
+  <Function ID="4" Type="Scene" Name="2. inicio vco">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,2,255,4,80,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,2,255,4,80,6,0</FixtureVal>
+   <FixtureVal ID="2">0,100,2,255,4,80,6,0</FixtureVal>
+   <FixtureVal ID="3">0,100,2,255,4,80,6,0</FixtureVal>
+  </Function>
+  <Function ID="5" Type="Scene" Name="3. inicio vl1 e vl2">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,100,2,255,4,80,6,0</FixtureVal>
+   <FixtureVal ID="1">0,100,2,255,4,80,6,0</FixtureVal>
+   <FixtureVal ID="2">0,100,2,255,4,80,6,0</FixtureVal>
+   <FixtureVal ID="3">0,100,2,255,4,80,6,0</FixtureVal>
+  </Function>
+  <Function ID="6" Type="Scene" Name="5. escuridade">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,4,255,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,4,255,6,0</FixtureVal>
+  </Function>
+  <Function ID="7" Type="EFX" Name="7.1 oscilación intensidade">
+   <Fixture>
+    <ID>0</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>40</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>130</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>20</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>179</StartOffset>
+   </Fixture>
+   <PropagationMode>Parallel</PropagationMode>
+   <Speed FadeIn="0" FadeOut="0" Duration="10000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <Algorithm>Line</Algorithm>
+   <Width>0</Width>
+   <Height>30</Height>
+   <Rotation>0</Rotation>
+   <StartOffset>0</StartOffset>
+   <IsRelative>0</IsRelative>
+   <Axis Name="X">
+    <Offset>127</Offset>
+    <Frequency>2</Frequency>
+    <Phase>90</Phase>
+   </Axis>
+   <Axis Name="Y">
+    <Offset>100</Offset>
+    <Frequency>3</Frequency>
+    <Phase>0</Phase>
+   </Axis>
+  </Function>
+  <Function ID="8" Type="Scene" Name="6. branco zoom out">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,100,4,255,6,0</FixtureVal>
+   <FixtureVal ID="1">0,100,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,100,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,100,6,0</FixtureVal>
+   <FixtureVal ID="4">0,100,3,255</FixtureVal>
+   <FixtureVal ID="5">0,100,3,255</FixtureVal>
+   <FixtureVal ID="6">0,100,3,255</FixtureVal>
+   <FixtureVal ID="7">0,100,3,255</FixtureVal>
+  </Function>
+  <Function ID="9" Type="Scene" Name="7.2. back azul">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="4">0,100,3,255</FixtureVal>
+   <FixtureVal ID="5">0,100,3,255</FixtureVal>
+   <FixtureVal ID="6">0,100,3,255</FixtureVal>
+   <FixtureVal ID="7">0,100,3,255</FixtureVal>
+  </Function>
+  <Function ID="10" Type="Collection" Name="7. oscilación + back azul">
+   <Step Number="0">9</Step>
+   <Step Number="1">7</Step>
+  </Function>
+  <Function ID="11" Type="Scene" Name="8. escuridade">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,6,0</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,0</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="12" Type="Scene" Name="9. amarelo agresivo">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,150,1,255,2,100</FixtureVal>
+   <FixtureVal ID="1">0,150,1,255,2,100</FixtureVal>
+   <FixtureVal ID="2">0,150,1,255,2,100</FixtureVal>
+   <FixtureVal ID="3">0,150,1,255,2,100</FixtureVal>
+   <FixtureVal ID="4">0,150,1,255,2,100</FixtureVal>
+   <FixtureVal ID="5">0,150,1,255,2,100</FixtureVal>
+   <FixtureVal ID="6">0,150,1,255,2,100</FixtureVal>
+   <FixtureVal ID="7">0,150,1,255,2,100</FixtureVal>
+  </Function>
+  <Function ID="13" Type="Scene" Name="11. harmónicos">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,6,255</FixtureVal>
+   <FixtureVal ID="1">0,40,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,40,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,40,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,0</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="14" Type="Scene" Name="12. entrada vl1 lfo">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,40,2,255,4,80,6,255</FixtureVal>
+   <FixtureVal ID="1">0,40,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,40,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,40,1,50,4,255,6,0</FixtureVal>
+  </Function>
+  <Function ID="15" Type="Scene" Name="14.0 flash vl1">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,180,2,50,4,255,6,255</FixtureVal>
+   <FixtureVal ID="1"/>
+   <FixtureVal ID="2"/>
+   <FixtureVal ID="3"/>
+  </Function>
+  <Function ID="16" Type="Scene" Name="10. escuridade">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,6,0</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,0</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="17" Type="Scene" Name="15. glissandi - paran vl2 e vla">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,40,2,255,4,80,6,255</FixtureVal>
+   <FixtureVal ID="1">0,0,1,0,4,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,30,1,0,4,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,40,1,50,4,255,6,0</FixtureVal>
+  </Function>
+  <Function ID="18" Type="Scene" Name="13. pasaxe rítmica">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,100,2,255,4,80,6,255</FixtureVal>
+   <FixtureVal ID="1">0,100,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,100,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,100,1,50,4,255,6,0</FixtureVal>
+  </Function>
+  <Function ID="19" Type="Scene" Name="16. fin sección">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,20,1,50,4,255,6,255</FixtureVal>
+   <FixtureVal ID="1">0,20,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,20,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,20,1,50,4,255,6,0</FixtureVal>
+  </Function>
+  <Function ID="20" Type="Scene" Name="17. escuridade">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,6,0</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,0</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="21" Type="Scene" Name="18. coral 1">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,1,0,2,0,3,0,4,0,6,0</FixtureVal>
+   <FixtureVal ID="1">0,60,2,255,4,80,6,0</FixtureVal>
+   <FixtureVal ID="2">0,60,2,255,4,80,6,0</FixtureVal>
+   <FixtureVal ID="3">0,60,2,255,4,80,6,0</FixtureVal>
+  </Function>
+  <Function ID="22" Type="Scene" Name="19. corte 1">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,150,1,255</FixtureVal>
+   <FixtureVal ID="1">0,150,1,255</FixtureVal>
+   <FixtureVal ID="2">0,150,1,255</FixtureVal>
+   <FixtureVal ID="3">0,150,1,255</FixtureVal>
+   <FixtureVal ID="4">0,150,1,255</FixtureVal>
+   <FixtureVal ID="5">0,150,1,255</FixtureVal>
+   <FixtureVal ID="6">0,150,1,255</FixtureVal>
+   <FixtureVal ID="7">0,150,1,255</FixtureVal>
+  </Function>
+  <Function ID="23" Type="Scene" Name="20. escuridade">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,6,0</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,0</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="24" Type="Scene" Name="21. coral 2">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,120,2,30,4,255,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,1,0,2,0,3,0,4,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,120,2,30,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,120,2,30,4,255,6,0</FixtureVal>
+  </Function>
+  <Function ID="25" Type="Scene" Name="22. corte 2">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,200,1,255</FixtureVal>
+   <FixtureVal ID="1">0,200,1,255</FixtureVal>
+   <FixtureVal ID="2">0,200,1,255</FixtureVal>
+   <FixtureVal ID="3">0,200,1,255</FixtureVal>
+   <FixtureVal ID="4">0,200,1,255</FixtureVal>
+   <FixtureVal ID="5">0,200,1,255</FixtureVal>
+   <FixtureVal ID="6">0,200,1,255</FixtureVal>
+   <FixtureVal ID="7">0,200,1,255</FixtureVal>
+  </Function>
+  <Function ID="26" Type="Scene" Name="23. escuridade">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,6,0</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,0</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="27" Type="Scene" Name="24. coral 3">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,150,1,30,2,0,3,0,4,255,6,0</FixtureVal>
+   <FixtureVal ID="1">0,150,1,30,2,0,3,0,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,1,0,2,0,3,0,4,0,5,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,150,1,30,2,0,3,0,4,255,6,0</FixtureVal>
+  </Function>
+  <Function ID="28" Type="Scene" Name="25. corte 3">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,1,255</FixtureVal>
+   <FixtureVal ID="1">0,255,1,255</FixtureVal>
+   <FixtureVal ID="2">0,255,1,255</FixtureVal>
+   <FixtureVal ID="3">0,255,1,255</FixtureVal>
+   <FixtureVal ID="4">0,255,1,255</FixtureVal>
+   <FixtureVal ID="5">0,255,1,255</FixtureVal>
+   <FixtureVal ID="6">0,255,1,255</FixtureVal>
+   <FixtureVal ID="7">0,255,1,255</FixtureVal>
+  </Function>
+  <Function ID="29" Type="Scene" Name="26. escuridade">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,6,0</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,0</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="30" Type="Scene" Name="27. coral 4">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,1,40,4,255,6,255</FixtureVal>
+   <FixtureVal ID="1">0,255,1,40,4,255,6,255</FixtureVal>
+   <FixtureVal ID="2">0,255,1,40,4,255,6,255</FixtureVal>
+   <FixtureVal ID="3">0,0,1,40,4,255,6,255</FixtureVal>
+   <FixtureVal ID="4">0,100,1,255</FixtureVal>
+   <FixtureVal ID="5">0,100,1,255</FixtureVal>
+   <FixtureVal ID="6">0,100,1,255</FixtureVal>
+   <FixtureVal ID="7">0,100,1,255</FixtureVal>
+  </Function>
+  <Function ID="31" Type="Scene" Name="28. corte 4">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,1,255</FixtureVal>
+   <FixtureVal ID="1">0,255,1,255</FixtureVal>
+   <FixtureVal ID="2">0,255,1,255</FixtureVal>
+   <FixtureVal ID="3">0,255,1,255</FixtureVal>
+   <FixtureVal ID="4">0,255,1,255</FixtureVal>
+   <FixtureVal ID="5">0,255,1,255</FixtureVal>
+   <FixtureVal ID="6">0,255,1,255</FixtureVal>
+   <FixtureVal ID="7">0,255,1,255</FixtureVal>
+  </Function>
+  <Function ID="32" Type="Scene" Name="29. crescendo chop">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,150,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="1">0,150,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,150,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,150,1,50,4,255,6,0</FixtureVal>
+   <FixtureVal ID="4">0,150,1,255</FixtureVal>
+   <FixtureVal ID="5">0,150,1,255</FixtureVal>
+   <FixtureVal ID="6">0,150,1,255</FixtureVal>
+   <FixtureVal ID="7">0,150,1,255</FixtureVal>
+  </Function>
+  <Function ID="33" Type="Scene" Name="30. escuridade">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,6,0</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,0</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="34" Type="Scene" Name="29.0 semi-escuridade-intermedio">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,1,0,4,0,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,1,0,4,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,1,0,4,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,1,0,4,0,6,0</FixtureVal>
+   <FixtureVal ID="4">0,0,1,0</FixtureVal>
+   <FixtureVal ID="5">0,0,1,0</FixtureVal>
+   <FixtureVal ID="6">0,0,1,0</FixtureVal>
+   <FixtureVal ID="7">0,0,1,0</FixtureVal>
+  </Function>
+  <Function ID="35" Type="Scene" Name="30. corte 5">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,180,1,255</FixtureVal>
+   <FixtureVal ID="1">0,180,1,255</FixtureVal>
+   <FixtureVal ID="2">0,180,1,255</FixtureVal>
+   <FixtureVal ID="3">0,180,1,255</FixtureVal>
+   <FixtureVal ID="4">0,180,1,255</FixtureVal>
+   <FixtureVal ID="5">0,180,1,255</FixtureVal>
+   <FixtureVal ID="6">0,180,1,255</FixtureVal>
+   <FixtureVal ID="7">0,180,1,255</FixtureVal>
+  </Function>
+  <Function ID="36" Type="Scene" Name="32. vl1 chops">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,30,1,40,4,255,6,255</FixtureVal>
+   <FixtureVal ID="1">0,0,1,0</FixtureVal>
+   <FixtureVal ID="2">0,0,1,0</FixtureVal>
+   <FixtureVal ID="3">0,0,1,0</FixtureVal>
+   <FixtureVal ID="4">0,0,1,0</FixtureVal>
+   <FixtureVal ID="5">0,0,1,0</FixtureVal>
+   <FixtureVal ID="6">0,0,1,0</FixtureVal>
+   <FixtureVal ID="7">0,0,1,0</FixtureVal>
+  </Function>
+  <Function ID="37" Type="Scene" Name="32. escuridade">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,6,255</FixtureVal>
+   <FixtureVal ID="1">0,0,6,255</FixtureVal>
+   <FixtureVal ID="2">0,0,6,255</FixtureVal>
+   <FixtureVal ID="3">0,0,6,255</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,0</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="38" Type="Scene" Name="31. vl1 chop">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,40,1,20,2,0,4,255,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,1,0,2,0,3,0,4,0,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,1,0,2,0,3,0,4,0,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,1,0,2,0,3,0,4,0,6,0</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,0</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="39" Type="Scene" Name="33.2 flash vl2">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0"/>
+   <FixtureVal ID="1">0,255,4,255,6,255</FixtureVal>
+   <FixtureVal ID="2"/>
+   <FixtureVal ID="3"/>
+  </Function>
+  <Function ID="40" Type="Scene" Name="33.3 flash vla">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0"/>
+   <FixtureVal ID="1"/>
+   <FixtureVal ID="2">0,255,4,255,6,255</FixtureVal>
+   <FixtureVal ID="3"/>
+  </Function>
+  <Function ID="41" Type="Scene" Name="33.4 flash vco">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0"/>
+   <FixtureVal ID="1"/>
+   <FixtureVal ID="2"/>
+   <FixtureVal ID="3">0,255,4,255,6,255</FixtureVal>
+  </Function>
+  <Function ID="42" Type="Scene" Name="33.1 flash vl1">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,2,0,4,255,6,255</FixtureVal>
+   <FixtureVal ID="1"/>
+   <FixtureVal ID="2"/>
+   <FixtureVal ID="3"/>
+  </Function>
+  <Function ID="43" Type="Scene" Name="34.1 cresc. climax - frontal">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,1,1,255,2,50,6,255</FixtureVal>
+   <FixtureVal ID="1">0,1,1,255,2,70,6,255</FixtureVal>
+   <FixtureVal ID="2">0,1,1,255,2,70,6,255</FixtureVal>
+   <FixtureVal ID="3">0,1,1,255,2,50,6,255</FixtureVal>
+   <FixtureVal ID="4">0,255,1,255,2,40</FixtureVal>
+   <FixtureVal ID="5">0,255,1,255,2,40</FixtureVal>
+   <FixtureVal ID="6">0,255,1,255,2,40</FixtureVal>
+   <FixtureVal ID="7">0,255,1,255,2,40</FixtureVal>
+  </Function>
+  <Function ID="44" Type="Scene" Name="34.0 cresc. climax - trasero">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,1,255,2,50,6,255</FixtureVal>
+   <FixtureVal ID="1">0,0,1,255,2,60,6,255</FixtureVal>
+   <FixtureVal ID="2">0,0,1,255,2,70,6,255</FixtureVal>
+   <FixtureVal ID="3">0,0,1,255,2,50,6,255</FixtureVal>
+   <FixtureVal ID="4">0,1,1,255,2,40,3,133</FixtureVal>
+   <FixtureVal ID="5">0,1,1,255,2,40</FixtureVal>
+   <FixtureVal ID="6">0,1,1,255,2,40</FixtureVal>
+   <FixtureVal ID="7">0,1,1,255,2,40</FixtureVal>
+  </Function>
+  <Function ID="45" Type="Scene" Name="34.2 climax completo">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,1,255,2,50,6,255</FixtureVal>
+   <FixtureVal ID="1">0,255,1,255,2,70,6,255</FixtureVal>
+   <FixtureVal ID="2">0,255,1,255,2,70,6,255</FixtureVal>
+   <FixtureVal ID="3">0,255,1,255,2,50,6,255</FixtureVal>
+   <FixtureVal ID="4">0,255,1,255,2,40</FixtureVal>
+   <FixtureVal ID="5">0,255,1,255,2,40</FixtureVal>
+   <FixtureVal ID="6">0,255,1,255,2,40</FixtureVal>
+   <FixtureVal ID="7">0,255,1,255,2,40</FixtureVal>
+  </Function>
+  <Function ID="46" Type="EFX" Name="34.3. Oscilacións intensidade clímax">
+   <Fixture>
+    <ID>0</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>10</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>140</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>20</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>50</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>120</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>60</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>20</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>180</StartOffset>
+   </Fixture>
+   <PropagationMode>Parallel</PropagationMode>
+   <Speed FadeIn="0" FadeOut="0" Duration="20000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <Algorithm>Circle</Algorithm>
+   <Width>0</Width>
+   <Height>50</Height>
+   <Rotation>0</Rotation>
+   <StartOffset>0</StartOffset>
+   <IsRelative>0</IsRelative>
+   <Axis Name="X">
+    <Offset>127</Offset>
+    <Frequency>2</Frequency>
+    <Phase>90</Phase>
+   </Axis>
+   <Axis Name="Y">
+    <Offset>0</Offset>
+    <Frequency>3</Frequency>
+    <Phase>0</Phase>
+   </Axis>
+  </Function>
+  <Function ID="47" Type="Scene" Name="35. strobo clímax?">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,1,255,2,50,6,255</FixtureVal>
+   <FixtureVal ID="1">0,255,1,255,2,70,6,255</FixtureVal>
+   <FixtureVal ID="2">0,255,1,255,2,70,6,255</FixtureVal>
+   <FixtureVal ID="3">0,255,1,255,2,50,6,255</FixtureVal>
+   <FixtureVal ID="4">0,255,1,255,2,40</FixtureVal>
+   <FixtureVal ID="5">0,255,1,255,2,40</FixtureVal>
+   <FixtureVal ID="6">0,255,1,255,2,40</FixtureVal>
+   <FixtureVal ID="7">0,255,1,255,2,40</FixtureVal>
+  </Function>
+  <Function ID="48" Type="Scene" Name="36. inicio frío">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,20,1,0,2,0,3,60,4,255,6,0</FixtureVal>
+   <FixtureVal ID="1">0,20,1,0,2,0,3,60,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,20,1,0,2,0,3,60,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,20,1,0,2,0,3,60,4,255,6,255</FixtureVal>
+   <FixtureVal ID="4">0,0,1,0,2,0</FixtureVal>
+   <FixtureVal ID="5">0,0,1,0,2,0</FixtureVal>
+   <FixtureVal ID="6">0,0,1,0,2,0</FixtureVal>
+   <FixtureVal ID="7">0,0,1,0,2,0</FixtureVal>
+  </Function>
+  <Function ID="49" Type="EFX" Name="37. oscilación intensidade">
+   <Fixture>
+    <ID>0</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>40</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>130</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>20</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>0</Head>
+    <Mode>1</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>179</StartOffset>
+   </Fixture>
+   <PropagationMode>Parallel</PropagationMode>
+   <Speed FadeIn="0" FadeOut="0" Duration="20000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <Algorithm>Line</Algorithm>
+   <Width>0</Width>
+   <Height>10</Height>
+   <Rotation>0</Rotation>
+   <StartOffset>0</StartOffset>
+   <IsRelative>0</IsRelative>
+   <Axis Name="X">
+    <Offset>127</Offset>
+    <Frequency>2</Frequency>
+    <Phase>90</Phase>
+   </Axis>
+   <Axis Name="Y">
+    <Offset>105</Offset>
+    <Frequency>3</Frequency>
+    <Phase>0</Phase>
+   </Axis>
+  </Function>
+  <Function ID="50" Type="Scene" Name="38. escuridade final">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,4,255,6,0</FixtureVal>
+   <FixtureVal ID="1">0,0,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,0,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,0,4,255,6,0</FixtureVal>
+  </Function>
+  <Function ID="51" Type="Scene" Name="00. branco-presentacións">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,4,255,6,0</FixtureVal>
+   <FixtureVal ID="1">0,255,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,255,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,255,4,255,6,0</FixtureVal>
+   <FixtureVal ID="4">0,255,2,255,3,255</FixtureVal>
+   <FixtureVal ID="5">0,255,2,255,3,255</FixtureVal>
+   <FixtureVal ID="6">0,255,2,255,3,255</FixtureVal>
+   <FixtureVal ID="7">0,255,2,255,3,255</FixtureVal>
+  </Function>
+  <Function ID="52" Type="Scene" Name="39. branco-presentacións">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,4,255,6,0</FixtureVal>
+   <FixtureVal ID="1">0,255,4,255,6,0</FixtureVal>
+   <FixtureVal ID="2">0,255,4,255,6,0</FixtureVal>
+   <FixtureVal ID="3">0,255,4,255,6,0</FixtureVal>
+   <FixtureVal ID="4">0,255,2,255,3,255</FixtureVal>
+   <FixtureVal ID="5">0,255,2,255,3,255</FixtureVal>
+   <FixtureVal ID="6">0,255,2,255,3,255</FixtureVal>
+   <FixtureVal ID="7">0,255,2,255,3,255</FixtureVal>
+  </Function>
+  <Monitor DisplayMode="1" ShowLabels="1">
+   <Font>Arial,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1</Font>
+   <ChannelStyle>0</ChannelStyle>
+   <ValueStyle>0</ValueStyle>
+   <BackgroundItem ID="6">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/1.png</BackgroundItem>
+   <BackgroundItem ID="7">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/7.png</BackgroundItem>
+   <BackgroundItem ID="8">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/8.png</BackgroundItem>
+   <BackgroundItem ID="9">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/9.png</BackgroundItem>
+   <BackgroundItem ID="10">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/2.png</BackgroundItem>
+   <BackgroundItem ID="11">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/3.png</BackgroundItem>
+   <BackgroundItem ID="12">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/4.png</BackgroundItem>
+   <BackgroundItem ID="13">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/5.png</BackgroundItem>
+   <BackgroundItem ID="14">C:/Users/DEP. ACORDEÓN/Desktop/Presentación Marta/6.png</BackgroundItem>
+   <Grid Width="5" Height="3" Depth="5" Units="0" POV="1"/>
+   <StageItem>0</StageItem>
+   <FxItem ID="0" XPos="928.571" YPos="1000" ZPos="2685.71" GelColor="#000000"/>
+   <FxItem ID="1" XPos="1814.29" YPos="1000" ZPos="2728.57"/>
+   <FxItem ID="2" XPos="2671.43" YPos="1000" ZPos="2728.57"/>
+   <FxItem ID="3" XPos="3471.43" YPos="1000" ZPos="2742.86"/>
+   <FxItem ID="4" XPos="0" YPos="1000" ZPos="0"/>
+   <FxItem ID="5" XPos="300" YPos="1000" ZPos="0"/>
+   <FxItem ID="6" XPos="600" YPos="1000" ZPos="0"/>
+   <FxItem ID="7" XPos="900" YPos="1000" ZPos="0"/>
+  </Monitor>
+ </Engine>
+ <VirtualConsole>
+  <Frame Caption="Página 1" ID="0">
+   <Appearance>
+    <BackgroundColor>4294945407</BackgroundColor>
+    <Font>Roboto Condensed,16,-1,5,400,0,0,0,0,0,0,0,0,0,0,1</Font>
+   </Appearance>
+   <WindowState Visible="True" X="0" Y="0" Width="3000" Height="1000"/>
+   <AllowResize>False</AllowResize>
+   <ShowHeader>False</ShowHeader>
+   <ShowEnableButton>True</ShowEnableButton>
+   <Collapsed>False</Collapsed>
+   <Disabled>False</Disabled>
+   <Label Caption="Control Estrobo" ID="29">
+    <WindowState Visible="True" X="775" Y="45" Width="245" Height="30"/>
+    <Appearance>
+     <BackgroundColor>4294929281</BackgroundColor>
+    </Appearance>
+   </Label>
+   <Label Caption="Focos Frontais" ID="26">
+    <WindowState Visible="True" X="210" Y="465" Width="435" Height="35"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+   </Label>
+   <Label Caption="" ID="30">
+    <WindowState Visible="True" X="775" Y="75" Width="245" Height="125"/>
+    <Appearance>
+     <BackgroundColor>4294929281</BackgroundColor>
+    </Appearance>
+   </Label>
+   <Label Caption="Focos Traseira" ID="28">
+    <WindowState Visible="True" X="680" Y="465" Width="435" Height="35"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+   </Label>
+   <Button Caption="33. flash vl2 branco (2)" ID="57">
+    <WindowState Visible="True" X="314" Y="805" Width="111" Height="111"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="39"/>
+    <Action Override="0" ForceLTP="0">Flash</Action>
+    <Key>2</Key>
+   </Button>
+   <Button Caption="33. flash vla branco (3)" ID="58">
+    <WindowState Visible="True" X="444" Y="804" Width="111" Height="111"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="40"/>
+    <Action Override="0" ForceLTP="0">Flash</Action>
+    <Key>3</Key>
+   </Button>
+   <CueList Caption="XairoCampos_TFE_Cuarteto" ID="73">
+    <WindowState Visible="True" X="1138" Y="58" Width="1099" Height="746"/>
+    <Chaser>0</Chaser>
+   </CueList>
+   <Slider Caption="Zoom - 4" ID="4" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="510" Y="39" Width="98" Height="196"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="19"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="3">6</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 1" ID="10" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="210" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="0"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="0">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 1" ID="7" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="680" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="4"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="4">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 3" ID="19" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="900" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="6"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="6">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Zoom TODOS" ID="0" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="58" Y="19" Width="98" Height="196"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="0">6</Channel>
+     <Channel Fixture="1">6</Channel>
+     <Channel Fixture="2">6</Channel>
+     <Channel Fixture="3">6</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 2" ID="18" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="790" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="5"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="5">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Zoom - 2" ID="2" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="314" Y="39" Width="98" Height="196"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="17"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="1">6</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 2" ID="11" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="320" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="1"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="1">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 4" ID="20" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="1010" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="7"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="7">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 4" ID="13" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="540" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="3"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="3">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_8" ID="70" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="1021" Y="667" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="7">
+     <Channel Fixture="7">4</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_7" ID="42" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="922" Y="667" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="6">4</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_6" ID="41" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="824" Y="667" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="5">4</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_5" ID="40" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="726" Y="667" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="4">4</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_4" ID="37" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="1021" Y="549" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="3">5</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Intensidade - 3" ID="12" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="430" Y="240" Width="105" Height="220"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="2"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="2">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_3" ID="36" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="726" Y="549" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="2">5</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_2" ID="35" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="922" Y="549" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="1">5</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="NIVEL TRASEIRA COMPLETA" ID="71" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="58" Y="235" Width="98" Height="216"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="23"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="0">0</Channel>
+     <Channel Fixture="1">0</Channel>
+     <Channel Fixture="2">0</Channel>
+     <Channel Fixture="3">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Zoom - 1" ID="1" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="216" Y="39" Width="98" Height="196"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="16"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="0">6</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Estrobo Frontal" ID="6" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="785" Y="80" Width="110" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="20"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="0">5</Channel>
+     <Channel Fixture="1">5</Channel>
+     <Channel Fixture="2">5</Channel>
+     <Channel Fixture="3">5</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Strobo_1" ID="34" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="824" Y="549" Width="90" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="0">5</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Estrobo Traseira" ID="5" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="900" Y="80" Width="110" Height="115"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="21"/>
+    <SliderMode ValueDisplayStyle="Percentage">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="4">4</Channel>
+     <Channel Fixture="5">4</Channel>
+     <Channel Fixture="6">4</Channel>
+     <Channel Fixture="7">4</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="NIVEL TRASEIRA COMPLETA" ID="33" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="58" Y="471" Width="98" Height="235"/>
+    <Appearance>
+     <BackgroundColor>4284726641</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="23"/>
+    <SliderMode ValueDisplayStyle="Exact" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="4">0</Channel>
+     <Channel Fixture="5">0</Channel>
+     <Channel Fixture="6">0</Channel>
+     <Channel Fixture="7">0</Channel>
+    </Level>
+   </Slider>
+   <Slider Caption="Zoom - 3" ID="3" WidgetStyle="Knob" InvertedAppearance="false">
+    <WindowState Visible="True" X="412" Y="39" Width="98" Height="196"/>
+    <Appearance>
+     <BackgroundColor>4288151039</BackgroundColor>
+    </Appearance>
+    <Input ID="0" Universe="0" Channel="18"/>
+    <SliderMode ValueDisplayStyle="Percentage" Monitor="true">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="2">6</Channel>
+    </Level>
+   </Slider>
+   <Button Caption="14. flash vl1 verde (0)" ID="55">
+    <WindowState Visible="True" X="196" Y="667" Width="111" Height="111"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="15"/>
+    <Action Override="0" ForceLTP="0">Flash</Action>
+    <Key>0</Key>
+   </Button>
+   <Button Caption="33. flash vl1 branco (1)" ID="56">
+    <WindowState Visible="True" X="196" Y="805" Width="111" Height="111"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="42"/>
+    <Action Override="0" ForceLTP="0">Flash</Action>
+    <Key>1</Key>
+   </Button>
+   <Button Caption="33. flash vco branco (4)" ID="59">
+    <WindowState Visible="True" X="582" Y="803" Width="111" Height="111"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="41"/>
+    <Action Override="0" ForceLTP="0">Flash</Action>
+    <Key>4</Key>
+   </Button>
+  </Frame>
+ </VirtualConsole>
+</Workspace>
