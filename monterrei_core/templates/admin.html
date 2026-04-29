@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+{% block title %}Monterrei – Admin{% endblock %}
+{% block head %}
+<style>
+  body { padding: 1.5rem; }
+  header { display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: 1.5rem; border-bottom: 1px solid var(--grid-line); padding-bottom: 0.8rem; }
+  header h1 { font-family: var(--mono); font-size: 1rem; letter-spacing: 0.3em; color: var(--neon-cyan); }
+  .grid-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  .card h2 { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.2em;
+              text-transform: uppercase; color: var(--fg-dim); margin-bottom: 0.8rem; }
+  .row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; align-items: center; }
+  .stats { font-family: var(--mono); font-size: 0.85rem; }
+  .stats span.val { color: var(--neon-cyan); margin-left: 0.4rem; }
+  .toggle { display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+  .toggle input { width: auto; }
+  #votes-table { font-family: var(--mono); font-size: 0.85rem; width: 100%; }
+  #votes-table td { padding: 0.2rem 0.4rem; }
+  .color-row { display:flex; gap: 0.4rem; align-items: center; }
+</style>
+{% endblock %}
+{% block body %}
+<header>
+  <h1>>> ADMIN · MONTERREI CORE</h1>
+  <div class="stats mono">
+    MIDI <span class="led" id="led-midi"></span>
+    DMX <span class="led" id="led-dmx"></span>
+    BPM <span class="val mono" id="bpm">0.0</span>
+    C. <span class="val mono" id="bar">0</span>
+    Músicos <a href="#" onclick="openClients('musicians');return false;"
+              style="color:var(--neon-cyan); margin-left:0.4rem; text-decoration:underline;"
+              title="Ver listaxe / desasignar">
+              <span id="mus-count">0</span></a>
+    Público <a href="#" onclick="openClients('public');return false;"
+              style="color:var(--neon-cyan); margin-left:0.4rem; text-decoration:underline;">
+              <span id="pub-count">0</span></a>
+  </div>
+</header>
+
+<div class="row" style="margin-bottom:1rem;">
+  <button class="danger" onclick="globalReset()" title="Borra todos os músicos e público; volve á pantalla inicial">
+    ⟲ RESET GLOBAL
+  </button>
+  <span class="dim mono" style="font-size:0.75rem;">
+    Reinicia roles e pantallas de todos os clientes conectados.
+  </span>
+</div>
+
+<div class="grid-cols">
+  <!-- Hardware status -->
+  <div class="card">
+    <h2>Hardware</h2>
+    <div class="stats">
+      <div>MIDI port: <span class="val" id="midi-port">—</span></div>
+      <div>DMX port: <span class="val" id="dmx-port">—</span></div>
+      <div>Status: <span id="midi-status">stopped</span></div>
+    </div>
+    <div class="row" style="margin-top:0.6rem;">
+      <button onclick="cmd('test_dmx')">Test DMX</button>
+    </div>
+  </div>
+
+  <!-- Movement selector -->
+  <div class="card">
+    <h2>Movemento</h2>
+    <div class="row">
+      <button onclick="cmd('set_movement', {movement:1})">M1</button>
+      <button onclick="cmd('set_movement', {movement:2})">M2</button>
+      <button onclick="cmd('set_movement', {movement:3})">M3</button>
+      <button onclick="cmd('set_movement', {movement:4})">M4</button>
+    </div>
+    <label class="toggle">
+      <input type="checkbox" id="show-bar" checked
+             onchange="cmd('show_bar', {on: this.checked})">
+      Mostrar compás aos músicos
+    </label>
+  </div>
+
+  <!-- M1 -->
+  <div class="card">
+    <h2>M1 · Imaxes + Vídeo</h2>
+    <div class="row">
+      <button onclick="prevImg()">◀ Anterior</button>
+      <button onclick="nextImg()">Seguinte ▶</button>
+      <span class="dim mono" id="img-counter">0/0</span>
+    </div>
+    <div class="row">
+      <button class="primary" onclick="cmd('m1_play_video')">Lanzar MP4</button>
+      <button onclick="cmd('m1_stop_video')">Stop</button>
+      <button onclick="cmd('m1_clear')">Clear</button>
+    </div>
+  </div>
+
+  <!-- M2 -->
+  <div class="card">
+    <h2>M2 · Lorenz</h2>
+    <div class="row">
+      <button class="primary" onclick="cmd('m2_start_group',{group:'G1'})">Start G1</button>
+      <button class="primary" onclick="cmd('m2_start_group',{group:'G2'})">Start G2</button>
+      <button class="primary" onclick="cmd('m2_start_group',{group:'G3'})">Start G3</button>
+      <button class="danger" onclick="cmd('m2_blackout')">BLACKOUT</button>
+    </div>
+    <div class="stats" style="margin-top:0.6rem;">
+      Activos: <span class="val mono" id="m2-progress">—</span>
+    </div>
+  </div>
+
+  <!-- M3 -->
+  <div class="card" style="grid-column: span 2;">
+    <h2>M3 · Markov (control completo)</h2>
+    <div class="row">
+      <button class="primary" onclick="cmd('m3_start')">Iniciar Markov</button>
+      <button onclick="cmd('m3_stop')">Stop</button>
+    </div>
+    <div class="row">
+      <button onclick="mk('next')">Seguinte paso</button>
+      <button onclick="mk('auto')">Auto-Play / Pausa</button>
+      <button onclick="mk('reset')">Reiniciar</button>
+      <button onclick="mk('export')">Exportar PNG</button>
+    </div>
+    <div class="row">
+      <label>Modo:
+        <select id="mk-mode" onchange="mkSet('select-viz-mode', this.value)">
+          <option value="interactive">Interactivo</option>
+          <option value="machine">Máquina pensando</option>
+        </select>
+      </label>
+      <label>Escala:
+        <select id="mk-scale" onchange="mkSet('select-scale', this.value)">
+          <option value="diatonic">Diatónica</option>
+          <option value="octatonic">Octatónica</option>
+        </select>
+      </label>
+      <label>Estilo nodo:
+        <select id="mk-nodestyle" onchange="mkSet('select-node-style', this.value)">
+          <option value="circle">Círculo</option>
+          <option value="ring">Anel</option>
+          <option value="diamond">Diamante</option>
+          <option value="hexagon">Hexágono</option>
+          <option value="star">Estrela</option>
+          <option value="solid">Sólido</option>
+        </select>
+      </label>
+    </div>
+    <div class="row">
+      <label>Velocidade (ms):
+        <input type="range" min="100" max="2000" step="50" value="800"
+               oninput="mkSet('slider-speed', this.value); document.getElementById('mk-speed-val').textContent=this.value;">
+        <span id="mk-speed-val" class="mono">800</span>
+      </label>
+    </div>
+    <div class="row">
+      <label>Ruído %: <input type="range" min="0" max="50" value="15"
+             oninput="mkSet('slider-noise', this.value);"></label>
+      <label>Ossia abrir: <input type="range" min="0" max="60" value="25"
+             oninput="mkSet('slider-ossia-open', this.value);"></label>
+      <label>Ossia pechar: <input type="range" min="0" max="80" value="30"
+             oninput="mkSet('slider-ossia-close', this.value);"></label>
+    </div>
+    <div class="row">
+      <label>Y inicial: <input type="range" min="-15" max="15" value="0"
+             oninput="mkSet('slider-start-y', this.value);"></label>
+    </div>
+    <details><summary class="dim mono">Probabilidades de transición</summary>
+      <div class="row">
+        <label>-1: <input type="range" min="0" max="100" value="30" oninput="mkSet('slider-t--1', this.value);"></label>
+        <label>+1: <input type="range" min="0" max="100" value="22" oninput="mkSet('slider-t-+1', this.value);"></label>
+        <label>0:  <input type="range" min="0" max="100" value="14" oninput="mkSet('slider-t-0', this.value);"></label>
+        <label>-2: <input type="range" min="0" max="100" value="9"  oninput="mkSet('slider-t--2', this.value);"></label>
+        <label>+6: <input type="range" min="0" max="100" value="6"  oninput="mkSet('slider-t-+6', this.value);"></label>
+        <label>+2: <input type="range" min="0" max="100" value="5"  oninput="mkSet('slider-t-+2', this.value);"></label>
+        <label>-5: <input type="range" min="0" max="100" value="4"  oninput="mkSet('slider-t--5', this.value);"></label>
+        <label>+5: <input type="range" min="0" max="100" value="2"  oninput="mkSet('slider-t-+5', this.value);"></label>
+      </div>
+    </details>
+    <details><summary class="dim mono">Cores Markov</summary>
+      <div class="row">
+        <label>Nodo normal: <input type="color" value="#00ffcc" oninput="mkSet('color-normal', this.value)"></label>
+        <label>Ruído: <input type="color" value="#ff2244" oninput="mkSet('color-noise', this.value)"></label>
+        <label>Ossia: <input type="color" value="#cc44ff" oninput="mkSet('color-ossia', this.value)"></label>
+      </div>
+      <div class="row">
+        <label>Aresta normal: <input type="color" value="#00ffcc" oninput="mkSet('color-edge-normal', this.value)"></label>
+        <label>Aresta ruído: <input type="color" value="#ff2244" oninput="mkSet('color-edge-noise', this.value)"></label>
+        <label>Aresta ossia: <input type="color" value="#00ccff" oninput="mkSet('color-edge-ossia', this.value)"></label>
+        <label>Aresta merge: <input type="color" value="#8888ff" oninput="mkSet('color-edge-merge', this.value)"></label>
+      </div>
+    </details>
+  </div>
+
+  <!-- M4 -->
+  <div class="card">
+    <h2>M4 · Foliada (Votación)</h2>
+    <div class="row">
+      <label>Duración(s):
+        <input type="number" id="vote-secs" value="30" min="5" max="120" style="width:5rem;">
+      </label>
+    </div>
+    <div class="row">
+      <button class="primary" onclick="openVoting()">Abrir votación</button>
+      <button onclick="cmd('m4_close_voting')">Pechar (resolver)</button>
+    </div>
+    <div style="margin-top: 0.8rem;">
+      <h2>Votos en tempo real</h2>
+      <table id="votes-table"><tbody></tbody></table>
+    </div>
+    <div class="row" style="margin-top: 0.8rem;">
+      <button class="danger" onclick="cmd('m4_start_shutdown')">Iniciar Apagado</button>
+    </div>
+  </div>
+
+  <!-- Color override -->
+  <div class="card">
+    <h2>Cor / Efecto (DMX)</h2>
+    <div class="color-row">
+      <input type="color" id="color-pick" value="#00ffd9">
+      <select id="color-effect">
+        <option value="static">Estático</option>
+        <option value="pulse">Pulso</option>
+        <option value="wave">Onda</option>
+        <option value="strobe">Estrobo</option>
+      </select>
+      <input type="number" id="color-speed" value="1.0" step="0.1" min="0.1" max="10" style="width:5rem;">
+    </div>
+    <div class="row" style="margin-top:0.5rem;">
+      <button class="primary" onclick="applyColor()">Aplicar</button>
+      <button onclick="cmd('color_clear')">Limpar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de clientes -->
+<div id="clients-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85);
+     z-index:9999; padding:2rem; overflow:auto;" onclick="if(event.target.id==='clients-modal')closeClients()">
+  <div style="max-width:760px; margin:0 auto; background:var(--bg-card);
+       border:1px solid var(--grid-line); border-radius:6px; padding:1.4rem; font-family:var(--mono);">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+      <h2 id="clients-title" style="font-size:0.95rem; letter-spacing:0.2em; color:var(--neon-cyan);"></h2>
+      <button onclick="closeClients()">Pechar</button>
+    </div>
+    <table id="clients-table" style="width:100%; font-size:0.82rem;">
+      <thead><tr style="text-align:left; color:var(--fg-dim);">
+        <th>Instrumento</th><th>IP</th><th>Estado</th><th></th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/admin.js"></script>
+{% endblock %}

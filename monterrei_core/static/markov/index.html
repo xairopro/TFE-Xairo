@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafo Futurista de Markov</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/embed-monterrei.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Canvas PixiJS -->
+        <div id="canvas-container"></div>
+
+        <!-- Panel de controis -->
+        <div id="controls-panel">
+            <h2>Markov Graph</h2>
+
+            <!-- Modo de Visualización -->
+            <div class="control-group">
+                <h3>Modo de Visualizaci&oacute;n</h3>
+                <select id="select-viz-mode">
+                    <option value="interactive">Xerador Interactivo</option>
+                    <option value="machine">A M&aacute;quina Pensando</option>
+                </select>
+                <div id="concert-mode-hint" style="display:none">
+                    <div class="hint">Modo de concerto activo: secuencia pre-definida.</div>
+                </div>
+            </div>
+
+            <!-- Playback -->
+            <div class="control-group">
+                <h3>Reproduci&oacute;n</h3>
+                <div class="btn-row">
+                    <button id="btn-next">Seguinte</button>
+                    <button id="btn-auto">Auto-Play</button>
+                    <button id="btn-reset">Reiniciar</button>
+                </div>
+                <div class="slider-row">
+                    <span class="slider-label">Vel.</span>
+                    <input type="range" id="slider-speed" min="100" max="2000" value="800" step="50">
+                    <span class="slider-val" id="slider-speed-val">800</span>
+                </div>
+            </div>
+
+            <!-- Exportar -->
+            <div class="control-group">
+                <h3>Exportar</h3>
+                <button id="btn-export-png" class="btn-export">Descargar PNG Transparente</button>
+            </div>
+
+            <!-- Vista / Zoom -->
+            <div class="control-group">
+                <h3>Vista &amp; Zoom</h3>
+                <div class="btn-row">
+                    <button id="btn-zoom-out">&#x2212;</button>
+                    <button id="btn-zoom-in">&#x2b;</button>
+                    <button id="btn-zoom-reset">Reset Vista</button>
+                </div>
+                <div class="zoom-row">
+                    <span class="slider-label">Zoom</span>
+                    <span id="zoom-display" class="zoom-val">100%</span>
+                </div>
+                <div class="hint">Roda do rato sobre o canvas &bull; Atallos: + / &minus; / 0</div>
+            </div>
+
+            <!-- Escala -->
+            <div class="control-group">
+                <h3>Escala</h3>
+                <select id="select-scale">
+                    <option value="diatonic">Diat&oacute;nica (7 notas)</option>
+                    <option value="octatonic">Octat&oacute;nica (8 notas)</option>
+                </select>
+            </div>
+
+            <!-- Estilo de nodo -->
+            <div class="control-group">
+                <h3>Estilo de Nodo</h3>
+                <select id="select-node-style">
+                    <option value="circle">C&iacute;rculo Brillante</option>
+                    <option value="ring">Anel Oco</option>
+                    <option value="diamond">Diamante Ne&oacute;n</option>
+                    <option value="hexagon">Hex&aacute;gono</option>
+                    <option value="star">Estrela</option>
+                    <option value="solid">Punto S&oacute;lido (Sen Glow)</option>
+                </select>
+            </div>
+
+            <!-- Cores dos nodos -->
+            <div class="control-group">
+                <h3>Cores &mdash; Nodos</h3>
+                <div class="color-row">
+                    <span class="color-label">Normal</span>
+                    <input type="color" id="color-normal" value="#00ffcc">
+                </div>
+                <div class="color-row">
+                    <span class="color-label">Ru&iacute;do</span>
+                    <input type="color" id="color-noise" value="#ff2244">
+                </div>
+                <div class="color-row">
+                    <span class="color-label">Ossia</span>
+                    <input type="color" id="color-ossia" value="#cc44ff">
+                </div>
+                <div class="color-row" id="color-solid-row" style="display:none">
+                    <span class="color-label">&#9733; S&oacute;lido</span>
+                    <input type="color" id="color-solid" value="#00ffcc">
+                </div>
+            </div>
+
+            <!-- Cores das arestas -->
+            <div class="control-group">
+                <h3>Cores &mdash; Arestas</h3>
+                <div class="color-row">
+                    <span class="color-label">Normal</span>
+                    <input type="color" id="color-edge-normal" value="#00ffcc">
+                </div>
+                <div class="color-row">
+                    <span class="color-label">Ru&iacute;do</span>
+                    <input type="color" id="color-edge-noise" value="#ff2244">
+                </div>
+                <div class="color-row">
+                    <span class="color-label">Ossia</span>
+                    <input type="color" id="color-edge-ossia" value="#00ccff">
+                </div>
+                <div class="color-row">
+                    <span class="color-label">Merge</span>
+                    <input type="color" id="color-edge-merge" value="#8888ff">
+                </div>
+            </div>
+
+            <!-- Controis interactivos (ocultos nos modos de concerto) -->
+            <div id="interactive-controls">
+                <!-- Altura inicial -->
+                <div class="control-group">
+                    <h3>Altura Inicial (Eixe Y)</h3>
+                    <div class="slider-row">
+                        <span class="slider-label">Y</span>
+                        <input type="range" id="slider-start-y" min="-15" max="15" value="0" step="1">
+                        <span class="slider-val" id="slider-start-y-val">0</span>
+                    </div>
+                    <div class="hint">Apl&iacute;case ao reiniciar</div>
+                </div>
+
+                <!-- Probabilidades de transición -->
+                <div class="control-group">
+                    <h3>Probabilidades</h3>
+                    <div class="prob-section">
+                        <div class="slider-row">
+                            <span class="slider-label">-1</span>
+                            <input type="range" id="slider-t--1" min="0" max="100" value="30">
+                            <span class="slider-val" id="label-t--1">30.0%</span>
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">+1</span>
+                            <input type="range" id="slider-t-+1" min="0" max="100" value="22">
+                            <span class="slider-val" id="label-t-+1">22.0%</span>
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">0</span>
+                            <input type="range" id="slider-t-0" min="0" max="100" value="14">
+                            <span class="slider-val" id="label-t-0">14.0%</span>
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">-2</span>
+                            <input type="range" id="slider-t--2" min="0" max="100" value="9">
+                            <span class="slider-val" id="label-t--2">9.0%</span>
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">+6</span>
+                            <input type="range" id="slider-t-+6" min="0" max="100" value="6">
+                            <span class="slider-val" id="label-t-+6">6.0%</span>
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">+2</span>
+                            <input type="range" id="slider-t-+2" min="0" max="100" value="5">
+                            <span class="slider-val" id="label-t-+2">5.0%</span>
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">-5</span>
+                            <input type="range" id="slider-t--5" min="0" max="100" value="4">
+                            <span class="slider-val" id="label-t--5">4.0%</span>
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">+5</span>
+                            <input type="range" id="slider-t-+5" min="0" max="100" value="2">
+                            <span class="slider-val" id="label-t-+5">2.0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ruído e Ossia -->
+                <div class="control-group">
+                    <h3>Ru&iacute;do &amp; Ossia</h3>
+                    <div class="slider-row slider-noise">
+                        <span class="slider-label">Ru&iacute;do</span>
+                        <input type="range" id="slider-noise" min="0" max="50" value="15">
+                        <span class="slider-val" id="slider-noise-val">15</span>
+                    </div>
+                    <div class="slider-row slider-ossia">
+                        <span class="slider-label">Abrir</span>
+                        <input type="range" id="slider-ossia-open" min="0" max="60" value="25">
+                        <span class="slider-val" id="slider-ossia-open-val">25</span>
+                    </div>
+                    <div class="slider-row slider-ossia">
+                        <span class="slider-label">Pechar</span>
+                        <input type="range" id="slider-ossia-close" min="0" max="80" value="30">
+                        <span class="slider-val" id="slider-ossia-close-val">30</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resolución -->
+            <div class="control-group">
+                <h3>Resoluci&oacute;n</h3>
+                <select id="select-resolution">
+                    <option value="1920x1080" selected>1920 &times; 1080</option>
+                    <option value="1280x720">1280 &times; 720</option>
+                    <option value="2560x1440">2560 &times; 1440</option>
+                    <option value="3840x2160">3840 &times; 2160</option>
+                </select>
+            </div>
+
+            <!-- Lenda -->
+            <div class="control-group">
+                <h3>Lenda</h3>
+                <div class="legend">
+                    <div class="legend-item"><span class="legend-dot normal"></span> Normal</div>
+                    <div class="legend-item"><span class="legend-dot noise"></span> Ru&iacute;do (aleatorio)</div>
+                    <div class="legend-item"><span class="legend-dot ossia"></span> Ossia (bifurcaci&oacute;n)</div>
+                    <div class="legend-item"><span class="legend-dot merge"></span> Merge (converxencia)</div>
+                </div>
+            </div>
+
+            <!-- Atallos -->
+            <div class="control-group">
+                <h3>Atallos</h3>
+                <div class="legend">
+                    <div class="legend-item">ESPAZO &mdash; seguinte paso</div>
+                    <div class="legend-item">P &mdash; auto-play / pausa</div>
+                    <div class="legend-item">R &mdash; reiniciar</div>
+                    <div class="legend-item">+ / &minus; &mdash; zoom</div>
+                    <div class="legend-item">0 &mdash; reset vista</div>
+                </div>
+            </div>
+
+            <!-- Contador -->
+            <div id="step-counter">PASO: 0</div>
+        </div>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "pixi.js": "https://cdn.jsdelivr.net/npm/pixi.js@8.6.6/dist/pixi.min.mjs",
+            "pixi-filters": "https://cdn.jsdelivr.net/npm/pixi-filters@6.1.5/dist/pixi-filters.mjs"
+        }
+    }
+    </script>
+    <script type="module" src="js/app.js"></script>
+    <script src="js/monterrei-bridge.js"></script>
+</body>
+</html>

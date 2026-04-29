@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Monterrei – Proxección{% endblock %}
+{% block head %}
+<style>
+  body { background: #000; overflow: hidden; }
+  #stage { position: fixed; inset: 0; }
+  #m1-img, #m1-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; display: none; }
+  #m2-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+  #m3-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: none; background: #000; }
+  #m4-overlay { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
+                 color: #fff; font-family: var(--mono); }
+  #loop-name { font-size: 8rem; letter-spacing: 0.2em; }
+  #shutdown-feed { position: absolute; bottom: 2rem; left: 2rem; right: 2rem;
+                   font-family: var(--mono); font-size: 1.2rem; color: var(--neon-cyan);
+                   max-height: 50vh; overflow: hidden; display: none; }
+  #shutdown-feed div { animation: enter 0.4s ease; }
+  @keyframes enter { from {opacity:0; transform:translateY(8px);} to {opacity:1; transform:none;} }
+  #fs-btn { position: fixed; top: 12px; right: 12px; z-index: 10000;
+             background: rgba(0,0,0,0.55); color: #fff; border: 1px solid rgba(255,255,255,0.25);
+             border-radius: 6px; width: 38px; height: 38px; cursor: pointer;
+             font-size: 1.2rem; line-height: 1; padding: 0; opacity: 0.35;
+             transition: opacity 0.2s ease; font-family: var(--mono); }
+  #fs-btn:hover { opacity: 1; }
+  body.fullscreen #fs-btn { opacity: 0; }
+  body.fullscreen #fs-btn:hover { opacity: 1; }
+</style>
+{% endblock %}
+{% block body %}
+<div id="stage">
+  <img id="m1-img"/>
+  <video id="m1-video" muted playsinline></video>
+  <canvas id="m2-canvas"></canvas>
+  <iframe id="m3-frame" src="/static/markov/index.html"></iframe>
+  <div id="m4-overlay">
+    <div id="loop-name">—</div>
+    <div id="loop-instruments" class="dim" style="margin-top:1rem; font-size:1rem;"></div>
+  </div>
+  <div id="shutdown-feed"></div>
+</div>
+<button id="fs-btn" title="Pantalla completa (F)">⛶</button>
+<script>
+  (function() {
+    const btn = document.getElementById('fs-btn');
+    function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+    function toggle() {
+      if (isFs()) {
+        (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      } else {
+        const el = document.documentElement;
+        (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+      }
+    }
+    btn.addEventListener('click', toggle);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'f' || e.key === 'F') toggle();
+      else if (e.key === 'Escape' && isFs()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    });
+    function syncBody() { document.body.classList.toggle('fullscreen', isFs()); }
+    document.addEventListener('fullscreenchange', syncBody);
+    document.addEventListener('webkitfullscreenchange', syncBody);
+  })();
+</script>
+{% endblock %}
+{% block scripts %}
+<script>
+  window.BAND_POSITIONS = {{ positions_json|safe }};
+  window.BAND_SEMICIRCLES = {{ semicircles_json|safe }};
+  window.BAND_SEMI_RADIUS = {{ semi_radius_json|safe }};
+  window.BAND_LABELS = {{ instrument_labels_json|safe }};
+</script>
+<script src="/static/js/projection/lorenz_view.js"></script>
+<script src="/static/js/projection/main.js"></script>
+{% endblock %}

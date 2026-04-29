@@ -1,0 +1,64 @@
+/* Monterrei Core - tema futurista minimalista (Nothing-phone style). */
+:root {
+  --bg: #050608;
+  --bg-elev: #0c0e12;
+  --bg-card: #11141a;
+  --fg: #d8dde4;
+  --fg-dim: #6a7382;
+  --accent: #f0f3ff;
+  --neon-cyan: #00ffd9;
+  --neon-magenta: #ff00aa;
+  --neon-lime: #a8ff00;
+  --neon-amber: #ffae0a;
+  --neon-red: #ff2a55;
+  --neon-green: #1eff7e;
+  --grid-line: rgba(200, 220, 255, 0.06);
+  --mono: 'JetBrains Mono', 'Fira Code', 'Menlo', monospace;
+  --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--sans);
+  min-height: 100vh; overflow-x: hidden;
+}
+.mono { font-family: var(--mono); letter-spacing: 0.04em; }
+.dim { color: var(--fg-dim); }
+.uppercase { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.72rem; }
+.neon { text-shadow: 0 0 8px currentColor; }
+button {
+  background: transparent; color: var(--fg);
+  border: 1px solid var(--fg-dim); padding: 0.55rem 0.95rem;
+  font-family: var(--mono); letter-spacing: 0.06em;
+  text-transform: uppercase; font-size: 0.78rem;
+  cursor: pointer; transition: all 0.12s ease;
+  border-radius: 2px;
+}
+button:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); }
+button.danger { border-color: var(--neon-red); color: var(--neon-red); }
+button.danger:hover { background: var(--neon-red); color: #000; }
+button.primary { border-color: var(--neon-cyan); color: var(--neon-cyan); }
+button.primary:hover { background: var(--neon-cyan); color: #000; }
+input, select {
+  background: var(--bg-elev); color: var(--fg);
+  border: 1px solid var(--fg-dim); padding: 0.55rem;
+  font-family: var(--mono); font-size: 0.85rem;
+  border-radius: 2px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+}
+.grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.led { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+       background: var(--fg-dim); margin-right: 6px; vertical-align: middle; }
+.led.on { background: var(--neon-green); box-shadow: 0 0 8px var(--neon-green); }
+.led.warn { background: var(--neon-amber); box-shadow: 0 0 8px var(--neon-amber); }
+.led.err { background: var(--neon-red); box-shadow: 0 0 8px var(--neon-red); }

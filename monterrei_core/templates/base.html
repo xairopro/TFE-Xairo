@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}Monterrei{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/theme.css">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  {% block body %}{% endblock %}
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="/static/js/common/wake_lock.js"></script>
+  <script src="/static/js/common/session.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

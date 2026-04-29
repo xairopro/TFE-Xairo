@@ -1,0 +1,6 @@
+/* Override para Monterrei: ocultamos o panel de control en proxección.
+   Os controis trasládanse ao panel admin do Monterrei Core. */
+#controls-panel { display: none !important; }
+#app-container { grid-template-columns: 1fr !important; }
+#canvas-container { width: 100vw !important; height: 100vh !important; }
+body { background: #000 !important; overflow: hidden !important; }

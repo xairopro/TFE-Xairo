@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Monterrei – Público{% endblock %}
+{% block head %}
+<style>
+  body { background: #000; color: var(--fg);
+         display: flex; flex-direction: column; align-items: center;
+         padding: 1.5rem; min-height: 100vh; }
+  h1 { font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.3em;
+        color: var(--fg-dim); text-transform: uppercase; margin-bottom: 1rem; }
+  #timer { font-family: var(--mono); font-size: 2rem; color: var(--neon-cyan);
+           margin-bottom: 1rem; }
+  #voting-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; width: 100%; max-width: 480px; }
+  .vote-btn { padding: 1.4rem 0.5rem; font-family: var(--mono); font-size: 1.1rem;
+              background: var(--bg-card); border: 1px solid var(--fg-dim);
+              color: var(--fg); border-radius: 4px; cursor: pointer;
+              transition: all 0.15s; }
+  .vote-btn:hover, .vote-btn.selected { transform: scale(1.02); }
+  .vote-btn.selected { box-shadow: 0 0 16px currentColor; border-color: currentColor; }
+  #shutdown {
+    display: none; flex-direction: column; align-items: center; gap: 1rem;
+    padding-top: 4rem;
+  }
+  #shutdown-btn {
+    width: 80vw; max-width: 380px; aspect-ratio: 1;
+    border-radius: 50%; border: none; background: var(--neon-red);
+    color: #000; font-family: var(--mono); font-size: 1.6rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    box-shadow: 0 0 32px var(--neon-red);
+    cursor: pointer; transition: all 0.1s;
+  }
+  #shutdown-btn:active { transform: scale(0.96); }
+  #shutdown-btn:disabled { background: #333; color: #666; box-shadow: none; cursor: not-allowed; }
+  #shutdown-cooldown { font-family: var(--mono); font-size: 0.85rem; color: var(--fg-dim); }
+  #last-silenced { font-family: var(--mono); font-size: 0.95rem; color: var(--neon-cyan);
+                    margin-top: 1rem; min-height: 1.3em; }
+  #idle { color: var(--fg-dim); font-family: var(--mono); margin-top: 4rem; text-align: center; }
+</style>
+{% endblock %}
+{% block body %}
+<h1>>> MONTERREI · PÚBLICO</h1>
+<div id="voting" style="display:none; width:100%; max-width: 480px;">
+  <div id="timer">--:--</div>
+  <div id="voting-grid"></div>
+</div>
+<div id="shutdown">
+  <button id="shutdown-btn">Apagar música</button>
+  <div id="shutdown-cooldown"></div>
+  <div id="last-silenced"></div>
+</div>
+<div id="idle">Agarda á seguinte quenda...</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/public.js"></script>
+{% endblock %}
