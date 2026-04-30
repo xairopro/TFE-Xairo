@@ -92,17 +92,29 @@ def make_admin_router() -> APIRouter:
     @r.get("/projection", response_class=HTMLResponse)
     async def projection(request: Request, _: str = Depends(_check_admin)):
         from ..data.topography import POSITIONS, SEMICIRCLES, SEMI_RADIUS
+        from ..data.groups import GROUPS
         import json as _json
         # base_id -> etiqueta humana curta (sen "1 ", etc.). Reusamos CATALOG_BY_ID.
         from ..data.instruments import CATALOG_BY_ID
         labels = {bid: (CATALOG_BY_ID[bid].label if bid in CATALOG_BY_ID else bid)
                   for bid in POSITIONS.keys()}
+        instrument_group = {}
+        for g, members in GROUPS.items():
+            for inst in members:
+                instrument_group[inst] = g
+        projection_group_colors = {
+            "G1": "#2f7dff",
+            "G2": "#22c86f",
+            "G3": "#ff59b0",
+        }
         return templates.TemplateResponse("projection.html", {
             "request": request,
             "positions_json": _json.dumps(POSITIONS),
             "semicircles_json": _json.dumps(SEMICIRCLES),
             "semi_radius_json": _json.dumps(SEMI_RADIUS),
             "instrument_labels_json": _json.dumps(labels),
+            "instrument_group_json": _json.dumps(instrument_group),
+            "group_colors_json": _json.dumps(projection_group_colors),
         })
 
     @r.get("/api/health")

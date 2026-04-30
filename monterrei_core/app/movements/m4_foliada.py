@@ -28,6 +28,7 @@ from ..logger import log
 
 _voting_task: Optional[asyncio.Task] = None
 _shutdown_task: Optional[asyncio.Task] = None
+SHUTDOWN_HOLD_SECONDS = 10.0
 
 
 # ---------------------------------------------------------------- VOTACIÓN ---
@@ -206,10 +207,15 @@ async def start_shutdown_mode():
     state.snap.shutdown_active = True
     state.snap.shutdown_cooldown = cooldown
     state.snap.shutdown_started_at = time.time()
+    state.snap.shutdown_progressive_at = state.snap.shutdown_started_at + SHUTDOWN_HOLD_SECONDS
     now = time.time()
     for ps in state.public.values():
         ps.next_shutdown_allowed = now
-    payload = {"cooldown": cooldown, "started_at": now}
+    payload = {
+        "cooldown": cooldown,
+        "started_at": now,
+        "progressive_starts_at": state.snap.shutdown_progressive_at,
+    }
     await to_public("m4:shutdown_mode", payload)
     await to_admin("m4:shutdown_mode", payload)
     await to_projection("m4:shutdown_mode", payload)
@@ -223,6 +229,8 @@ async def _shutdown_supervisor():
     try:
         while state.snap.shutdown_active:
             await asyncio.sleep(2)
+            if time.time() < state.snap.shutdown_progressive_at:
+                continue
             elapsed = time.time() - state.snap.shutdown_started_at
             publico = max(1, len(state.public_alive()))
             expected_rate = publico / state.snap.shutdown_cooldown
@@ -248,6 +256,8 @@ async def shutdown_click(public_sid: str) -> Optional[str]:
     if not ps:
         return None
     now = time.time()
+    if now < state.snap.shutdown_progressive_at:
+        return None
     if now < ps.next_shutdown_allowed:
         return None
     alive = [s for s, m in state.musicians.items() if not m.silenced and not m.is_director]

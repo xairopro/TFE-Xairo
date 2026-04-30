@@ -11,6 +11,12 @@ window.LorenzView = (function() {
   const SEMICIRCLES = window.BAND_SEMICIRCLES || {};
   const SEMI_RADIUS = window.BAND_SEMI_RADIUS || {};
   const LABELS = window.BAND_LABELS || {};
+  const GROUPS = window.BAND_GROUPS || {};
+  const GROUP_COLORS = window.BAND_GROUP_COLORS || {
+    G1: '#2f7dff',
+    G2: '#22c86f',
+    G3: '#ff59b0',
+  };
   let active = new Set();
   let trail = [];
 
@@ -67,21 +73,47 @@ window.LorenzView = (function() {
     Object.entries(POSITIONS).forEach(([id, pos]) => {
       const [sx, sy] = toScreen(pos[0], pos[1]);
       const isActive = active.has(id);
+      const group = GROUPS[id];
+      const baseColor = GROUP_COLORS[group] || 'rgba(170,190,220,0.7)';
       ctx.beginPath();
-      ctx.arc(sx, sy, isActive ? 11 : 5, 0, Math.PI * 2);
+      ctx.arc(sx, sy, isActive ? 11 : 6, 0, Math.PI * 2);
       if (isActive) {
-        ctx.shadowBlur = 18; ctx.shadowColor = '#1eff7e';
-        ctx.fillStyle = '#1eff7e';
+        ctx.shadowBlur = 20; ctx.shadowColor = '#ff2a55';
+        ctx.fillStyle = '#ff2a55';
       } else {
-        ctx.fillStyle = 'rgba(170,190,220,0.5)';
+        ctx.fillStyle = baseColor;
+        ctx.globalAlpha = 0.72;
       }
       ctx.fill(); ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
       ctx.font = isActive ? 'bold 11px JetBrains Mono, monospace'
                           : '10px JetBrains Mono, monospace';
       ctx.fillStyle = isActive ? '#fff' : 'rgba(180,200,220,0.55)';
       ctx.textAlign = 'center';
       const text = LABELS[id] || id;
       ctx.fillText(text, sx, sy - 12);
+    });
+  }
+
+  function drawLegend() {
+    const items = [
+      ['G1', GROUP_COLORS.G1 || '#2f7dff'],
+      ['G2', GROUP_COLORS.G2 || '#22c86f'],
+      ['G3', GROUP_COLORS.G3 || '#ff59b0'],
+      ['ACTIVO', '#ff2a55'],
+    ];
+    let x = 26;
+    const y = 28;
+    ctx.font = '11px JetBrains Mono, monospace';
+    ctx.textAlign = 'left';
+    items.forEach(([name, col]) => {
+      ctx.beginPath();
+      ctx.arc(x, y, 6, 0, Math.PI * 2);
+      ctx.fillStyle = col;
+      ctx.fill();
+      ctx.fillStyle = 'rgba(225,235,245,0.9)';
+      ctx.fillText(name, x + 11, y + 4);
+      x += 96;
     });
   }
 
@@ -117,6 +149,7 @@ window.LorenzView = (function() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     drawArcs();
     drawInstruments();
+    drawLegend();
     drawTrail();
     requestAnimationFrame(draw);
   }

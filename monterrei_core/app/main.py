@@ -61,8 +61,9 @@ async def main():
     public_app = wrap_with_sio(build_public_app())
 
     configs = [
-        uvicorn.Config(main_app, host=settings.host, port=settings.port_main,
-                       log_level=settings.log_level.lower(), lifespan="off"),
+        *(uvicorn.Config(main_app, host=host, port=settings.port_main,
+                         log_level=settings.log_level.lower(), lifespan="off")
+          for host in settings.main_bind_hosts),
         uvicorn.Config(admin_app, host=settings.host, port=settings.port_admin,
                        log_level=settings.log_level.lower(), lifespan="off"),
         uvicorn.Config(public_app, host=settings.host, port=settings.port_public,
@@ -74,9 +75,11 @@ async def main():
 
     servers = [uvicorn.Server(c) for c in configs]
 
-    logger.info(f"Monterrei Core arrincando en host={settings.host}")
+    logger.info(
+        f"Monterrei Core arrincando en host_main={settings.main_bind_hosts} host_shared={settings.host}"
+    )
     for c in configs:
-        logger.info(f"  Porto {c.port}")
+        logger.info(f"  Host {c.host} porto {c.port}")
 
     # Manexador de SIGINT/SIGTERM
     loop = asyncio.get_event_loop()

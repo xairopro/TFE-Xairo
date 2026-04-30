@@ -1,5 +1,6 @@
 """Configuración global lida do .env vía pydantic-settings."""
 from pathlib import Path
+from typing import Optional
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -16,6 +17,8 @@ class Settings(BaseSettings):
 
     # Rede
     host: str = "0.0.0.0"
+    host_main: Optional[str] = None
+    host_main_extra: Optional[str] = None
     port_main: int = 8000           # Músicos / director
     port_public: int = 8001         # Público
     port_public_low: int = 80       # Público (estándar HTTP)
@@ -54,6 +57,17 @@ class Settings(BaseSettings):
     @property
     def base_dir(self) -> Path:
         return BASE_DIR
+
+    @property
+    def main_bind_host(self) -> str:
+        return self.host_main or self.host
+
+    @property
+    def main_bind_hosts(self) -> list[str]:
+        hosts = [self.main_bind_host]
+        if self.host_main_extra and self.host_main_extra not in hosts:
+            hosts.append(self.host_main_extra)
+        return hosts
 
     @property
     def m1_previas_path(self) -> Path:

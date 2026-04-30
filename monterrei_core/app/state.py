@@ -72,6 +72,7 @@ class StateSnapshot:
     current_loop: str | None = None
     shutdown_active: bool = False
     shutdown_started_at: float = 0.0
+    shutdown_progressive_at: float = 0.0
     shutdown_cooldown: float = 1.0
     # Color override (admin)
     color_override: dict | None = None         # {"r":..,"g":..,"b":..,"w":..,"effect":"static|pulse|wave|strobe","speed":..}

@@ -351,6 +351,7 @@ async def _global_reset():
         snap.current_loop = None
         snap.shutdown_active = False
         snap.shutdown_started_at = 0.0
+        snap.shutdown_progressive_at = 0.0
 
     # Avisa a tódolos clientes para que se reseteen TAMÉN a cookie
     payload = {"clear_cookie": True}

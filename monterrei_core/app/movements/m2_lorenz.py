@@ -31,8 +31,13 @@ from ..logger import logger
 
 
 SIGMA, RHO, BETA = 10.0, 28.0, 8.0 / 3.0
-DT = 0.005
+DT = 0.004
 TARGET_SECONDS = 40.0
+SMOOTH_ALPHA = 0.12
+ACTIVATION_RADIUS2 = 0.02
+MIN_ACTIVATION_INTERVAL = 0.85
+START_GRACE_SECONDS = 2.0
+FORCE_INTERVAL_SECONDS = 1.0
 
 
 class LorenzEngine:
@@ -43,6 +48,10 @@ class LorenzEngine:
         self.x, self.y, self.z = 0.1, 0.0, 0.0
         self._activated_in_group: set[str] = set()
         self._start_time: float = 0.0
+        self._next_activation_at: float = 0.0
+        self._next_forced_at: float = 0.0
+        self._sx: float = 0.0
+        self._sy: float = 0.0
 
     def is_running(self) -> bool:
         return self._task is not None and not self._task.done()
@@ -51,6 +60,8 @@ class LorenzEngine:
         self.x = random.uniform(-15, 15)
         self.y = random.uniform(-15, 15)
         self.z = random.uniform(5, 35)
+        self._sx = 0.0
+        self._sy = 0.0
 
     async def start_group(self, group: str):
         if group not in GROUPS:
@@ -68,6 +79,8 @@ class LorenzEngine:
                 state.snap.lorenz_active_groups.append(group)
         self._activated_in_group = set()
         self._start_time = time.monotonic()
+        self._next_activation_at = self._start_time + START_GRACE_SECONDS
+        self._next_forced_at = self._start_time + TARGET_SECONDS
 
         await to_projection("m2:group_started", {"group": group, "color": GROUP_COLOR_HEX[group]})
         await to_directors("director:update", {"group": group, "event": "group_started"})
@@ -108,8 +121,7 @@ class LorenzEngine:
             already_on = set(state.snap.lorenz_active_instruments)
         targets = targets_total - already_on
         tick_period = 1.0 / 60.0
-        force_after = TARGET_SECONDS * 0.85   # ~34s, despois fórzase
-        next_force_at = self._start_time + TARGET_SECONDS
+        force_after = TARGET_SECONDS * 0.82
 
         try:
             while not self._stop.is_set() and len(self._activated_in_group) < len(targets):
@@ -121,27 +133,32 @@ class LorenzEngine:
                 self.y += DT * dy
                 self.z += DT * dz
 
-                # Proxección 2D normalizada a [-1,1] desde (x,z)
-                px = max(-1, min(1, self.x / 25.0))
-                py = max(-1, min(1, (self.z - 25.0) / 25.0))
+                # Abrimos máis a cobertura e suavizamos para evitar saltos bruscos.
+                raw_px = max(-1, min(1, self.x / 18.0))
+                raw_py = max(-1, min(1, (self.z - 24.0) / 18.0))
+                self._sx += SMOOTH_ALPHA * (raw_px - self._sx)
+                self._sy += SMOOTH_ALPHA * (raw_py - self._sy)
+                px, py = self._sx, self._sy
 
                 with state.lock:
                     state.snap.lorenz_state = {"x": self.x, "y": self.y, "z": self.z, "px": px, "py": py}
 
                 # Procura cela máis próxima entre os pendentes
                 pending = targets - self._activated_in_group
-                hit = closest_instrument(px, py, only_in=pending)
-                if hit is not None:
-                    pos = POSITIONS.get(hit)
-                    if pos and (px - pos[0])**2 + (py - pos[1])**2 < 0.04:
-                        await self._activate(hit)
+                now = time.monotonic()
+                if now >= self._next_activation_at:
+                    hit = closest_instrument(px, py, only_in=pending)
+                    if hit is not None:
+                        pos = POSITIONS.get(hit)
+                        if pos and (px - pos[0])**2 + (py - pos[1])**2 < ACTIVATION_RADIUS2:
+                            await self._activate(hit)
+                            self._next_activation_at = now + MIN_ACTIVATION_INTERVAL
 
                 # Forza activación se imos atrasados
                 elapsed = time.monotonic() - self._start_time
-                if elapsed > force_after and pending:
-                    # forza un cada 0.4s
-                    if int(elapsed * 2.5) % 1 == 0:
-                        await self._activate(next(iter(pending)))
+                if elapsed > force_after and pending and now >= self._next_forced_at:
+                    await self._activate(next(iter(pending)))
+                    self._next_forced_at = now + FORCE_INTERVAL_SECONDS
 
                 await to_projection("m2:tick", {
                     "px": px, "py": py, "x": self.x, "y": self.y, "z": self.z,

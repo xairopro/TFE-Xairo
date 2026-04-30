@@ -1,6 +1,10 @@
 // 1. Configuración de Memoria e Inicio Blindado a 48kHz
 s.options.sampleRate = 48000;
 s.options.memSize = 65536;
+
+s.options.device = "Scarlett 18i20 USB"; // Nome exacto da túa interface
+s.options.numOutputBusChannels = 20;    // Abrimos as 20 canles de saída
+
 s.boot;
 
 // 2. Bloque principal
@@ -114,6 +118,17 @@ s.waitForBoot({
 		var voces = 5.collect { |i| Pan2.ar(PitchShift.ar(sig, 0.1, 1.0 + (fExt * Rand(-1.0, 1.0)), 0.01, 0.01), Rand(-0.8, 0.8)) };
 		SendReply.kr(Impulse.kr(15), '/ui_ronco_enxame', [fAmp, fExt]);
 		Out.ar(0, Mix(voces) * fAmp * 1.0 * master);
+	}).add;
+
+	SynthDef(\enrutador_3e4, {
+		// Lemos a mestura estéreo que todos os teus synths mandaron ao bus 0 (saídas 1-2)
+		var mestura = In.ar(0, 2);
+
+		// Silenciamos as saídas 1 e 2 físicas para que non soe nada por aí
+		ReplaceOut.ar(0, Silent.ar(2));
+
+		// Enviamos a mestura estéreo ao bus 2 (saídas físicas 3 e 4)
+		Out.ar(2, mestura);
 	}).add;
 
 	SynthDef(\motor_sismico, {
@@ -451,6 +466,9 @@ s.waitForBoot({
 	~shepEnxameGrp = Group.new;
 	fork { 6.do { |i| Synth(\shep_risset, [\amp, 0.0, \speed, -0.618], target: ~shepEnxameGrp); 0.1.wait; }; };
 
+	// ---> ENGADE ESTA LIÑA AQUÍ PARA ARRINCAR O ENRUTADOR <---
+	~saidaScarlett = Synth(\enrutador_3e4, target: s, addAction: \addToTail);
+
 	stateArray = Array.fill(16, { [0, 1].choose });
 	rule30 = { |state| var nextState = Array.newClear(state.size); state.size.do { |i| nextState[i] = (30 >> ((state.wrapAt(i - 1) << 2) | (state[i] << 1) | state.wrapAt(i + 1))) & 1; }; nextState; };
 	caTask = Task({ var index = 0; loop { if(stateArray[index] == 1) { Synth(\ca_player, [\rate, 0.8 + (stateArray.sum * 0.05), \globalLorenz, ~glbzState]); }; index = index + 1; if(index >= stateArray.size) { index = 0; stateArray = rule30.value(stateArray); }; 0.0625.wait; } });
@@ -478,7 +496,7 @@ s.waitForBoot({
 
 		CmdPeriod.doOnce { Window.closeAll };
 		win = Window("Mesa Electroacústica", Rect(10, 10, 1350, 850));
-		win.onClose = { synths.do(_.free); ~xySynth.free; caTask.stop; if(~metronomoPlayer.notNil) { ~metronomoPlayer.stop }; };
+		win.onClose = { synths.do(_.free); ~xySynth.free; ~saidaScarlett.free; caTask.stop; if(~metronomoPlayer.notNil) { ~metronomoPlayer.stop }; };
 		win.layout = VLayout().spacing_(15);
 		topRow = HLayout().spacing_(8); bottomRow = HLayout().spacing_(8);
 		makeSep = { StaticText().string_("||").font_(Font("Helvetica", 16)).align_(\center).fixedWidth_(5) };
