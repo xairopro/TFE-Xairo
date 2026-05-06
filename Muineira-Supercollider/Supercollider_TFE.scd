@@ -120,28 +120,30 @@ s.waitForBoot({
 		Out.ar(0, Mix(voces) * fAmp * 1.0 * master);
 	}).add;
 
-	SynthDef(\enrutador_3e4, {
-		// Lemos a mestura estéreo que todos os teus synths mandaron ao bus 0 (saídas 1-2)
+	SynthDef(\crossover_pas, {
+		var freqCorte = \corte.kr(200).lag(0.1);
 		var mestura = In.ar(0, 2);
-
-		// Silenciamos as saídas 1 e 2 físicas para que non soe nada por aí
-		ReplaceOut.ar(0, Silent.ar(2));
-
-		// Enviamos a mestura estéreo ao bus 2 (saídas físicas 3 e 4)
-		Out.ar(2, mestura);
+		var gravesMono = LPF.ar(mestura[0] + mestura[1], freqCorte) * 0.5;
+		var restoPAs = HPF.ar(mestura, freqCorte);
+		ReplaceOut.ar(0, restoPAs);
+		Out.ar(2, gravesMono);
 	}).add;
 
+	// --- M. SÍSMICO ACTUALIZADO A SÍNTESE SENOIDAL ---
 	SynthDef(\motor_sismico, {
 		var gLz = \globalLorenz.kr(0).lag(0.5); var locLz = \lorenz.kr(0).lag(0.1); var useLz = Clip.kr(gLz + locLz, 0, 1);
-		var aMan = \amp.kr(0).lag(0.1); var eMan = \distancia.kr(0.0).lag(0.2);
+		var aMan = \amp.kr(0).lag(0.1); var eMan = \desfase.kr(0.0).lag(0.2);
 		var lz1 = A2K.kr(LorenzL.ar(16.3)).lag(0.2).linlin(-9, 9, 0, 1).fold(0, 1);
 		var lz2 = A2K.kr(LorenzL.ar(16.4)).lag(0.2).linlin(-9, 9, 0, 1).fold(0, 1);
-		var aLz = lz1 * 0.85; var eLz = lz2.linlin(0, 1, 0.0, 3.0);
+		var aLz = lz1 * 0.85; var eLz = lz2.linlin(0, 1, 0.0, 3.0).round(1); // Redondeo por seguridade para lorenz
 		var oA = \overAmp.kr(0); var oE = \overExt.kr(0);
 		var fAmp = SelectX.kr(oA, [SelectX.kr(useLz, [aMan, aLz]), aMan]); var fExt = SelectX.kr(oE, [SelectX.kr(useLz, [eMan, eLz]), eMan]);
 		var master = In.kr(~masterBus, 1).lag(0.1);
-		var ronco = LPF.ar(PlayBuf.ar(1, bufRonco, BufRateScale.kr(bufRonco) * 0.25, loop: 1), 80);
-		var sigFinal = LPF.ar((ronco * 2.5) + SinOsc.ar(32.70)*0.5 + SinOsc.ar(32.70 + fExt)*0.5, 90) * fAmp * master;
+
+		var freqBase = 50.0;
+		// A segunda senoidal suma o fExt redondeado a enteiros (0, 1, 2, ou 3)
+		var sigFinal = (SinOsc.ar(freqBase) + SinOsc.ar(freqBase + fExt.round(1))) * 0.5 * fAmp * master;
+
 		SendReply.kr(Impulse.kr(15), '/ui_sismico', [fAmp, fExt]);
 		Out.ar(0, Pan2.ar(sigFinal * 1.2, 0));
 	}).add;
@@ -327,7 +329,6 @@ s.waitForBoot({
 	}).add;
 
 	SynthDef(\enxame_frullato, {
-		// FRULLATO ILLADO DO GLBZ CAOS (A gLz non se lle suma)
 		var locLz = \lorenz.kr(0).lag(0.1); var useLz = Clip.kr(locLz, 0, 1);
 		var aMan = \amp.kr(0).lag(0.1); var eMan = \swarmPitch.kr(0.5).lag(0.1);
 		var lz1 = A2K.kr(LorenzL.ar(19.1)).lag(0.2).linlin(-9, 9, 0, 1).fold(0, 1);
@@ -425,7 +426,7 @@ s.waitForBoot({
 		var aMan = \amp.kr(0).lag(0.1); var eMan = \speed.kr(-0.618).lag(0.1);
 		var lz1 = A2K.kr(LorenzL.ar(20.3)).lag(0.2).linlin(-9, 9, 0, 1).fold(0, 1);
 		var lz2 = A2K.kr(LorenzL.ar(20.4)).lag(0.2).linlin(-9, 9, 0, 1).fold(0, 1);
-		var aLz = lz1 * 0.85; var eLz = lz2.linexp(0, 1, 0.1, 3.0); // Nota: O speed negativo calculábase distinto no código orixinal, deixo que Lorenz dea valores > 0
+		var aLz = lz1 * 0.85; var eLz = lz2.linexp(0, 1, 0.1, 3.0);
 		var oA = \overAmp.kr(0); var oE = \overExt.kr(0);
 		var fAmp = SelectX.kr(oA, [SelectX.kr(gLz, [aMan, aLz]), aMan]); var fExt = SelectX.kr(oE, [SelectX.kr(gLz, [eMan, eLz]), eMan]);
 		var master = In.kr(~masterBus, 1).lag(0.1); var baseRate = In.kr(~shepRateBus, 1).lag(0.1);
@@ -466,8 +467,7 @@ s.waitForBoot({
 	~shepEnxameGrp = Group.new;
 	fork { 6.do { |i| Synth(\shep_risset, [\amp, 0.0, \speed, -0.618], target: ~shepEnxameGrp); 0.1.wait; }; };
 
-	// ---> ENGADE ESTA LIÑA AQUÍ PARA ARRINCAR O ENRUTADOR <---
-	~saidaScarlett = Synth(\enrutador_3e4, target: s, addAction: \addToTail);
+	~saidaScarlett = Synth(\crossover_pas, [\corte, 200], target: s, addAction: \addToTail);
 
 	stateArray = Array.fill(16, { [0, 1].choose });
 	rule30 = { |state| var nextState = Array.newClear(state.size); state.size.do { |i| nextState[i] = (30 >> ((state.wrapAt(i - 1) << 2) | (state[i] << 1) | state.wrapAt(i + 1))) & 1; }; nextState; };
@@ -481,9 +481,9 @@ s.waitForBoot({
 		var topRow, bottomRow, makeSep, g1Layout, g2Layout, g3Layout, g4Layout, g5Layout, g6Layout, masterLayout;
 		var colCaVol2d, caTitleLayout, caVolLabel, caVolSlider, caBtn, xyVolTitleLayout, xyVolLabel, xyVolSlider, xyBtn, xyPadCol, xyPad;
 		var mTitleLayout, mTitle, mInfoBtn, mVolLabel, mVolSlider, lzGlobalBtn, muteBtn, colShepRate, srTitle, srLbl, srSl;
-		var metronomoBtn; // <-- Variable para o botón do metrónomo
+		var metronomoBtn;
 		~glbzState = 0;
-		~metronomoPlayer = nil; // <-- Variable para controlar o metrónomo
+		~metronomoPlayer = nil;
 
 		synths = (
 			abismo: Synth(\abismo), lume_petr: Synth(\lume_petrushka), lume_re9: Synth(\lume_re9), estalidos: Synth(\estalidos_lume), ronco_enxame: Synth(\enxame_harmonico),
@@ -552,7 +552,10 @@ s.waitForBoot({
 				~makeCol.value("Lu(Petr)", \lume_petr, \resDecay, ControlSpec(0.1, 8.0, 'exp', 0, 3.0, "Dec"), true, "", cGr1, '/ui_lume_petr'),
 				~makeCol.value("Lu(Re9)", \lume_re9, \resDecay, ControlSpec(0.1, 8.0, 'exp', 0, 3.0, "Dec"), true, "", cGr1, '/ui_lume_re9'),
 				~makeCol.value("Sub", \sub, \amp, ControlSpec(0, 1, 'lin', 0, 0, ""), true, "", cGr1, '/ui_sub'),
-				~makeCol.value("M. Sísm", \sismico, \distancia, ControlSpec(0.0, 3.0, 'lin', 0, 0.0, "BatHz"), true, "", cGr1, '/ui_sismico'),
+
+				// --- CONTROLADOR DA UI MODIFICADO PARA O NOVO MOTOR SÍSMICO (paso de '1' forzando saltos enteiros de 0 a 3Hz) ---
+				~makeCol.value("M. Sísm", \sismico, \desfase, ControlSpec(0, 3, 'lin', 1, 0, "Hz"), true, "", cGr1, '/ui_sismico'),
+
 				~makeCol.value("B. Tect", \tectonico, \resDecay, ControlSpec(1.0, 10.0, 'exp', 0, 4.0, "Dec"), true, "", cGr1, '/ui_tectonico'),
 				~makeCol.value("Magma", \magma, \density, ControlSpec(2, 60, 'exp', 0, 20, "Fric."), true, "", cGr1, '/ui_magma')
 			)
@@ -635,7 +638,6 @@ s.waitForBoot({
 				mVolLabel = StaticText().string_("Vol: 1.00").align_(\center).font_(Font("Helvetica", 9)),
 				mVolSlider = Slider().orientation_(\vertical).value_(1.0).action_({ |sl| mVolLabel.string_("Vol: " ++ sl.value.round(0.01)); if(muteBtn.value == 0) { ~masterBus.set(sl.value); }; }),
 
-				// --- BOTÓN DO METRÓNOMO ---
 				metronomoBtn = Button().states_([["Metrónomo OFF", Color.black, Color.gray(0.8)], ["Metrónomo ON", Color.white, Color.magenta(0.6)]]).value_(0).action_({ |b|
 					if(b.value == 1) {
 						~metronomoPlayer = Pbind(\instrument, \tic_ferrenas, \dur, 1, \amp, 0.05).play;
@@ -647,7 +649,6 @@ s.waitForBoot({
 				lzGlobalBtn = Button().states_([["GLBZ CAOS OFF", Color.black, Color.gray(0.8)], ["GLBZ CAOS ON", Color.white, Color.blue(0.8)]]).value_(0).action_({ |b|
 					~glbzState = b.value;
 					synths.keysValuesDo { |k, synth|
-						// EXCEPCIÓN: A Pandeireta Normal e o Frullato quedan fóra do Lorenz Global
 						if(k != \pand_norm and: { k != \enxame }) {
 							synth.set(\globalLorenz, b.value);
 						};
