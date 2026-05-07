@@ -24,7 +24,11 @@
       footer:    document.getElementById('qr-footer').value || 'xairo.gal',
     });
   };
-  function updateCounter() { document.getElementById('img-counter').textContent = previas.length ? `${imgIdx+1}/${previas.length}` : '— (carpeta baleira)'; }
+  function updateCounter() {
+    const el = document.getElementById('img-counter');
+    if (!el) return;  // O selector de previas xa non est\u00e1 na UI.
+    el.textContent = previas.length ? `${imgIdx+1}/${previas.length}` : '— (carpeta baleira)';
+  }
 
   // Markov bridge: todólo control vai polo backend, que reenvía ó iframe en /projection.
   window.mk    = (action, items) => cmd('m3_control', { action, items });
@@ -51,7 +55,6 @@
     setLed('led-dmx', d.dmx_connected);
     document.getElementById('mus-count').textContent = d.musician_count;
     document.getElementById('pub-count').textContent = d.public_count;
-    document.getElementById('show-bar').checked = d.show_bar;
     previas = d.previas || []; updateCounter();
   });
   socket.on('admin:update', d => {
@@ -62,10 +65,6 @@
   socket.on('hw:status', d => {
     if (d.midi !== undefined) setLed('led-midi', d.midi);
     if (d.port) document.getElementById('midi-port').textContent = d.port;
-  });
-  socket.on('midi:bpm', d => { document.getElementById('bpm').textContent = d.bpm.toFixed(1); });
-  socket.on('midi:bar', d => {
-    document.getElementById('bar').textContent = d.in_clickin ? `clk${d.bar}` : `${d.bar}/T${d.beat} (P${d.pass})`;
   });
   socket.on('midi:status', d => { document.getElementById('midi-status').textContent = d.status; });
 

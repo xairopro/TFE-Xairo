@@ -60,14 +60,56 @@ ADMIN_PASS=$(get_env MONTERREI_ADMIN_PASSWORD xairocampos)
 PORT_ADMIN=$(get_env MONTERREI_PORT_ADMIN 8800)
 PORT_MAIN=$(get_env MONTERREI_PORT_MAIN 8000)
 PORT_PUBLIC=$(get_env MONTERREI_PORT_PUBLIC 8001)
-BIND80=$(get_env MONTERREI_BIND_PORT_80 false)
 AUTO_OPEN=$(get_env MONTERREI_AUTO_OPEN_BROWSER false)
+
+# === Redirección porto 80 -> PORT_PUBLIC (iptables) ===
+# As regras de iptables non persisten tras un reinicio, polo que reaplicámolas
+# en cada arranque. Require root: lánzao con `sudo ./start.sh`.
+# Usamos un ficheiro flag en /tmp para comunicar entre o proceso root
+# e o proceso usuario sen depender de variables de entorno (que sudo pode filtrar).
+PORT80_FLAG="/tmp/.monterrei_port80_done"
+
+apply_port80_redirect() {
+    local dst="$1"
+    iptables -t nat -C PREROUTING -p tcp --dport 80 -j REDIRECT --to-port "$dst" 2>/dev/null \
+        || iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port "$dst"
+    iptables -t nat -C OUTPUT -p tcp -o lo --dport 80 -j REDIRECT --to-port "$dst" 2>/dev/null \
+        || iptables -t nat -A OUTPUT -p tcp -o lo --dport 80 -j REDIRECT --to-port "$dst"
+}
+
+if [ "$EUID" -eq 0 ]; then
+    TARGET_USER="${SUDO_USER:-$USER}"
+    echo "[Monterrei] Aplicando redirección iptables :80 -> :${PORT_PUBLIC} ..."
+    apply_port80_redirect "$PORT_PUBLIC"
+    # Flag lexible polo usuario para que saiba que iptables xa está aplicado
+    touch "$PORT80_FLAG"
+    chown "$TARGET_USER" "$PORT80_FLAG"
+    # Aseguramos que o directorio de logs pertence ao usuario (non root)
+    mkdir -p "$SCRIPT_DIR/logs"
+    chown "$TARGET_USER":"$TARGET_USER" "$SCRIPT_DIR/logs"
+    # Devolvemos a execución ao usuario orixinal para non lanzar Python como root
+    if [ -n "$SUDO_USER" ] && [ "$SUDO_USER" != "root" ]; then
+        echo "[Monterrei] Iptables aplicado. Continuando como ${SUDO_USER}..."
+        exec sudo -u "$SUDO_USER" bash "$0" "$@"
+    fi
+else
+    if [ -f "$PORT80_FLAG" ]; then
+        echo "[Monterrei] Redirección :80 -> :${PORT_PUBLIC} xa activa."
+        rm -f "$PORT80_FLAG" || true
+    elif sudo -n iptables -t nat -C PREROUTING -p tcp --dport 80 -j REDIRECT --to-port "$PORT_PUBLIC" 2>/dev/null; then
+        echo "[Monterrei] Redirección :80 -> :${PORT_PUBLIC} xa activa (regra existente)."
+    elif sudo -n iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port "$PORT_PUBLIC" 2>/dev/null; then
+        sudo -n iptables -t nat -A OUTPUT -p tcp -o lo --dport 80 -j REDIRECT --to-port "$PORT_PUBLIC" 2>/dev/null || true
+        echo "[Monterrei] Redirección :80 -> :${PORT_PUBLIC} aplicada (sudo sen contrasinal)."
+    else
+        echo "[Monterrei] AVISO: o porto 80 NON se redirixe. Re-lanza con: sudo ./start.sh"
+    fi
+fi
 
 echo "[Monterrei] Lanzando servidor..."
 echo "[Monterrei] Músicos / Director       -> http://<ip>:${PORT_MAIN}"
 echo "[Monterrei] Admin + Proxección       -> http://<ip>:${PORT_ADMIN}  (HTTP Basic)"
-echo "[Monterrei] Público                  -> http://<ip>:${PORT_PUBLIC}"
-[ "$BIND80" = "true" ] && echo "[Monterrei] Público (porto 80)       -> http://<ip>/"
+echo "[Monterrei] Público                  -> http://<ip>:${PORT_PUBLIC}  (e tamén http://<ip>/ vía iptables)"
 
 # Auto-abrir navegador en local (opcional)
 if [ "$AUTO_OPEN" = "true" ]; then
@@ -97,12 +139,6 @@ if [ "$AUTO_OPEN" = "true" ]; then
     else
         echo "[Monterrei] Aviso: ningún navegador atopado para auto-apertura."
     fi
-fi
-
-# Porto 80 require root
-if [ "$BIND80" = "true" ] && [ "$EUID" -ne 0 ]; then
-    echo "[Monterrei] Porto 80 activo: re-lanzando con sudo..."
-    exec sudo -E env "PATH=$PATH" "$VENV_DIR/bin/python" -m app.main
 fi
 
 # Lanzamento

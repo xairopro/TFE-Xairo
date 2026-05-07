@@ -64,6 +64,7 @@ class StateSnapshot:
     markov_params: dict = field(default_factory=dict)
     # M4
     available_loops: list[str] = field(default_factory=list)
+    played_loops: list[str] = field(default_factory=list)  # historial en orde
     voting_active: bool = False
     voting_loop_choices: list[str] = field(default_factory=list)
     voting_ends_at: float = 0.0
@@ -148,6 +149,7 @@ class StateManager:
             snap.markov_params.clear()
             # M4 -- volve a ter os 10 loops dispoñibles
             snap.available_loops = list(LOOPS.keys())
+            snap.played_loops.clear()
             snap.voting_active = False
             snap.voting_loop_choices.clear()
             snap.voting_ends_at = 0.0

@@ -111,7 +111,12 @@ async def main():
                        log_level=settings.log_level.lower(), lifespan="off"),
     ]
     if settings.bind_port_80:
-        configs.append(uvicorn.Config(main_app, host=settings.host, port=80,
+        # O porto 80 serve a app PÚBLICA (mesmo contido que :8001).
+        # Require privilexios: executar como root, ou aplicar
+        #   sudo setcap 'cap_net_bind_service=+ep' $(readlink -f $(which python))
+        # Alternativa recomendada sen privilexios no proceso Python:
+        #   sudo ./setup_port80.sh   (redirixe 80 -> 8001 con iptables)
+        configs.append(uvicorn.Config(public_app, host=settings.host, port=80,
                                       log_level=settings.log_level.lower(), lifespan="off"))
     servers = [uvicorn.Server(c) for c in configs]
 

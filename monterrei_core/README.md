@@ -9,8 +9,8 @@ Aplicación de show-control para a obra interactiva *Monterrei* (TFE de composic
   - `:8000` → músicos / director (vinculado ás IPs reais da LAN, ex. `192.168.1.126` e `192.168.0.2`).
   - `:8800` → admin + proxección (HTTP Basic Auth).
   - `:8001` → público (votación / apagado).
-  - `:80`   → público estándar HTTP, opcional vía redirección con `iptables` (`setup_port80.sh`).
-- Threads de fondo para hardware (MIDI vía ALSA, DMX vía Enttec USB Pro / pyserial).
+  - `:80`   → público estándar HTTP, redirixido a `:8001` con `iptables` automaticamente cando se lanza con `sudo ./start.sh` (ver máis abaixo).
+- Threads de fondo para hardware (MIDI vía ALSA / RTP-MIDI, DMX vía Enttec USB Pro / pyserial).
 - Lóxica de movementos en `app/movements/`.
 
 ## Sistema soportado
@@ -20,13 +20,25 @@ Aplicación de show-control para a obra interactiva *Monterrei* (TFE de composic
 ## Arranque
 
 ```bash
-./start.sh                    # crea o venv en ~/Documents/Monterrei_Venv se non existe
+sudo ./start.sh               # arranca o servidor + redirixe :80 -> :8001 (recomendado)
+./start.sh                    # arranca sen redirección :80 (público só en :8001)
 ./stop.sh                     # parada limpa
-sudo ./setup_port80.sh        # (opcional) redirixe 80 -> 8001 con iptables
-sudo ./setup_port80.sh --off  # quita a redirección
 ```
 
 `monterrei.sh` é un atallo equivalente a `./start.sh`.
+
+### Sobre o porto 80
+
+O `start.sh` xa integra a redirección `iptables` `:80 → :8001`. As regras
+de `iptables` **non persisten** despois dun reinicio do equipo, polo que
+`start.sh` reaplícaas en cada arranque (require `sudo`).
+
+- Lanzando con `sudo ./start.sh`: aplica a redirección, despois solta
+  privilexios e arranca Python como o usuario normal (para non correr o
+  servidor como root).
+- Lanzando con `./start.sh` (sen sudo): tenta aplicar a redirección con
+  `sudo -n` (sen pedir contrasinal, só funciona se sudo está configurado
+  así). Se non, avisa que o porto 80 non se redirixe e arranca igual.
 
 ## Surfaces (vistas)
 
@@ -49,55 +61,28 @@ Todo no `.env` (ver `.env.example`). Os datos máis críticos:
 
 ## MIDI en Linux
 
-Hai dúas vías:
-
-**A) Logic / Mac na rede (recomendado para esta instalación)** — vía RTP-MIDI (Apple Network MIDI):
-
-```bash
-sudo apt install rtpmidid
-sudo systemctl enable --now rtpmidid
-```
-
-No Mac (`192.168.0.3` neste setup):
-
-1. *Audio MIDI Setup* → *Window* → *Show MIDI Studio* → dobre clic en **Network**.
-2. Na sección *My Sessions* crea unha sesión (p. ex. `Monterrei`) e marca *Enabled*.
-3. En *Directory* preme **+**, introduce *Name* `linux` e *Host* `192.168.0.2` (a IP da máquina Linux na mesma rede que use a sesión actual; tamén funciona `192.168.1.126`).
-4. Selecciona a entrada `linux` e preme **Connect**.
-5. En Logic, en *Project Settings → Synchronization → MIDI*, activa *Transmit MIDI Clock* e selecciona como destino a sesión Network creada.
-
-En Linux, `aconnect -i` mostrará un cliente novo (algo como `rtpmidid:Monterrei`). O `MONTERREI_MIDI_PORT_HINT=rtpmidi` xa o colle automaticamente.
-
-**B) USB-MIDI físico ou porto virtual local** (para tests sen Mac):
+Para recibir o *MIDI Clock* dende **Logic Pro** no Mac vía **RTP-MIDI**
+(*Apple Network MIDI*), toda a configuración está automatizada na carpeta
+[`install-midi/`](install-midi/README.md):
 
 ```bash
-sudo modprobe snd-virmidi   # crea VirMIDI 1-0..3 (ALSA)
+sudo ./install-midi/setup_midi.sh   # instala rtpmidid + avahi + virmidi + ufw
+./install-midi/check_midi.sh        # diagnóstico
 ```
 
-E axusta `MONTERREI_MIDI_PORT_HINT` ao nome correspondente.
+Logo, no Mac, abre *Audio MIDI Setup → MIDI Studio → Network*, crea unha
+sesión e conecta a esta máquina (debería aparecer vía Bonjour como
+`monterrei._apple-midi._udp` ou similar; se non, engade host manualmente:
+`192.168.0.2:5004`). Os detalles paso a paso, o uso con Logic e a resolución
+de problemas están en [`install-midi/README.md`](install-midi/README.md).
 
-### Diagnóstico rápido MIDI sobre rede
+O hint en `.env` `MONTERREI_MIDI_PORT_HINT=rtpmidi` xa colle automaticamente
+`rtpmidi`, `rtpmidid`, `network` ou `rtp`.
 
-1. **No Linux** comproba o servizo:
-   ```bash
-   systemctl status rtpmidid
-   sudo ss -lunp | grep 5004    # debe escoitar UDP 5004 e 5005
-   sudo ufw status              # se ufw está activo, abre 5004/udp e 5005/udp
-   ```
-2. **Conecta dende o Mac** (Audio MIDI Setup → Network → preme *Connect*).
-   En canto a sesión está activa, en Linux executa:
-   ```bash
-   aconnect -i        # debe aparecer un cliente novo (ex. "Network <Mac>")
-   ```
-3. **Comproba que `mido` o ve**:
-   ```bash
-   source ~/Documents/Monterrei_Venv/bin/activate
-   python -c "import mido; print(mido.get_input_names())"
-   ```
-   Debe aparecer algo como `'Network <Mac>:Apple Network Session 1 128:0'` ou `'rtpmidid:...'`. Se non aparece, **a sesión non está conectada** (paso 2).
-4. **Hint en `.env`**: o valor `MONTERREI_MIDI_PORT_HINT=rtpmidi` xa fai matching contra `rtpmidi`, `rtpmidid`, `network` ou `rtp`. Se o teu porto se chama doutra forma, edita o hint co texto exacto (ou unha substring) que aparece no paso 3.
-5. **No Mac** envía clock dende Logic: *File → Project Settings → Synchronization → MIDI* → activa *Transmit MIDI Clock* e selecciona o destino *Network*.
-6. Reinicia `./start.sh`. Nos logs verás `MIDI: escoitando en '...'` co nome do porto. Se segue saíndo `Midi Through`, o `.env` non se está cargando ou o hint non coincide.
+### Test sen Mac (USB-MIDI físico ou loopback virtual)
+
+O `setup_midi.sh` xa carga o módulo `snd-virmidi` (portos `VirMIDI 1-0..3`).
+Axusta `MONTERREI_MIDI_PORT_HINT=VirMIDI` para usalos.
 
 ## DMX en Linux
 

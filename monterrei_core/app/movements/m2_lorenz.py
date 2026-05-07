@@ -32,16 +32,18 @@ from ..logger import logger
 
 SIGMA, RHO, BETA = 10.0, 28.0, 8.0 / 3.0
 # Frecha máis rápida (DT é 'velocidade' do sistema integrado).
-DT = 0.006
-# Tempo límite por grupo: 35s (−5s respecto da versión previa).
-TARGET_SECONDS = 35.0
+# DT máis alto -> a frecha cobre máis área por unidade de tempo.
+DT = 0.012
+# Tempo límite por grupo. G3 máis curto para garantir o final rápido.
+TARGET_SECONDS = 28.0
+TARGET_SECONDS_BY_GROUP = {"G1": 30.0, "G2": 28.0, "G3": 12.0}
 SMOOTH_ALPHA = 0.16
-# Raio de activación máis estreito: só acende o músico se a frecha pasa
-# de verdade preto del. R² = 0.008  -> R ≈ 0.09 do ancho normalizado.
-ACTIVATION_RADIUS2 = 0.008
-MIN_ACTIVATION_INTERVAL = 0.7
-START_GRACE_SECONDS = 1.5
-FORCE_INTERVAL_SECONDS = 0.85
+# Raio de activación máis estreito: a frecha ten que pasar verdaderamente
+# enriba do músico. R² = 0.004  -> R ≈ 0.063 do ancho normalizado.
+ACTIVATION_RADIUS2 = 0.004
+MIN_ACTIVATION_INTERVAL = 0.5
+START_GRACE_SECONDS = 1.0
+FORCE_INTERVAL_SECONDS = 0.55
 
 
 class LorenzEngine:
@@ -84,7 +86,9 @@ class LorenzEngine:
         self._activated_in_group = set()
         self._start_time = time.monotonic()
         self._next_activation_at = self._start_time + START_GRACE_SECONDS
-        self._next_forced_at = self._start_time + TARGET_SECONDS
+        # Para cada grupo o tempo límite é propio (G3 máis curto).
+        self._target_seconds = TARGET_SECONDS_BY_GROUP.get(group, TARGET_SECONDS)
+        self._next_forced_at = self._start_time + self._target_seconds
 
         await to_projection("m2:group_started", {"group": group, "color": GROUP_COLOR_HEX[group]})
         await to_directors("director:update", {"group": group, "event": "group_started"})
@@ -125,7 +129,10 @@ class LorenzEngine:
             already_on = set(state.snap.lorenz_active_instruments)
         targets = targets_total - already_on
         tick_period = 1.0 / 60.0
-        force_after = TARGET_SECONDS * 0.82
+        target_seconds = getattr(self, "_target_seconds", TARGET_SECONDS)
+        # G3 é máis curto: o forzado entra antes (a 50% en lugar de 82%).
+        force_pct = 0.50 if group == "G3" else 0.78
+        force_after = target_seconds * force_pct
 
         try:
             while not self._stop.is_set() and len(self._activated_in_group) < len(targets):

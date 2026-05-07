@@ -111,6 +111,16 @@
     window.__silTimer = setTimeout(() => { lastSilenced.innerHTML = ''; }, 4000);
   });
   socket.on('vote_ack', d => { /* visual feedback already applied */ });
+
+  // Aviso fullscreen "Comeza votaci\u00f3n!"
+  const voteAnnounce = document.getElementById('vote-announce');
+  socket.on('public:vote_announce_show', d => {
+    if (d && d.text && voteAnnounce) voteAnnounce.textContent = d.text;
+    if (voteAnnounce) voteAnnounce.style.display = 'flex';
+  });
+  socket.on('public:vote_announce_hide', () => {
+    if (voteAnnounce) voteAnnounce.style.display = 'none';
+  });
   socket.on('shutdown_ack', d => {
     if (!d.ok) {
       cooldownEndsAt = 0;

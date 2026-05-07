@@ -9,7 +9,7 @@ GROUPS: dict[str, list[str]] = {
     "G2": [
         "fr2", "fralto", "ob1", "ob2", "fg", "cl2", "cl3",
         "saxalt1", "saxalt2", "saxten1", "saxten2",
-        "trb1", "trb2", "vc", "perc1", "perc2",
+        "trb1", "trb2", "vc", "arpa", "perc1", "perc2",
     ],
     "G3": [
         "saxsop", "tpa1", "tpa2", "tpa3", "tpa4",

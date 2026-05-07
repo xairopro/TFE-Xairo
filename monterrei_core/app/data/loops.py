@@ -34,3 +34,19 @@ LOOP_COLORS: dict[str, str] = {
 
 def shared_instruments(loop_a: str, loop_b: str) -> set[str]:
     return set(LOOPS.get(loop_a, [])) & set(LOOPS.get(loop_b, []))
+
+
+# Subtítulo curto (carácter musical) por loop. Mostrarase como subtítulo
+# pequeno baixo "LOOP N" na proxección cando se resolve a votación.
+LOOP_SUBTITLES: dict[str, str] = {
+    "L1":  "ritmo fibonacci",
+    "L2":  "octatónica",
+    "L3":  "bendings",
+    "L4":  "campás",
+    "L5":  "ritmo muiñeira",
+    "L6":  "desprazamentos",
+    "L7":  "ascenso",
+    "L8":  "inicio",
+    "L9":  "falls",
+    "L10": "xota",
+}

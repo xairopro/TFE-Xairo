@@ -1,10 +1,11 @@
 """Handlers Socket.IO en todos os namespaces."""
 from __future__ import annotations
+import asyncio
 import time
 
 from .socket_server import sio
 from .session_manager import register_musician, register_public, musician_snapshot, public_snapshot, disconnect
-from .broadcaster import to_admin, to_projection
+from .broadcaster import to_admin, to_projection, to_public
 from ..state import state
 from ..data.instruments import CATALOG, CATALOG_BY_ID, assign_unique_id, base_id_of
 from ..data.loops import LOOP_COLORS, LOOPS
@@ -236,6 +237,11 @@ async def a_cmd(sid, data):
     elif cmd == "m4_close_voting":
         await m4_foliada.close_voting()
     elif cmd == "m4_start_shutdown":
+        # Splash 5s "O público apaga a banda" antes do modo shutdown
+        await to_projection("projection:shutdown_announce", {
+            "text": "O PÚBLICO APAGA A BANDA",
+            "duration_ms": 5000,
+        })
         await m4_foliada.start_shutdown_mode()
 
     # Color override
@@ -253,9 +259,20 @@ async def a_cmd(sid, data):
         await _soft_reset()
 
     elif cmd == "show_clients_overlay":
-        await _show_clients_overlay()
+        await _start_clients_overlay()
     elif cmd == "hide_clients_overlay":
-        await to_projection("projection:clients_hide", {})
+        await _stop_clients_overlay()
+
+    elif cmd == "blackout":
+        await _blackout_all()
+
+    elif cmd == "vote_announce_show":
+        payload = {"text": args.get("text") or "Comeza votación!"}
+        await to_projection("projection:vote_announce_show", payload)
+        await to_public("public:vote_announce_show", payload)
+    elif cmd == "vote_announce_hide":
+        await to_projection("projection:vote_announce_hide", {})
+        await to_public("public:vote_announce_hide", {})
 
     elif cmd == "list_clients":
         # Devolve unha listaxe completa de músicos e público ao admin que pediu.
@@ -383,6 +400,7 @@ async def _global_reset():
         snap.markov_params.clear()
         # M4 -- volve a ter os 10 loops dispoñibles
         snap.available_loops = list(LOOPS.keys())
+        snap.played_loops.clear()
         snap.voting_active = False
         snap.voting_loop_choices.clear()
         snap.voting_ends_at = 0.0
@@ -456,24 +474,55 @@ async def _soft_reset():
 
 # ---------- Overlay de conectados na proxección -----------------
 
-async def _show_clients_overlay():
+_clients_refresh_task: asyncio.Task | None = None
+
+
+async def _emit_clients_counts():
     with state.lock:
-        musicians = sorted([{
-            "label": m.instrument_label,
-            "ip": m.ip or "—",
-            "is_director": m.is_director,
-            "silenced": m.silenced,
-            "connected": m.socket_id is not None,
-        } for m in state.musicians.values()],
-            key=lambda x: (not x["connected"], x["label"]))
-        public = sorted([{
-            "ip": p.ip or "—",
-            "connected": p.socket_id is not None,
-        } for p in state.public.values()],
-            key=lambda x: (not x["connected"], x["ip"]))
+        # Só conectados (socket_id non None) — sen IPs.
+        m_count = sum(1 for m in state.musicians.values() if m.socket_id is not None)
+        p_count = sum(1 for p in state.public.values() if p.socket_id is not None)
     await to_projection("projection:clients_show", {
-        "musicians": musicians,
-        "public": public,
-        "musician_count": len(musicians),
-        "public_count": len(public),
+        "musician_count": m_count,
+        "public_count": p_count,
     })
+
+
+async def _clients_refresh_loop():
+    try:
+        while True:
+            await _emit_clients_counts()
+            await asyncio.sleep(1.0)
+    except asyncio.CancelledError:
+        pass
+
+
+async def _start_clients_overlay():
+    global _clients_refresh_task
+    await _emit_clients_counts()
+    if _clients_refresh_task and not _clients_refresh_task.done():
+        return
+    _clients_refresh_task = asyncio.create_task(_clients_refresh_loop())
+
+
+async def _stop_clients_overlay():
+    global _clients_refresh_task
+    if _clients_refresh_task and not _clients_refresh_task.done():
+        _clients_refresh_task.cancel()
+    _clients_refresh_task = None
+    await to_projection("projection:clients_hide", {})
+
+
+async def _blackout_all():
+    """Apagado total: para color_engine, blackout DMX, blackout M2 (sen tocar musicos)."""
+    try:
+        await color_engine.clear()
+    except Exception:
+        pass
+    try:
+        from ..hardware.dmx_controller import dmx as _dmx
+        with _dmx._lock:
+            _dmx.universe.blackout()
+    except Exception:
+        pass
+    logger.info("ADMIN cmd=blackout: DMX universe blackout")

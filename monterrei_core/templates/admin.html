@@ -25,8 +25,6 @@
   <div class="stats mono">
     MIDI <span class="led" id="led-midi"></span>
     DMX <span class="led" id="led-dmx"></span>
-    BPM <span class="val mono" id="bpm">0.0</span>
-    C. <span class="val mono" id="bar">0</span>
     Músicos <a href="#" onclick="openClients('musicians');return false;"
               style="color:var(--neon-cyan); margin-left:0.4rem; text-decoration:underline;"
               title="Ver listaxe / desasignar">
@@ -44,12 +42,6 @@
   <button onclick="softReset()" title="Reset 'soft': mantén asignacións de músicos e público, limpa todo o demais">
     ⟲ RESET (mantén músicos)
   </button>
-  <button onclick="cmd('show_clients_overlay')" title="Mostra na proxección os dispositivos conectados">
-    👥 Mostrar conectados
-  </button>
-  <button onclick="cmd('hide_clients_overlay')" class="dim">
-    Ocultar conectados
-  </button>
   <span class="dim mono" style="font-size:0.75rem;">
     Reset global = reinicio completo. Reset soft = ensaios.
   </span>
@@ -66,49 +58,26 @@
     </div>
     <div class="row" style="margin-top:0.6rem;">
       <button onclick="cmd('test_dmx')">Test DMX</button>
+      <button class="danger" onclick="cmd('blackout')" title="Apaga todos os LEDs e calquera efecto de cor">⚫ BLACKOUT</button>
     </div>
-  </div>
-
-  <!-- Movement selector -->
-  <div class="card">
-    <h2>Movemento</h2>
-    <div class="row">
-      <button onclick="cmd('set_movement', {movement:1})">M1</button>
-      <button onclick="cmd('set_movement', {movement:2})">M2</button>
-      <button onclick="cmd('set_movement', {movement:3})">M3</button>
-      <button onclick="cmd('set_movement', {movement:4})">M4</button>
-    </div>
-    <label class="toggle">
-      <input type="checkbox" id="show-bar" checked
-             onchange="cmd('show_bar', {on: this.checked})">
-      Mostrar compás aos músicos
-    </label>
-  </div>
-
-  <!-- M1 -->
-  <div class="card">
-    <h2>M1 · Vídeo do Castelo</h2>
-    <div class="row">
-      <button class="primary" onclick="cmd('m1_play_video')">▶ Lanzar MP4</button>
-      <button onclick="cmd('m1_stop_video')">Stop</button>
-      <button onclick="cmd('m1_clear')">Clear</button>
-    </div>
-    <p class="dim mono" style="font-size:0.7rem; margin-top:0.4rem;">
-      M1 só amosa o vídeo. As fotos previas e o QR están en "Previo".
-    </p>
   </div>
 
   <!-- PREVIO -->
   <div class="card">
-    <h2>Previo · Fotos + QR</h2>
-    <div class="row">
-      <button onclick="prevImg()">◀ Anterior</button>
-      <button onclick="nextImg()">Seguinte ▶</button>
-      <span class="dim mono" id="img-counter">0/0</span>
-    </div>
+    <h2>Previo · QR + Conectados</h2>
     <div class="row">
       <button class="primary" onclick="showQR()">📱 Mostrar QR</button>
       <button onclick="cmd('previa_qr_hide')">Ocultar QR</button>
+    </div>
+    <div class="row">
+      <button onclick="cmd('show_clients_overlay')" title="Mostra na proxección os dispositivos conectados (auto-actualiza cada 1s)">
+        👥 Mostrar conectados
+      </button>
+      <button onclick="cmd('hide_clients_overlay')" class="dim">
+        Ocultar conectados
+      </button>
+    </div>
+    <div class="row">
       <button onclick="cmd('previa_clear')">Clear todo</button>
     </div>
     <details style="margin-top:0.5rem;">
@@ -122,6 +91,16 @@
         <label>Pé: <input type="text" id="qr-footer" value="xairo.gal" style="width:8rem;"></label>
       </div>
     </details>
+  </div>
+
+  <!-- M1 -->
+  <div class="card">
+    <h2>M1 · Vídeo do Castelo</h2>
+    <div class="row">
+      <button class="primary" onclick="cmd('m1_play_video')">▶ Lanzar MP4</button>
+      <button onclick="cmd('m1_stop_video')">Stop</button>
+      <button onclick="cmd('m1_clear')">Clear</button>
+    </div>
   </div>
 
   <!-- M2 -->
@@ -226,12 +205,20 @@
     <h2>M4 · Foliada (Votación)</h2>
     <div class="row">
       <label>Duración(s):
-        <input type="number" id="vote-secs" value="30" min="5" max="120" style="width:5rem;">
+        <input type="number" id="vote-secs" value="15" min="5" max="120" style="width:5rem;">
       </label>
     </div>
     <div class="row">
       <button class="primary" onclick="openVoting()">Abrir votación</button>
       <button onclick="cmd('m4_close_voting')">Pechar (resolver)</button>
+    </div>
+    <div class="row">
+      <button onclick="cmd('vote_announce_show')" title="Mostra na proxección e nos móbiles do público que vai comezar a votación">
+        📢 Avisar votación
+      </button>
+      <button onclick="cmd('vote_announce_hide')" class="dim">
+        Ocultar aviso
+      </button>
     </div>
     <div style="margin-top: 0.8rem;">
       <h2>Votos en tempo real</h2>

@@ -44,6 +44,15 @@
   #last-silenced .who { display:block; font-size: 0.65rem; color: var(--fg-dim);
                          letter-spacing: 0.3em; margin-bottom: 0.3rem; text-shadow:none; }
   #idle { color: var(--fg-dim); font-family: var(--mono); margin-top: 4rem; text-align: center; }
+
+  /* Aviso fullscreen de "Comeza votación!" */
+  #vote-announce { position: fixed; inset: 0; display: none;
+                    background: radial-gradient(ellipse at center, #0a0d12 0%, #000 80%);
+                    align-items: center; justify-content: center; z-index: 9999;
+                    color: var(--neon-cyan); font-family: var(--mono); padding: 1rem;
+                    text-align: center; text-transform: uppercase;
+                    text-shadow: 0 0 24px var(--neon-cyan); font-weight: 700;
+                    letter-spacing: 0.04em; font-size: 12vw; line-height: 1; }
 </style>
 {% endblock %}
 {% block body %}
@@ -58,6 +67,7 @@
   <div id="last-silenced"></div>
 </div>
 <div id="idle">Agarda á seguinte quenda...</div>
+<div id="vote-announce">Comeza votación!</div>
 {% endblock %}
 {% block scripts %}
 <script src="/static/js/public.js"></script>
