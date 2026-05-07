@@ -67,6 +67,7 @@
     socket.emit('shutdown_click', { sid: SID });
     cooldownEndsAt = Date.now()/1000 + cooldownSec;
     shutdownBtn.disabled = true;
+    shutdownBtn.classList.add('pressed');
   });
 
   setInterval(() => {
@@ -83,6 +84,7 @@
       } else {
         cooldownEl.textContent = '';
         shutdownBtn.disabled = false;
+        shutdownBtn.classList.remove('pressed');
         cooldownEndsAt = 0;
       }
     }
@@ -97,8 +99,16 @@
   socket.on('m4:shutdown_mode', d => { showShutdown(d.cooldown); });
   socket.on('public:update', d => {
     if (d.silenced) {
-      lastSilenced.textContent = `Silenciaches a ${d.silenced}`;
+      lastSilenced.innerHTML = `<span class="who">Silenciaches a</span>${d.silenced}`;
     }
+  });
+  // Notificación a TODO o público cada vez que se apaga un instrumento
+  socket.on('public:silenced', d => {
+    if (!d || !d.instrument) return;
+    lastSilenced.innerHTML = `<span class="who">Apagouse</span>${d.instrument}`;
+    // Auto-clear atópase tras 4s para non sobrepoxer mensaxes
+    clearTimeout(window.__silTimer);
+    window.__silTimer = setTimeout(() => { lastSilenced.innerHTML = ''; }, 4000);
   });
   socket.on('vote_ack', d => { /* visual feedback already applied */ });
   socket.on('shutdown_ack', d => {
@@ -124,4 +134,24 @@
       document.cookie = 'monterrei_sid=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
     }
   });
+
+  socket.on('reset:soft', () => {
+    endsAt = 0;
+    cooldownEndsAt = 0;
+    mySelected = null;
+    lastSilenced.textContent = '';
+    idle.innerHTML = 'Agarda á seguinte quenda...';
+    showIdle();
+  });
+
+  // Heartbeat: detección de conexión 'colgada'
+  let lastBeat = Date.now();
+  socket.on('heartbeat', () => { lastBeat = Date.now(); });
+  setInterval(() => {
+    if (!socket.connected) return;
+    if (Date.now() - lastBeat > 25000) {
+      try { socket.disconnect(); socket.connect(); } catch (e) {}
+      lastBeat = Date.now();
+    }
+  }, 3000);
 })();

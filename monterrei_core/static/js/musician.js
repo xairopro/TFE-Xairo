@@ -174,4 +174,31 @@
       document.cookie = 'monterrei_sid=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
     }
   });
+
+  // Soft reset: mantén o instrumento asignado; só limpa estado visual e movemento
+  socket.on('reset:soft', () => {
+    movement = 0;
+    directorList = [];
+    stage.classList.remove('playing', 'flash', 'fin');
+    stage.style.background = '';
+    suffix.textContent = '';
+    suffix.style.whiteSpace = '';
+    suffix.style.fontSize = '';
+    barInfo.textContent = '';
+    if (isDirector) {
+      // Mantén marca de director e o seu fondo aplicado por applyDirectorVisibility
+      label.textContent = 'DIRECTOR';
+    }
+  });
+
+  // Heartbeat: detecta caída silenciosa e forza reconexión
+  let lastBeat = Date.now();
+  socket.on('heartbeat', () => { lastBeat = Date.now(); });
+  setInterval(() => {
+    if (!socket.connected) return;
+    if (Date.now() - lastBeat > 25000) {
+      try { socket.disconnect(); socket.connect(); } catch (e) {}
+      lastBeat = Date.now();
+    }
+  }, 3000);
 })();

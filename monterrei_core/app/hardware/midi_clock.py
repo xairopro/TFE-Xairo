@@ -61,6 +61,19 @@ class MidiClock:
             return
 
         retry = 5
+        # Hint admite varias substrings separadas por coma. Engadimos sinónimos
+        # comuns para non depender da forma exacta do nome ALSA.
+        raw_hints = settings.midi_port_hint or ""
+        user_hints = [h.strip().lower() for h in raw_hints.split(",") if h.strip()]
+        # Sinónimos para RTP-MIDI: rtpmidid pode aparecer como 'rtpmidid',
+        # 'Network', 'RTP' ou con prefixos do cliente Mac (Logic, etc.).
+        if any(h in ("rtpmidi", "rtpmidid", "network", "rtp") for h in user_hints):
+            extra = {"rtpmidi", "rtpmidid", "network", "rtp"}
+            user_hints = list({*user_hints, *extra})
+        if not user_hints:
+            user_hints = ["midi through"]
+        logger.info(f"MIDI: buscando portos con hints={user_hints}")
+        last_log_ports: list[str] | None = None
         while not self._stop.is_set():
             try:
                 inputs = mido.get_input_names()
@@ -68,9 +81,19 @@ class MidiClock:
                 logger.warning(f"MIDI list error: {e}")
                 time.sleep(retry); continue
 
-            port_name = next((p for p in inputs if settings.midi_port_hint.lower() in p.lower()), None)
+            # Exclúe explicitamente o porto 'Midi Through' por defecto se hai outros.
+            def _match(name: str) -> bool:
+                low = name.lower()
+                return any(h in low for h in user_hints)
+
+            port_name = next((p for p in inputs if _match(p)), None)
             if not port_name:
-                logger.info(f"MIDI: porto co hint '{settings.midi_port_hint}' non atopado. Retry {retry}s")
+                if inputs != last_log_ports:
+                    logger.warning(
+                        f"MIDI: ningun porto coincide cos hints {user_hints}. "
+                        f"Portos dispoñibles: {inputs}. Reintentando cada {retry}s."
+                    )
+                    last_log_ports = inputs
                 with state.lock:
                     state.snap.midi_connected = False
                 self._emit("hw:status", {"midi": False, "ports": inputs})

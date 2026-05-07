@@ -45,6 +45,11 @@ export class GraphRenderer {
         // Cámara automática
         this.autoCameraX = 0;
         this.targetAutoCameraX = 0;
+        this.autoCameraY = 0;
+        this.targetAutoCameraY = 0;
+        // Posición do último nodo creado (no espazo do mundo, antes de zoom)
+        this.lastNodeX = 0;
+        this.lastNodeY = this.canvasH / 2;
         // Offset manual de panning
         this.panOffsetX = 0;
         this.panOffsetY = 0;
@@ -177,16 +182,14 @@ export class GraphRenderer {
         this.panOffsetX = 0;
         this.panOffsetY = 0;
         this._userHasControl = false;
-        if (this.lastStep > 0) {
-            const rightEdge = this.lastStep * this.stepSpacing + 150;
-            this.targetAutoCameraX = -(rightEdge - this.canvasW * 0.7 + 200);
-        } else {
-            this.targetAutoCameraX = 0;
-        }
+        // Centrar no último nodo (automático no animate)
+        this.targetAutoCameraX = this.canvasW / 2 - this.lastNodeX * this.zoomLevel;
+        this.targetAutoCameraY = this.canvasH / 2 - this.lastNodeY * this.zoomLevel;
         this.autoCameraX = this.targetAutoCameraX;
+        this.autoCameraY = this.targetAutoCameraY;
         this.worldContainer.scale.set(1);
         this.worldContainer.x = this.autoCameraX;
-        this.worldContainer.y = 0;
+        this.worldContainer.y = this.autoCameraY;
         this._updateZoomDisplay();
     }
 
@@ -368,6 +371,9 @@ export class GraphRenderer {
 
             this._spawnParticles(pos.x, pos.y, color, node.type === 'noise' ? 12 : 8);
             this.lastStep = Math.max(this.lastStep, node.step);
+            // Lembra a posición absoluta do último nodo para que a cámara o siga
+            this.lastNodeX = pos.x;
+            this.lastNodeY = pos.y;
         }
     }
 
@@ -652,21 +658,23 @@ export class GraphRenderer {
         const now = performance.now();
         const dt  = (ticker.deltaTime || 1) / 60;
 
-        // 1. Cámara automática
+        // 1. Cámara automática: centra o último nodo na pantalla, X e Y, con suavizado.
         if (!this._userHasControl) {
-            const rightEdge = this.lastStep * this.stepSpacing + 150;
-            const viewW     = this.canvasW / this.zoomLevel;
-            const margin    = viewW * 0.3;
-            if (rightEdge > viewW - margin + Math.abs(this.targetAutoCameraX)) {
-                this.targetAutoCameraX = -(rightEdge - viewW + margin + 200);
-            }
-            this.autoCameraX += (this.targetAutoCameraX - this.autoCameraX) * 0.08;
+            // Queremos que (lastNodeX, lastNodeY) acabe en (canvasW/2, canvasH/2)
+            // Tendo en conta que worldContainer.x = autoCameraX*1 e que se aplica a escala
+            // depois (worldContainer.scale = zoomLevel), a posición na pantalla dun punto
+            // (wx, wy) do mundo é: screen = world*zoom + container.position.
+            // Polo tanto para centrar: container.x = canvasW/2 - lastNodeX*zoom.
+            this.targetAutoCameraX = this.canvasW / 2 - this.lastNodeX * this.zoomLevel;
+            this.targetAutoCameraY = this.canvasH / 2 - this.lastNodeY * this.zoomLevel;
+            this.autoCameraX += (this.targetAutoCameraX - this.autoCameraX) * 0.07;
+            this.autoCameraY += (this.targetAutoCameraY - this.autoCameraY) * 0.07;
         }
 
         // 2. Aplicar posición + escala ao contedor
         this.worldContainer.scale.set(this.zoomLevel);
         this.worldContainer.x = this.autoCameraX + this.panOffsetX;
-        this.worldContainer.y = this.panOffsetY;
+        this.worldContainer.y = this.autoCameraY + this.panOffsetY;
 
         // 3. Animación de nodos (pulso de nacemento + respiración ambiental)
         const isSolid = this.nodeStyle === 'solid';

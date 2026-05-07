@@ -4,7 +4,7 @@
 <style>
   body { background: #000; overflow: hidden; }
   #stage { position: fixed; inset: 0; }
-  #m1-img, #m1-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; display: none; }
+  #m1-img, #m1-video, #previa-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; display: none; }
   #m2-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
   #m3-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: none; background: #000; }
   #m4-overlay { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
@@ -15,6 +15,110 @@
                    max-height: 50vh; overflow: hidden; display: none; }
   #shutdown-feed div { animation: enter 0.4s ease; }
   @keyframes enter { from {opacity:0; transform:translateY(8px);} to {opacity:1; transform:none;} }
+
+  /* Overlay grande de músico apagado (M4) */
+  #shutdown-text { position: absolute; inset: 0; display: none;
+                    align-items: center; justify-content: center; flex-direction: column;
+                    background: rgba(0,0,0,0.55); pointer-events: none; z-index: 50; }
+  #shutdown-text .label { font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.4em;
+                           color: var(--fg-dim); text-transform: uppercase; margin-bottom: 1rem; }
+  #shutdown-text .name { font-family: var(--mono); font-size: 6rem; letter-spacing: 0.08em;
+                          color: var(--neon-red); text-shadow: 0 0 28px var(--neon-red);
+                          text-transform: uppercase; }
+  #shutdown-text.show { display: flex; animation: fadeio 3s ease forwards; }
+  @keyframes fadeio { 0% {opacity:0;} 12% {opacity:1;} 78% {opacity:1;} 100% {opacity:0;} }
+
+  /* QR overlay - ocupa toda a pantalla */
+  #qr-overlay { position: absolute; inset: 0; display: none;
+                 background: radial-gradient(ellipse at center, #0a0d12 0%, #000 80%);
+                 align-items: stretch; justify-content: stretch; flex-direction: row;
+                 color: #fff; font-family: var(--mono); padding: 0; gap: 0; z-index: 60; box-sizing: border-box; }
+  #qr-overlay .qr-box { background: #fff; padding: 2vmin; border-radius: 0;
+                         box-shadow: 0 0 60px rgba(0,255,217,0.55);
+                         display: flex; align-items: center; justify-content: center;
+                         flex: 0 0 50vw; min-width: 0; }
+  #qr-overlay .qr-box svg { width: 96vh; height: 96vh; max-width: 46vw; max-height: 96vh; display: block; }
+  #qr-overlay .info { display: flex; flex-direction: column; gap: 3vh; flex: 1 1 50vw;
+                       align-items: flex-start; justify-content: center; padding: 0 4vw; min-width: 0; }
+  #qr-overlay .info .lead { font-size: 3vh;
+                              letter-spacing: 0.32em; color: var(--fg-dim); }
+  #qr-overlay .info .ssid { font-size: 16vh;
+                              line-height: 1; letter-spacing: 0.04em;
+                              color: var(--neon-cyan); text-shadow: 0 0 32px var(--neon-cyan);
+                              margin: 0; word-break: break-word; }
+  #qr-overlay .info .pass-label { font-size: 2.4vh;
+                                    letter-spacing: 0.36em; color: var(--fg-dim); margin-top: 2vh; }
+  #qr-overlay .info .pass { font-size: 12vh;
+                              line-height: 1; letter-spacing: 0.06em;
+                              color: var(--neon-amber); text-shadow: 0 0 24px var(--neon-amber);
+                              margin: 0; word-break: break-word; }
+  #qr-overlay .info .scan { font-size: 2.2vh;
+                              color: var(--fg-dim); letter-spacing: 0.18em; margin-top: 3vh; }
+  #qr-overlay .footer { position: absolute; bottom: 1.6vh; right: 1.6vw;
+                          font-size: 1.6vh; letter-spacing: 0.32em;
+                          color: var(--neon-cyan); text-shadow: 0 0 12px var(--neon-cyan); }
+  #qr-overlay .url { position: absolute; bottom: 1.6vh; left: 1.6vw;
+                       font-size: 1.4vh; letter-spacing: 0.16em;
+                       color: var(--fg-dim); }
+
+  /* Clients overlay (futurista) */
+  #clients-overlay { position: absolute; inset: 0; display: none;
+                      background: linear-gradient(180deg, rgba(0,4,8,0.96), rgba(2,8,12,0.94));
+                      z-index: 70; padding: 4vh 4vw; color: #fff; font-family: var(--mono);
+                      flex-direction: column; }
+  #clients-overlay .head { display: flex; justify-content: space-between; align-items: baseline;
+                             border-bottom: 1px solid rgba(0,255,217,0.25); padding-bottom: 1vh; }
+  #clients-overlay h2 { color: var(--neon-cyan); font-size: 2.2vh;
+                          letter-spacing: 0.4em; margin: 0; }
+  #clients-overlay .stamp { color: var(--fg-dim); font-size: 1.6vh;
+                              letter-spacing: 0.3em; }
+  #clients-overlay .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw;
+                            margin-top: 2vh; flex: 1; overflow: hidden; min-height: 0; }
+  #clients-overlay .col { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+  #clients-overlay .col .title { font-size: 2.4vh;
+                                   letter-spacing: 0.4em; color: var(--neon-amber); }
+  #clients-overlay .col .num { font-size: 36vh;
+                                 line-height: 0.85; font-weight: 700;
+                                 color: var(--neon-cyan); text-shadow: 0 0 60px rgba(0,255,217,0.7);
+                                 margin: 1vh 0 2vh 0; letter-spacing: -0.04em;
+                                 font-family: var(--mono); }
+  #clients-overlay .col.public .num { color: var(--neon-amber);
+                                        text-shadow: 0 0 60px rgba(255,174,10,0.65); }
+  #clients-overlay .col .ips {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(14vw, 1fr));
+    gap: 0.4vh 1vw; overflow: auto; padding-right: 0.5rem;
+    font-size: 1.8vh; color: var(--fg);
+  }
+  #clients-overlay .col .ips .ip {
+    border-left: 2px solid rgba(0,255,217,0.35);
+    padding: 0.2vh 0.6vw;
+    background: rgba(0,255,217,0.04);
+    letter-spacing: 0.04em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  #clients-overlay .col.public .ips .ip { border-left-color: rgba(255,174,10,0.35);
+                                            background: rgba(255,174,10,0.04); }
+  #clients-overlay .col .ips .ip.off { opacity: 0.35; border-left-color: var(--fg-dim); }
+  #clients-overlay .col .ips .ip.dir::before { content: '★ '; color: var(--neon-amber); }
+  #clients-overlay .col .ips .ip.fin { color: var(--neon-red); border-left-color: var(--neon-red); }
+
+  /* Voting overlay (texto na proxección para o público) */
+  #voting-overlay { position: absolute; inset: 0; display: none;
+                     background: rgba(0,0,0,0.55); z-index: 65;
+                     align-items: center; justify-content: center; flex-direction: column;
+                     color: var(--neon-cyan); font-family: var(--mono); pointer-events: none;
+                     animation: votepulse 2s ease-in-out infinite; }
+  #voting-overlay .label { font-size: clamp(1.5rem, 3vw, 3.5rem);
+                             letter-spacing: 0.5em; color: var(--fg-dim); }
+  #voting-overlay .big { font-size: clamp(4rem, 12vw, 14rem);
+                           letter-spacing: 0.06em; line-height: 1;
+                           color: var(--neon-cyan); text-shadow: 0 0 36px var(--neon-cyan);
+                           text-transform: uppercase; margin-top: 1.5vh; text-align:center; }
+  #voting-overlay .timer { font-size: clamp(2rem, 5vw, 6rem);
+                             color: var(--neon-amber); text-shadow: 0 0 24px var(--neon-amber);
+                             margin-top: 2vh; }
+  @keyframes votepulse { 0%,100% { background: rgba(0,0,0,0.55);} 50% { background: rgba(0,12,16,0.7);} }
+
   #fs-btn { position: fixed; top: 12px; right: 12px; z-index: 10000;
              background: rgba(0,0,0,0.55); color: #fff; border: 1px solid rgba(255,255,255,0.25);
              border-radius: 6px; width: 38px; height: 38px; cursor: pointer;
@@ -29,6 +133,7 @@
 <div id="stage">
   <img id="m1-img"/>
   <video id="m1-video" muted playsinline></video>
+  <img id="previa-img"/>
   <canvas id="m2-canvas"></canvas>
   <iframe id="m3-frame" src="/static/markov/index.html"></iframe>
   <div id="m4-overlay">
@@ -36,6 +141,45 @@
     <div id="loop-instruments" class="dim" style="margin-top:1rem; font-size:1rem;"></div>
   </div>
   <div id="shutdown-feed"></div>
+  <div id="shutdown-text">
+    <div class="label">— Apagouse —</div>
+    <div class="name" id="shutdown-text-name"></div>
+  </div>
+  <div id="qr-overlay">
+    <div class="qr-box" id="qr-box"></div>
+    <div class="info">
+      <div class="lead">>> WIFI</div>
+      <div class="ssid" id="qr-ssid">Monterrei</div>
+      <div class="pass-label">>> CLAVE</div>
+      <div class="pass" id="qr-pass">foliada7</div>
+      <div class="scan">CONÉCTATE Á REDE E ESCANEA O QR</div>
+    </div>
+    <div class="url" id="qr-url-label"></div>
+    <div class="footer" id="qr-footer">xairo.gal</div>
+  </div>
+  <div id="clients-overlay">
+    <div class="head">
+      <h2>>> CONECTADOS · MONTERREI</h2>
+      <div class="stamp" id="co-stamp"></div>
+    </div>
+    <div class="cols">
+      <div class="col musicians">
+        <div class="title">>> MÚSICOS</div>
+        <div class="num" id="co-mcount">0</div>
+        <div class="ips" id="co-musicians"></div>
+      </div>
+      <div class="col public">
+        <div class="title">>> PÚBLICO</div>
+        <div class="num" id="co-pcount">0</div>
+        <div class="ips" id="co-public"></div>
+      </div>
+    </div>
+  </div>
+  <div id="voting-overlay">
+    <div class="label">>> VOTACIÓN ABERTA</div>
+    <div class="big">PÚBLICO<br>VOTAR COS TELÉFONOS</div>
+    <div class="timer" id="voting-timer">--:--</div>
+  </div>
 </div>
 <button id="fs-btn" title="Pantalla completa (F)">⛶</button>
 <script>

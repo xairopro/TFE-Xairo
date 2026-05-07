@@ -31,13 +31,17 @@ from ..logger import logger
 
 
 SIGMA, RHO, BETA = 10.0, 28.0, 8.0 / 3.0
-DT = 0.004
-TARGET_SECONDS = 40.0
-SMOOTH_ALPHA = 0.12
-ACTIVATION_RADIUS2 = 0.02
-MIN_ACTIVATION_INTERVAL = 0.85
-START_GRACE_SECONDS = 2.0
-FORCE_INTERVAL_SECONDS = 1.0
+# Frecha máis rápida (DT é 'velocidade' do sistema integrado).
+DT = 0.006
+# Tempo límite por grupo: 35s (−5s respecto da versión previa).
+TARGET_SECONDS = 35.0
+SMOOTH_ALPHA = 0.16
+# Raio de activación máis estreito: só acende o músico se a frecha pasa
+# de verdade preto del. R² = 0.008  -> R ≈ 0.09 do ancho normalizado.
+ACTIVATION_RADIUS2 = 0.008
+MIN_ACTIVATION_INTERVAL = 0.7
+START_GRACE_SECONDS = 1.5
+FORCE_INTERVAL_SECONDS = 0.85
 
 
 class LorenzEngine:
@@ -154,10 +158,13 @@ class LorenzEngine:
                             await self._activate(hit)
                             self._next_activation_at = now + MIN_ACTIVATION_INTERVAL
 
-                # Forza activación se imos atrasados
+                # Forza activación se imos atrasados (escolle SEMPRE o máis
+                # próximo á frecha de entre os pendentes, evitando que se
+                # acendan músicos lonxanos por azar).
                 elapsed = time.monotonic() - self._start_time
                 if elapsed > force_after and pending and now >= self._next_forced_at:
-                    await self._activate(next(iter(pending)))
+                    forced = closest_instrument(px, py, only_in=pending) or next(iter(pending))
+                    await self._activate(forced)
                     self._next_forced_at = now + FORCE_INTERVAL_SECONDS
 
                 await to_projection("m2:tick", {

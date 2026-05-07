@@ -10,18 +10,34 @@ from ..data.instruments import CATALOG, CATALOG_BY_ID, assign_unique_id, base_id
 from ..data.loops import LOOP_COLORS, LOOPS
 from ..data.groups import GROUPS
 from ..logger import logger
-from ..movements import m1_video, m2_lorenz, m3_markov, m4_foliada
+from ..movements import m1_video, m2_lorenz, m3_markov, m4_foliada, previa
 from ..effects.color_engine import color_engine
 
 
 def _client_ip(environ) -> str:
-    """Extrae IP do cliente do environ ASGI."""
+    """Extrae IP do cliente do environ ASGI, normalizada para humanos.
+
+    - Prefire X-Forwarded-For se existe (proxy).
+    - Quita o prefixo IPv6 mapeado (`::ffff:1.2.3.4` -> `1.2.3.4`).
+    - Quita o sufixo de zona IPv6 (`fe80::1%enp0s31` -> `fe80::1`).
+    - Devolve cadea baleira se non hai datos fiables (admin mostrará '—').
+    """
     if not environ:
         return ""
-    xff = environ.get("HTTP_X_FORWARDED_FOR")
-    if xff:
-        return xff.split(",")[0].strip()
-    return environ.get("REMOTE_ADDR", "") or ""
+    raw = environ.get("HTTP_X_FORWARDED_FOR")
+    if raw:
+        raw = raw.split(",")[0].strip()
+    else:
+        raw = environ.get("REMOTE_ADDR", "") or ""
+    if not raw:
+        return ""
+    if raw.startswith("::ffff:"):
+        raw = raw[7:]
+    if "%" in raw:
+        raw = raw.split("%", 1)[0]
+    if raw in ("::", "::1"):
+        return "127.0.0.1"
+    return raw
 
 
 # ---------- /musician (músicos + director) ------------------
@@ -114,6 +130,7 @@ async def p_disconnect(sid):
             cookie_sid = csid; break
     if cookie_sid:
         disconnect(cookie_sid)
+    await to_admin("admin:update", {"public_count": len(state.public)})
 
 
 @sio.on("vote", namespace="/public")
@@ -149,7 +166,7 @@ async def a_connect(sid, environ, auth):
         "loop_colors": LOOP_COLORS,
         "voting_open": snap.voting_active,
         "shutdown_mode": snap.shutdown_active,
-        "previas": m1_video.list_previas(),
+        "previas": previa.list_previas(),
     }, to=sid, namespace="/admin")
 
 
@@ -174,15 +191,30 @@ async def a_cmd(sid, data):
                        {"show_bar": state.snap.show_bar_to_musicians},
                        namespace="/musician")
 
-    # M1
-    elif cmd == "m1_image":
-        await m1_video.show_image(int(args.get("index", 0)))
+    # M1 (só vídeo)
     elif cmd == "m1_play_video":
         await m1_video.play_video()
     elif cmd == "m1_stop_video":
         await m1_video.stop_video()
     elif cmd == "m1_clear":
         await m1_video.clear_projection()
+
+    # PREVIO (independente dos movementos)
+    elif cmd == "previa_image":
+        await previa.show_image(int(args.get("index", 0)))
+    elif cmd == "previa_hide":
+        await previa.hide_image()
+    elif cmd == "previa_qr_show":
+        await previa.show_qr(
+            url=args.get("url"),
+            wifi_ssid=args.get("wifi_ssid", "Monterrei"),
+            wifi_pass=args.get("wifi_pass", "foliada7"),
+            footer=args.get("footer", "xairo.gal"),
+        )
+    elif cmd == "previa_qr_hide":
+        await previa.hide_qr()
+    elif cmd == "previa_clear":
+        await previa.clear_all()
 
     # M2
     elif cmd == "m2_start_group":
@@ -216,6 +248,14 @@ async def a_cmd(sid, data):
 
     elif cmd == "global_reset":
         await _global_reset()
+
+    elif cmd == "soft_reset":
+        await _soft_reset()
+
+    elif cmd == "show_clients_overlay":
+        await _show_clients_overlay()
+    elif cmd == "hide_clients_overlay":
+        await to_projection("projection:clients_hide", {})
 
     elif cmd == "list_clients":
         # Devolve unha listaxe completa de músicos e público ao admin que pediu.
@@ -361,4 +401,79 @@ async def _global_reset():
     await to_admin("admin:update", {
         "musician_count": 0, "public_count": 0, "counts": {},
         "available_loops": list(LOOPS.keys()),
+    })
+
+
+# ---------- Reset 'soft' (mantén asignacións) -----------------
+
+async def _soft_reset():
+    """Reset que CONSERVA a asignación instrumento/director de cada músico
+    (e a sesión do público). Pensado para ensaios: limpa o estado de obra
+    (movemento, M2/M3/M4, loops gastados, votos, color override, silenciados,
+    proxección, DMX) sen obrigar a ninguén a volver a entrar.
+
+    Os clientes reciben `reset:soft` (sen `clear_cookie`).
+    """
+    logger.info("ADMIN cmd=soft_reset")
+    for fn in (m2_lorenz.lorenz.blackout, m3_markov.stop, m4_foliada.close_voting,
+               m1_video.clear_projection):
+        try:
+            await fn()
+        except Exception as e:
+            logger.warning(f"soft_reset: {fn.__name__} fallou: {e}")
+    try:
+        from ..movements import m4_foliada as _m4
+        for attr in ("_voting_task", "_shutdown_task"):
+            t = getattr(_m4, attr, None)
+            if t and not t.done():
+                t.cancel()
+    except Exception:
+        pass
+    try:
+        from ..hardware.dmx_controller import dmx as _dmx
+        with _dmx._lock:
+            _dmx.universe.blackout()
+    except Exception:
+        pass
+    try:
+        await color_engine.clear()
+    except Exception:
+        pass
+
+    state.reset_show_keep_musicians()
+
+    payload = {"clear_cookie": False}
+    await sio.emit("reset:soft", payload, namespace="/musician")
+    await sio.emit("reset:soft", payload, namespace="/public")
+    await sio.emit("reset:soft", payload, namespace="/projection")
+    await to_admin("admin:update", {
+        "musician_count": len(state.musicians),
+        "public_count": len(state.public),
+        "counts": {},
+        "available_loops": list(LOOPS.keys()),
+    })
+
+
+# ---------- Overlay de conectados na proxección -----------------
+
+async def _show_clients_overlay():
+    with state.lock:
+        musicians = sorted([{
+            "label": m.instrument_label,
+            "ip": m.ip or "—",
+            "is_director": m.is_director,
+            "silenced": m.silenced,
+            "connected": m.socket_id is not None,
+        } for m in state.musicians.values()],
+            key=lambda x: (not x["connected"], x["label"]))
+        public = sorted([{
+            "ip": p.ip or "—",
+            "connected": p.socket_id is not None,
+        } for p in state.public.values()],
+            key=lambda x: (not x["connected"], x["ip"]))
+    await to_projection("projection:clients_show", {
+        "musicians": musicians,
+        "public": public,
+        "musician_count": len(musicians),
+        "public_count": len(public),
     })

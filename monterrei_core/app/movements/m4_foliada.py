@@ -53,6 +53,7 @@ async def open_voting(seconds: int = 30):
     }
     await to_public("m4:voting_open", payload)
     await to_admin("m4:voting_open", payload)
+    await to_projection("m4:voting_open", payload)
     log.info(f"M4 votación aberta: round={state.snap.voting_round} choices={choices}")
 
     if _voting_task and not _voting_task.done():
@@ -112,6 +113,7 @@ async def close_voting():
     }
     await to_public("m4:voting_close", payload)
     await to_admin("m4:voting_close", payload)
+    await to_projection("m4:voting_close", payload)
     log.info(f"M4 winner={winner} prev={prev}")
     await assign_loop(winner, prev)
 
@@ -283,11 +285,23 @@ async def silence_musician(musician_sid: str, by_public_sid: Optional[str], serv
         ps = state.public.get(by_public_sid)
         if ps:
             ps.silenced_someone = True
-            from ..core.broadcaster import sio
-            if ps.socket_id:
-                await sio.emit("public:update", {"silenced": label},
-                               to=ps.socket_id, namespace="/public")
-    await to_admin("m4:musician_off", {"instrument": label, "ip": "—", "forced": server_forced})
-    await to_projection("m4:musician_off", {"instrument": label, "ip": "—", "forced": server_forced})
+    # Notificación a TODO o público de qué instrumento se acaba de apagar.
+    await to_public("public:silenced", {"instrument": label, "forced": server_forced})
+    # IP do público que disparou (informativa). Se foi server-forced, '—'.
+    by_ip = "—"
+    if by_public_sid:
+        ps = state.public.get(by_public_sid)
+        if ps and ps.ip:
+            by_ip = ps.ip
+    payload = {"instrument": label, "ip": by_ip, "forced": server_forced}
+    await to_admin("m4:musician_off", payload)
+    # Evento principal (feed pequeno na proxección, log no admin).
+    await to_projection("m4:musician_off", payload)
+    # Overlay grande con fade ~3s (texto = nome do instrumento).
+    await to_projection("m4:musician_off_text", {
+        "instrument": label,
+        "forced": server_forced,
+        "duration_ms": 3000,
+    })
     log.info(f"M4 silenciado={label} forced={server_forced}")
     return label

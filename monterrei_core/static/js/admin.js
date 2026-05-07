@@ -9,8 +9,21 @@
     if (!confirm('Resetear TODOS os músicos e público?\nCadaquén volverá á pantalla inicial.')) return;
     cmd('global_reset');
   };
-  window.prevImg = () => { if (!previas.length) return; imgIdx = (imgIdx - 1 + previas.length) % previas.length; cmd('m1_image', {index: imgIdx}); updateCounter(); };
-  window.nextImg = () => { if (!previas.length) return; imgIdx = (imgIdx + 1) % previas.length; cmd('m1_image', {index: imgIdx}); updateCounter(); };
+  window.softReset = () => {
+    if (!confirm('Reset SOFT: mantéñense as asignacións de instrumentos.\nLímpase movemento, M2/M3/M4, loops gastados, proxección e DMX. Continuar?')) return;
+    cmd('soft_reset');
+  };
+  window.prevImg = () => { if (!previas.length) return; imgIdx = (imgIdx - 1 + previas.length) % previas.length; cmd('previa_image', {index: imgIdx}); updateCounter(); };
+  window.nextImg = () => { if (!previas.length) return; imgIdx = (imgIdx + 1) % previas.length; cmd('previa_image', {index: imgIdx}); updateCounter(); };
+  window.showQR = () => {
+    const url = (document.getElementById('qr-url').value || '').trim();
+    cmd('previa_qr_show', {
+      url: url || undefined,
+      wifi_ssid: document.getElementById('qr-ssid').value || 'Monterrei',
+      wifi_pass: document.getElementById('qr-pass').value || 'foliada7',
+      footer:    document.getElementById('qr-footer').value || 'xairo.gal',
+    });
+  };
   function updateCounter() { document.getElementById('img-counter').textContent = previas.length ? `${imgIdx+1}/${previas.length}` : '— (carpeta baleira)'; }
 
   // Markov bridge: todólo control vai polo backend, que reenvía ó iframe en /projection.

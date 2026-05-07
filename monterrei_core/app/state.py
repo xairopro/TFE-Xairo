@@ -124,5 +124,49 @@ class StateManager:
                 m.is_active = False
                 m.current_loop = None
 
+    def reset_show_keep_musicians(self):
+        """Reset 'soft': limpa todo o estado da obra (movemento, M2/M3/M4,
+        loops gastados, votos, color override, silenciados) pero CONSERVA
+        a asignación instrumento/director de cada músico e as conexións.
+
+        Os clientes seguen rexistrados e conectados; só se lles pide que
+        repoñan a UI ao estado de repouso.
+        """
+        from .data.loops import LOOPS  # import tardío para evitar ciclos
+        with self._lock:
+            snap = self.snap
+            snap.movement = 0
+            snap.color_override = None
+            snap.show_bar_to_musicians = True
+            # M2
+            snap.lorenz_active_group = None
+            snap.lorenz_active_groups.clear()
+            snap.lorenz_active_instruments.clear()
+            snap.lorenz_state = {"x": 0.1, "y": 0.0, "z": 0.0}
+            # M3
+            snap.markov_running = False
+            snap.markov_params.clear()
+            # M4 -- volve a ter os 10 loops dispoñibles
+            snap.available_loops = list(LOOPS.keys())
+            snap.voting_active = False
+            snap.voting_loop_choices.clear()
+            snap.voting_ends_at = 0.0
+            snap.voting_round = 0
+            snap.votes_by_voter.clear()
+            snap.current_loop = None
+            snap.shutdown_active = False
+            snap.shutdown_started_at = 0.0
+            snap.shutdown_progressive_at = 0.0
+            # Limpa estado por-músico (mantén asignación e socket)
+            for m in self.musicians.values():
+                m.is_active = False
+                m.current_loop = None
+                m.silenced = False
+            # Limpa estado por-público (mantén sesión e socket)
+            for p in self.public.values():
+                p.last_vote = None
+                p.silenced_someone = False
+                p.next_shutdown_allowed = 0.0
+
 
 state = StateManager()
