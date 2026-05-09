@@ -798,7 +798,6 @@ s.waitForBoot({
 				}),
 				muteBtn = Button().states_([["Son ON", Color.black, Color.green(0.7)], ["MUTE", Color.white, Color.red(0.7)]]).value_(0).action_({ |b|
 					if(b.value == 1) { ~masterBus.set(0.0); } { ~masterBus.set(mVolSlider.value); };
-					~sendOSC.value("/osc/master/mute", b.value);
 				})
 			)
 		);
@@ -857,9 +856,6 @@ s.waitForBoot({
 			var v = m[1].asFloat.clip(0, 1);
 			defer { ~fromOSC = true; mVolSlider.valueAction_(v); ~fromOSC = false; };
 		}, "/osc/master/amp");
-		OSCdef(\master_mute_in, { |m|
-			defer { ~fromOSC = true; muteBtn.valueAction_(m[1].asInteger); ~fromOSC = false; };
-		}, "/osc/master/mute");
 		OSCdef(\master_glbz_in, { |m|
 			var v = (m[1].asFloat > 0).asInteger;
 			defer { ~fromOSC = true; lzGlobalBtn.valueAction_(v); ~fromOSC = false; };
@@ -895,6 +891,35 @@ s.waitForBoot({
 			var v = m[1].asFloat.clip(0, 1);
 			defer { ~fromOSC = true; srSl.valueAction_(v); ~fromOSC = false; };
 		}, "/osc/shep/baserate");
+
+		// --- OSC IN: MUTE POR PESTANA (baixa todos os faders de volume a 0) ---
+		OSCdef(\tab1_mute_in, { |m|
+			if(m[1].asFloat > 0) {
+				[\ronco_enxame, \lume_petr, \lume_re9, \sismico, \tectonico, \magma, \sub, \abismo, \pantasmas, \enxame, \campa_bat, \campa_resp].do { |k|
+					defer { ~volSliders[k].valueAction_(0); };
+				};
+			};
+		}, "/osc/tab1/mute");
+		OSCdef(\tab2_mute_in, { |m|
+			if(m[1].asFloat > 0) {
+				[\slicer, \reloxo, \halo, \soplete, \harm_est, \harm_oct, \shep_solo, \shep_enxame, \reconstrucion].do { |k|
+					defer { ~volSliders[k].valueAction_(0); };
+				};
+			};
+		}, "/osc/tab2/mute");
+		OSCdef(\tab3_mute_in, { |m|
+			if(m[1].asFloat > 0) {
+				[\pand_norm, \pand_gran, \estalidos, \asubiador, \campa_gran].do { |k|
+					defer { ~volSliders[k].valueAction_(0); };
+				};
+				defer { caVolSlider.valueAction_(0); xyVolSlider.valueAction_(0); };
+			};
+		}, "/osc/tab3/mute");
+		OSCdef(\tab4_mute_in, { |m|
+			if(m[1].asFloat > 0) {
+				defer { mVolSlider.valueAction_(0); };
+			};
+		}, "/osc/tab4/mute");
 
 		win.layout.add(topRow); win.layout.add(StaticText().string_("==========================================================================================================").align_(\center).font_(Font("Helvetica", 12)).stringColor_(Color.gray(0.7))); win.layout.add(bottomRow); win.layout.add(nil);
 		win.front;

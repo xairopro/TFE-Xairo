@@ -612,6 +612,22 @@
           "value": 0.0,
           "snap": false,
           "color": "#9999ff"
+        },
+        {
+          "type": "button",
+          "id": "tab1_mute",
+          "top": 510,
+          "left": 10,
+          "width": 1070,
+          "height": 50,
+          "label": "MUTE GRAVES + ATMOS",
+          "address": "/osc/tab1/mute",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "color": "#cc2222"
         }
       ]
     },
@@ -1136,6 +1152,22 @@
           "off": 0,
           "mode": "tap",
           "color": "#aa5500"
+        },
+        {
+          "type": "button",
+          "id": "tab2_mute",
+          "top": 530,
+          "left": 10,
+          "width": 1160,
+          "height": 50,
+          "label": "MUTE RITMO / XEO / SHEP / REC",
+          "address": "/osc/tab2/mute",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "color": "#cc2222"
         }
       ]
     },
@@ -1561,6 +1593,22 @@
             0.5,
             0.5
           ]
+        },
+        {
+          "type": "button",
+          "id": "tab3_mute",
+          "top": 522,
+          "left": 10,
+          "width": 910,
+          "height": 50,
+          "label": "MUTE G5 PERCUS",
+          "address": "/osc/tab3/mute",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "color": "#cc2222"
         }
       ]
     },
@@ -1602,23 +1650,20 @@
           "color": "#ff6666"
         },
         {
-          "type": "switch",
-          "id": "master_mute",
-          "top": 462,
+          "type": "button",
+          "id": "tab4_mute",
+          "top": 465,
           "left": 10,
           "width": 110,
-          "height": 48,
-          "label": "MUTE",
-          "address": "/osc/master/mute",
+          "height": 50,
+          "label": "MUTE MASTER",
+          "address": "/osc/tab4/mute",
           "target": [
             "127.0.0.1:57120"
           ],
           "on": 1,
           "off": 0,
-          "onLabel": "MUTE",
-          "offLabel": "Son ON",
-          "value": 0,
-          "mode": "toggle"
+          "color": "#cc2222"
         }
       ]
     }
