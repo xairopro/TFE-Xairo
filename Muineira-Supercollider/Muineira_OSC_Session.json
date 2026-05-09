@@ -1,0 +1,2110 @@
+{
+  "type": "root",
+  "id": "root",
+  "color": "auto",
+  "padding": 5,
+  "tabs": [
+    {
+      "type": "tab",
+      "id": "tab_master",
+      "label": "MASTER",
+      "widgets": [
+        {
+          "type": "text",
+          "id": "m_t",
+          "top": 5,
+          "left": 10,
+          "width": 110,
+          "height": 22,
+          "value": "MASTER",
+          "align": "center",
+          "size": 14,
+          "color": "#ff6666"
+        },
+        {
+          "type": "fader",
+          "id": "master_amp",
+          "top": 35,
+          "left": 10,
+          "width": 110,
+          "height": 420,
+          "label": "Master",
+          "address": "/osc/master/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 1.0,
+          "snap": false,
+          "color": "#ff6666"
+        },
+        {
+          "type": "switch",
+          "id": "master_mute",
+          "top": 462,
+          "left": 10,
+          "width": 110,
+          "height": 48,
+          "label": "MUTE",
+          "address": "/osc/master/mute",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "MUTE",
+          "offLabel": "Son ON",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "switch",
+          "id": "master_glbz",
+          "top": 518,
+          "left": 10,
+          "width": 110,
+          "height": 48,
+          "label": "GLBZ CAOS",
+          "address": "/osc/master/glbz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "GLBZ ON",
+          "offLabel": "GLBZ OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "switch",
+          "id": "master_metro",
+          "top": 574,
+          "left": 10,
+          "width": 110,
+          "height": 48,
+          "label": "Metrónomo",
+          "address": "/osc/master/metro",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "Metro ON",
+          "offLabel": "Metro OFF",
+          "value": 0,
+          "mode": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "tab",
+      "id": "tab_g1",
+      "label": "G1 GRAVES",
+      "widgets": [
+        {
+          "type": "text",
+          "id": "ronco_enxame_t",
+          "top": 8,
+          "left": 10,
+          "width": 70,
+          "height": 18,
+          "value": "Ronco Enx",
+          "align": "center",
+          "size": 11,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "ronco_enxame_amp",
+          "top": 30,
+          "left": 10,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/ronco_enxame/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "ronco_enxame_detune",
+          "top": 266,
+          "left": 10,
+          "width": 70,
+          "height": 200,
+          "label": "Det",
+          "address": "/osc/ronco_enxame/detune",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "switch",
+          "id": "ronco_enxame_lz",
+          "top": 472,
+          "left": 10,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/ronco_enxame/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "lume_petr_t",
+          "top": 8,
+          "left": 100,
+          "width": 70,
+          "height": 18,
+          "value": "Lu(Petr)",
+          "align": "center",
+          "size": 11,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "lume_petr_amp",
+          "top": 30,
+          "left": 100,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/lume_petr/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "lume_petr_resDecay",
+          "top": 266,
+          "left": 100,
+          "width": 70,
+          "height": 200,
+          "label": "Dec",
+          "address": "/osc/lume_petr/resDecay",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "switch",
+          "id": "lume_petr_lz",
+          "top": 472,
+          "left": 100,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/lume_petr/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "lume_re9_t",
+          "top": 8,
+          "left": 190,
+          "width": 70,
+          "height": 18,
+          "value": "Lu(Re9)",
+          "align": "center",
+          "size": 11,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "lume_re9_amp",
+          "top": 30,
+          "left": 190,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/lume_re9/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "lume_re9_resDecay",
+          "top": 266,
+          "left": 190,
+          "width": 70,
+          "height": 200,
+          "label": "Dec",
+          "address": "/osc/lume_re9/resDecay",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "switch",
+          "id": "lume_re9_lz",
+          "top": 472,
+          "left": 190,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/lume_re9/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "sismico_t",
+          "top": 8,
+          "left": 280,
+          "width": 70,
+          "height": 18,
+          "value": "M.Sísm",
+          "align": "center",
+          "size": 11,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "sismico_amp",
+          "top": 30,
+          "left": 280,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/sismico/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "sismico_desfase",
+          "top": 266,
+          "left": 280,
+          "width": 70,
+          "height": 200,
+          "label": "Hz",
+          "address": "/osc/sismico/desfase",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "switch",
+          "id": "sismico_lz",
+          "top": 472,
+          "left": 280,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/sismico/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "tectonico_t",
+          "top": 8,
+          "left": 370,
+          "width": 70,
+          "height": 18,
+          "value": "B.Tect",
+          "align": "center",
+          "size": 11,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "tectonico_amp",
+          "top": 30,
+          "left": 370,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/tectonico/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "tectonico_resDecay",
+          "top": 266,
+          "left": 370,
+          "width": 70,
+          "height": 200,
+          "label": "Dec",
+          "address": "/osc/tectonico/resDecay",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "switch",
+          "id": "tectonico_lz",
+          "top": 472,
+          "left": 370,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/tectonico/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "magma_t",
+          "top": 8,
+          "left": 460,
+          "width": 70,
+          "height": 18,
+          "value": "Magma",
+          "align": "center",
+          "size": 11,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "magma_amp",
+          "top": 30,
+          "left": 460,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/magma/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "magma_density",
+          "top": 266,
+          "left": 460,
+          "width": 70,
+          "height": 200,
+          "label": "Fric",
+          "address": "/osc/magma/density",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "switch",
+          "id": "magma_lz",
+          "top": 472,
+          "left": 460,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/magma/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "sub_t",
+          "top": 8,
+          "left": 550,
+          "width": 70,
+          "height": 18,
+          "value": "Sub",
+          "align": "center",
+          "size": 11,
+          "color": "#ff9999"
+        },
+        {
+          "type": "fader",
+          "id": "sub_amp",
+          "top": 30,
+          "left": 550,
+          "width": 70,
+          "height": 470,
+          "label": "Vol",
+          "address": "/osc/sub/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ff9999"
+        },
+        {
+          "type": "switch",
+          "id": "sub_lz",
+          "top": 508,
+          "left": 550,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/sub/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "tab",
+      "id": "tab_g2",
+      "label": "G2 ATMOS",
+      "widgets": [
+        {
+          "type": "text",
+          "id": "abismo_t",
+          "top": 8,
+          "left": 10,
+          "width": 70,
+          "height": 18,
+          "value": "Dr.Gaita",
+          "align": "center",
+          "size": 11,
+          "color": "#9999ff"
+        },
+        {
+          "type": "fader",
+          "id": "abismo_amp",
+          "top": 30,
+          "left": 10,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/abismo/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#9999ff"
+        },
+        {
+          "type": "fader",
+          "id": "abismo_verbMix",
+          "top": 266,
+          "left": 10,
+          "width": 70,
+          "height": 200,
+          "label": "Rev",
+          "address": "/osc/abismo/verbMix",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#9999ff"
+        },
+        {
+          "type": "switch",
+          "id": "abismo_lz",
+          "top": 472,
+          "left": 10,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/abismo/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "pantasmas_t",
+          "top": 8,
+          "left": 100,
+          "width": 70,
+          "height": 18,
+          "value": "Pantas.",
+          "align": "center",
+          "size": 11,
+          "color": "#9999ff"
+        },
+        {
+          "type": "fader",
+          "id": "pantasmas_amp",
+          "top": 30,
+          "left": 100,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/pantasmas/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#9999ff"
+        },
+        {
+          "type": "fader",
+          "id": "pantasmas_feedback",
+          "top": 266,
+          "left": 100,
+          "width": 70,
+          "height": 200,
+          "label": "Eco",
+          "address": "/osc/pantasmas/feedback",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#9999ff"
+        },
+        {
+          "type": "switch",
+          "id": "pantasmas_lz",
+          "top": 472,
+          "left": 100,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/pantasmas/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "enxame_t",
+          "top": 8,
+          "left": 190,
+          "width": 70,
+          "height": 18,
+          "value": "Frullato",
+          "align": "center",
+          "size": 11,
+          "color": "#9999ff"
+        },
+        {
+          "type": "fader",
+          "id": "enxame_amp",
+          "top": 30,
+          "left": 190,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/enxame/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#9999ff"
+        },
+        {
+          "type": "fader",
+          "id": "enxame_swarmPitch",
+          "top": 266,
+          "left": 190,
+          "width": 70,
+          "height": 200,
+          "label": "Ptch",
+          "address": "/osc/enxame/swarmPitch",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#9999ff"
+        },
+        {
+          "type": "switch",
+          "id": "enxame_lz",
+          "top": 472,
+          "left": 190,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/enxame/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "campa_bat_t",
+          "top": 8,
+          "left": 280,
+          "width": 70,
+          "height": 18,
+          "value": "C.Batim",
+          "align": "center",
+          "size": 11,
+          "color": "#9999ff"
+        },
+        {
+          "type": "fader",
+          "id": "campa_bat_amp",
+          "top": 30,
+          "left": 280,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/campa_bat/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#9999ff"
+        },
+        {
+          "type": "fader",
+          "id": "campa_bat_freqBat",
+          "top": 266,
+          "left": 280,
+          "width": 70,
+          "height": 200,
+          "label": "Vib",
+          "address": "/osc/campa_bat/freqBat",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#9999ff"
+        },
+        {
+          "type": "switch",
+          "id": "campa_bat_lz",
+          "top": 472,
+          "left": 280,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/campa_bat/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "campa_resp_t",
+          "top": 8,
+          "left": 370,
+          "width": 70,
+          "height": 18,
+          "value": "C.Respl",
+          "align": "center",
+          "size": 11,
+          "color": "#9999ff"
+        },
+        {
+          "type": "fader",
+          "id": "campa_resp_amp",
+          "top": 30,
+          "left": 370,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/campa_resp/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#9999ff"
+        },
+        {
+          "type": "fader",
+          "id": "campa_resp_cola",
+          "top": 266,
+          "left": 370,
+          "width": 70,
+          "height": 200,
+          "label": "Rev",
+          "address": "/osc/campa_resp/cola",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#9999ff"
+        },
+        {
+          "type": "switch",
+          "id": "campa_resp_lz",
+          "top": 472,
+          "left": 370,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/campa_resp/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "tab",
+      "id": "tab_g3",
+      "label": "G3 RITMO",
+      "widgets": [
+        {
+          "type": "text",
+          "id": "slicer_t",
+          "top": 8,
+          "left": 10,
+          "width": 70,
+          "height": 18,
+          "value": "Slicer",
+          "align": "center",
+          "size": 11,
+          "color": "#cc8800"
+        },
+        {
+          "type": "fader",
+          "id": "slicer_amp",
+          "top": 30,
+          "left": 10,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/slicer/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc8800"
+        },
+        {
+          "type": "fader",
+          "id": "slicer_sliceRate",
+          "top": 266,
+          "left": 10,
+          "width": 70,
+          "height": 200,
+          "label": "Hz",
+          "address": "/osc/slicer/sliceRate",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc8800"
+        },
+        {
+          "type": "switch",
+          "id": "slicer_lz",
+          "top": 472,
+          "left": 10,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/slicer/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "reloxo_t",
+          "top": 8,
+          "left": 100,
+          "width": 70,
+          "height": 18,
+          "value": "Reloxo",
+          "align": "center",
+          "size": 11,
+          "color": "#cc8800"
+        },
+        {
+          "type": "fader",
+          "id": "reloxo_amp",
+          "top": 30,
+          "left": 100,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/reloxo/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc8800"
+        },
+        {
+          "type": "fader",
+          "id": "reloxo_hitRate",
+          "top": 266,
+          "left": 100,
+          "width": 70,
+          "height": 200,
+          "label": "Hz",
+          "address": "/osc/reloxo/hitRate",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc8800"
+        },
+        {
+          "type": "switch",
+          "id": "reloxo_lz",
+          "top": 472,
+          "left": 100,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/reloxo/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "tab",
+      "id": "tab_g4",
+      "label": "G4 XEO",
+      "widgets": [
+        {
+          "type": "text",
+          "id": "halo_t",
+          "top": 8,
+          "left": 10,
+          "width": 70,
+          "height": 18,
+          "value": "Halo Xel.",
+          "align": "center",
+          "size": 11,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "fader",
+          "id": "halo_amp",
+          "top": 30,
+          "left": 10,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/halo/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "fader",
+          "id": "halo_shimmer",
+          "top": 266,
+          "left": 10,
+          "width": 70,
+          "height": 200,
+          "label": "Mix",
+          "address": "/osc/halo/shimmer",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "switch",
+          "id": "halo_lz",
+          "top": 472,
+          "left": 10,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/halo/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "soplete_t",
+          "top": 8,
+          "left": 100,
+          "width": 70,
+          "height": 18,
+          "value": "Soplete",
+          "align": "center",
+          "size": 11,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "fader",
+          "id": "soplete_amp",
+          "top": 30,
+          "left": 100,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/soplete/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "fader",
+          "id": "soplete_drive",
+          "top": 266,
+          "left": 100,
+          "width": 70,
+          "height": 200,
+          "label": "Dist",
+          "address": "/osc/soplete/drive",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "switch",
+          "id": "soplete_lz",
+          "top": 472,
+          "left": 100,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/soplete/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "harm_est_t",
+          "top": 8,
+          "left": 190,
+          "width": 70,
+          "height": 18,
+          "value": "Fa# Vento",
+          "align": "center",
+          "size": 11,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "fader",
+          "id": "harm_est_amp",
+          "top": 30,
+          "left": 190,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/harm_est/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "fader",
+          "id": "harm_est_pan",
+          "top": 266,
+          "left": 190,
+          "width": 70,
+          "height": 200,
+          "label": "Pan",
+          "address": "/osc/harm_est/pan",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "switch",
+          "id": "harm_est_lz",
+          "top": 472,
+          "left": 190,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/harm_est/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "harm_oct_t",
+          "top": 8,
+          "left": 280,
+          "width": 70,
+          "height": 18,
+          "value": "Fa# Octa",
+          "align": "center",
+          "size": 11,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "fader",
+          "id": "harm_oct_amp",
+          "top": 30,
+          "left": 280,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/harm_oct/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "fader",
+          "id": "harm_oct_notaRate",
+          "top": 266,
+          "left": 280,
+          "width": 70,
+          "height": 200,
+          "label": "Vel",
+          "address": "/osc/harm_oct/notaRate",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#cc88ff"
+        },
+        {
+          "type": "switch",
+          "id": "harm_oct_lz",
+          "top": 472,
+          "left": 280,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/harm_oct/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "tab",
+      "id": "tab_g5",
+      "label": "G5 PERCUS",
+      "widgets": [
+        {
+          "type": "text",
+          "id": "pand_norm_t",
+          "top": 8,
+          "left": 10,
+          "width": 70,
+          "height": 18,
+          "value": "Pandeir.",
+          "align": "center",
+          "size": 11,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "pand_norm_amp",
+          "top": 30,
+          "left": 10,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/pand_norm/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "pand_norm_cutoff",
+          "top": 266,
+          "left": 10,
+          "width": 70,
+          "height": 200,
+          "label": "Hz",
+          "address": "/osc/pand_norm/cutoff",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "switch",
+          "id": "pand_norm_bypass",
+          "top": 472,
+          "left": 10,
+          "width": 70,
+          "height": 40,
+          "label": "Mel/Lmp",
+          "address": "/osc/pand_norm/bypass",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 1,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "pand_gran_t",
+          "top": 8,
+          "left": 100,
+          "width": 70,
+          "height": 18,
+          "value": "P.Gran",
+          "align": "center",
+          "size": 11,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "pand_gran_amp",
+          "top": 30,
+          "left": 100,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/pand_gran/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "pand_gran_density",
+          "top": 266,
+          "left": 100,
+          "width": 70,
+          "height": 200,
+          "label": "Gr/s",
+          "address": "/osc/pand_gran/density",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "switch",
+          "id": "pand_gran_lz",
+          "top": 472,
+          "left": 100,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/pand_gran/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "estalidos_t",
+          "top": 8,
+          "left": 190,
+          "width": 70,
+          "height": 18,
+          "value": "Estalidos",
+          "align": "center",
+          "size": 11,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "estalidos_amp",
+          "top": 30,
+          "left": 190,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/estalidos/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "estalidos_brillo",
+          "top": 266,
+          "left": 190,
+          "width": 70,
+          "height": 200,
+          "label": "Hz",
+          "address": "/osc/estalidos/brillo",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "switch",
+          "id": "estalidos_lz",
+          "top": 472,
+          "left": 190,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/estalidos/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "asubiador_t",
+          "top": 8,
+          "left": 280,
+          "width": 70,
+          "height": 18,
+          "value": "Asubiad.",
+          "align": "center",
+          "size": 11,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "asubiador_amp",
+          "top": 30,
+          "left": 280,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/asubiador/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "asubiador_rate",
+          "top": 266,
+          "left": 280,
+          "width": 70,
+          "height": 200,
+          "label": "Hz",
+          "address": "/osc/asubiador/rate",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "switch",
+          "id": "asubiador_lz",
+          "top": 472,
+          "left": 280,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/asubiador/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "campa_gran_t",
+          "top": 8,
+          "left": 370,
+          "width": 70,
+          "height": 18,
+          "value": "C.Gran",
+          "align": "center",
+          "size": 11,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "campa_gran_amp",
+          "top": 30,
+          "left": 370,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/campa_gran/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "campa_gran_densidade",
+          "top": 266,
+          "left": 370,
+          "width": 70,
+          "height": 200,
+          "label": "Gr/s",
+          "address": "/osc/campa_gran/densidade",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "switch",
+          "id": "campa_gran_lz",
+          "top": 472,
+          "left": 370,
+          "width": 70,
+          "height": 40,
+          "label": "LZ",
+          "address": "/osc/campa_gran/lz",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "ca_t",
+          "top": 8,
+          "left": 460,
+          "width": 70,
+          "height": 18,
+          "value": "Autómata",
+          "align": "center",
+          "size": 11,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "ca_amp",
+          "top": 30,
+          "left": 460,
+          "width": 70,
+          "height": 280,
+          "label": "Vol CA",
+          "address": "/osc/ca/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.5,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "switch",
+          "id": "ca_on",
+          "top": 318,
+          "left": 460,
+          "width": 70,
+          "height": 44,
+          "label": "CA",
+          "address": "/osc/ca/on",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "xy_vol_t",
+          "top": 8,
+          "left": 550,
+          "width": 70,
+          "height": 18,
+          "value": "Vol 2D",
+          "align": "center",
+          "size": 11,
+          "color": "#88cc88"
+        },
+        {
+          "type": "fader",
+          "id": "xy_amp",
+          "top": 30,
+          "left": 550,
+          "width": 70,
+          "height": 200,
+          "label": "Vol 2D",
+          "address": "/osc/xy/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.8,
+          "snap": false,
+          "color": "#88cc88"
+        },
+        {
+          "type": "switch",
+          "id": "xy_on",
+          "top": 238,
+          "left": 550,
+          "width": 70,
+          "height": 44,
+          "label": "2D ON",
+          "address": "/osc/xy/on",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "onLabel": "ON",
+          "offLabel": "OFF",
+          "value": 0,
+          "mode": "toggle"
+        },
+        {
+          "type": "text",
+          "id": "xy_pad_t",
+          "top": 8,
+          "left": 640,
+          "width": 280,
+          "height": 18,
+          "value": "Navegación 2D",
+          "align": "center",
+          "size": 12,
+          "color": "#88cc88"
+        },
+        {
+          "type": "xy",
+          "id": "xy_pad",
+          "top": 30,
+          "left": 640,
+          "width": 280,
+          "height": 280,
+          "label": "2D",
+          "address": "/osc/xy/pad",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "rangeX": {
+            "min": 0,
+            "max": 1
+          },
+          "rangeY": {
+            "min": 0,
+            "max": 1
+          },
+          "default": [
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    },
+    {
+      "type": "tab",
+      "id": "tab_g6",
+      "label": "G6 SHEPARD",
+      "widgets": [
+        {
+          "type": "text",
+          "id": "ss_t",
+          "top": 8,
+          "left": 10,
+          "width": 70,
+          "height": 18,
+          "value": "Shp.Solo",
+          "align": "center",
+          "size": 11,
+          "color": "#88dddd"
+        },
+        {
+          "type": "fader",
+          "id": "shep_solo_amp",
+          "top": 30,
+          "left": 10,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/shep_solo/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88dddd"
+        },
+        {
+          "type": "fader",
+          "id": "shep_solo_speed",
+          "top": 268,
+          "left": 10,
+          "width": 70,
+          "height": 200,
+          "label": "Vel",
+          "address": "/osc/shep_solo/speed",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88dddd"
+        },
+        {
+          "type": "text",
+          "id": "se_t",
+          "top": 8,
+          "left": 100,
+          "width": 70,
+          "height": 18,
+          "value": "Shp.Enx",
+          "align": "center",
+          "size": 11,
+          "color": "#88dddd"
+        },
+        {
+          "type": "fader",
+          "id": "shep_enxame_amp",
+          "top": 30,
+          "left": 100,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/shep_enxame/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88dddd"
+        },
+        {
+          "type": "fader",
+          "id": "shep_enxame_speed",
+          "top": 268,
+          "left": 100,
+          "width": 70,
+          "height": 200,
+          "label": "Vel",
+          "address": "/osc/shep_enxame/speed",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88dddd"
+        },
+        {
+          "type": "text",
+          "id": "sb_t",
+          "top": 8,
+          "left": 190,
+          "width": 70,
+          "height": 18,
+          "value": "Ton Base",
+          "align": "center",
+          "size": 11,
+          "color": "#88dddd"
+        },
+        {
+          "type": "fader",
+          "id": "shep_base",
+          "top": 30,
+          "left": 190,
+          "width": 70,
+          "height": 460,
+          "label": "Rate",
+          "address": "/osc/shep/baserate",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88dddd"
+        }
+      ]
+    },
+    {
+      "type": "tab",
+      "id": "tab_g7",
+      "label": "G7 RECONSTR",
+      "widgets": [
+        {
+          "type": "text",
+          "id": "g7_t",
+          "top": 5,
+          "left": 10,
+          "width": 300,
+          "height": 22,
+          "value": "G7: RECONSTRUCIÓN",
+          "align": "center",
+          "size": 14,
+          "color": "#ddbb44"
+        },
+        {
+          "type": "fader",
+          "id": "g7_amp",
+          "top": 40,
+          "left": 10,
+          "width": 80,
+          "height": 480,
+          "label": "Vol",
+          "address": "/osc/g7/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ddbb44"
+        },
+        {
+          "type": "fader",
+          "id": "g7_time",
+          "top": 40,
+          "left": 110,
+          "width": 80,
+          "height": 480,
+          "label": "Tempo",
+          "address": "/osc/g7/time",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ddbb44"
+        },
+        {
+          "type": "button",
+          "id": "g7_start",
+          "top": 40,
+          "left": 210,
+          "width": 120,
+          "height": 480,
+          "label": "▶ START",
+          "address": "/osc/g7/start",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "mode": "tap",
+          "color": "#aa5500"
+        }
+      ]
+    }
+  ]
+}

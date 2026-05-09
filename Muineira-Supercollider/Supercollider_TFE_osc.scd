@@ -1,6 +1,10 @@
 // 1. Configuración de Memoria e Inicio Blindado a 48kHz
 s.options.sampleRate = 48000;
 s.options.memSize = 65536;
+
+s.options.device = "Scarlett 18i20 USB"; // Nome exacto da túa interface
+s.options.numOutputBusChannels = 20;    // Abrimos as 20 canles de saída
+
 s.boot;
 
 // 2. Bloque principal
@@ -116,17 +120,30 @@ s.waitForBoot({
 		Out.ar(0, Mix(voces) * fAmp * 1.0 * master);
 	}).add;
 
+	SynthDef(\crossover_pas, {
+		var freqCorte = \corte.kr(200).lag(0.1);
+		var mestura = In.ar(0, 2);
+		var gravesMono = LPF.ar(mestura[0] + mestura[1], freqCorte) * 0.5;
+		var restoPAs = HPF.ar(mestura, freqCorte);
+		ReplaceOut.ar(0, restoPAs);
+		Out.ar(2, gravesMono);
+	}).add;
+
+	// --- M. SÍSMICO ACTUALIZADO A SÍNTESE SENOIDAL ---
 	SynthDef(\motor_sismico, {
 		var gLz = \globalLorenz.kr(0).lag(0.5); var locLz = \lorenz.kr(0).lag(0.1); var useLz = Clip.kr(gLz + locLz, 0, 1);
-		var aMan = \amp.kr(0).lag(0.1); var eMan = \distancia.kr(0.0).lag(0.2);
+		var aMan = \amp.kr(0).lag(0.1); var eMan = \desfase.kr(0.0).lag(0.2);
 		var lz1 = A2K.kr(LorenzL.ar(16.3)).lag(0.2).linlin(-9, 9, 0, 1).fold(0, 1);
 		var lz2 = A2K.kr(LorenzL.ar(16.4)).lag(0.2).linlin(-9, 9, 0, 1).fold(0, 1);
-		var aLz = lz1 * 0.85; var eLz = lz2.linlin(0, 1, 0.0, 3.0);
+		var aLz = lz1 * 0.85; var eLz = lz2.linlin(0, 1, 0.0, 3.0).round(1); // Redondeo por seguridade para lorenz
 		var oA = \overAmp.kr(0); var oE = \overExt.kr(0);
 		var fAmp = SelectX.kr(oA, [SelectX.kr(useLz, [aMan, aLz]), aMan]); var fExt = SelectX.kr(oE, [SelectX.kr(useLz, [eMan, eLz]), eMan]);
 		var master = In.kr(~masterBus, 1).lag(0.1);
-		var ronco = LPF.ar(PlayBuf.ar(1, bufRonco, BufRateScale.kr(bufRonco) * 0.25, loop: 1), 80);
-		var sigFinal = LPF.ar((ronco * 2.5) + SinOsc.ar(32.70)*0.5 + SinOsc.ar(32.70 + fExt)*0.5, 90) * fAmp * master;
+
+		var freqBase = 50.0;
+		// A segunda senoidal suma o fExt redondeado a enteiros (0, 1, 2, ou 3)
+		var sigFinal = (SinOsc.ar(freqBase) + SinOsc.ar(freqBase + fExt.round(1))) * 0.5 * fAmp * master;
+
 		SendReply.kr(Impulse.kr(15), '/ui_sismico', [fAmp, fExt]);
 		Out.ar(0, Pan2.ar(sigFinal * 1.2, 0));
 	}).add;
@@ -312,7 +329,6 @@ s.waitForBoot({
 	}).add;
 
 	SynthDef(\enxame_frullato, {
-		// FRULLATO ILLADO DO GLBZ CAOS (A gLz non se lle suma)
 		var locLz = \lorenz.kr(0).lag(0.1); var useLz = Clip.kr(locLz, 0, 1);
 		var aMan = \amp.kr(0).lag(0.1); var eMan = \swarmPitch.kr(0.5).lag(0.1);
 		var lz1 = A2K.kr(LorenzL.ar(19.1)).lag(0.2).linlin(-9, 9, 0, 1).fold(0, 1);
@@ -405,12 +421,33 @@ s.waitForBoot({
 		Out.ar(0, Pan2.ar(FreeVerb.ar(snd * EnvGen.kr(Env.perc(0.01, 0.8), trig), 0.6, 0.9, 0.1) * fAmp * 1.0 * master, TRand.kr(-0.5, 0.5, trig)));
 	}).add;
 
+	// --- G7: RECONSTRUCIÓN ESPECTRAL (sen Lorenz; revela parciais aleatorios progresivamente) ---
+	SynthDef(\reconstrucion, { |out=0, t_trig=0, amp=0, time=10|
+		var ampL, timeL, master, phase, wipe, src, chain, sig;
+		ampL = amp.lag(0.1);
+		timeL = time.max(0.001);
+		master = In.kr(~masterBus, 1).lag(0.1);
+		// Sweep arranca en 0 ao recibir trigger e sobe a 1 en 'time' segundos.
+		// Antes do primeiro trigger Sweep == 0  =>  wipe = 1 - 0 = 1 (todos os bins eliminados, silencio).
+		// Despois do trigger, Sweep ramp 0->1 en 'time' segs => wipe 1->0 (vai destapando bins ata o son completo).
+		phase = Sweep.kr(t_trig, 1.0 / timeL).clip(0, 1);
+		wipe = 1.0 - phase;
+		src = PlayBuf.ar(1, bufRonco, BufRateScale.kr(bufRonco), loop: 1);
+		chain = FFT(LocalBuf(2048), src);
+		// PV_RandComb elimina aleatoriamente bins (wipe=1 todos eliminados, wipe=0 ningún)
+		// Re-aleatoriza con Impulse: novos parciais aparecen progresivamente segundo baixa wipe.
+		chain = PV_RandComb(chain, wipe, Impulse.kr(8));
+		sig = IFFT(chain);
+		SendReply.kr(Impulse.kr(15), '/ui_reconstr', [ampL, phase]);
+		Out.ar(out, Pan2.ar(sig * ampL * 1.2 * master, 0));
+	}).add;
+
 	SynthDef(\shep_risset, {
 		var gLz = \globalLorenz.kr(0).lag(0.5);
 		var aMan = \amp.kr(0).lag(0.1); var eMan = \speed.kr(-0.618).lag(0.1);
 		var lz1 = A2K.kr(LorenzL.ar(20.3)).lag(0.2).linlin(-9, 9, 0, 1).fold(0, 1);
 		var lz2 = A2K.kr(LorenzL.ar(20.4)).lag(0.2).linlin(-9, 9, 0, 1).fold(0, 1);
-		var aLz = lz1 * 0.85; var eLz = lz2.linexp(0, 1, 0.1, 3.0); // Nota: O speed negativo calculábase distinto no código orixinal, deixo que Lorenz dea valores > 0
+		var aLz = lz1 * 0.85; var eLz = lz2.linexp(0, 1, 0.1, 3.0);
 		var oA = \overAmp.kr(0); var oE = \overExt.kr(0);
 		var fAmp = SelectX.kr(oA, [SelectX.kr(gLz, [aMan, aLz]), aMan]); var fExt = SelectX.kr(oE, [SelectX.kr(gLz, [eMan, eLz]), eMan]);
 		var master = In.kr(~masterBus, 1).lag(0.1); var baseRate = In.kr(~shepRateBus, 1).lag(0.1);
@@ -451,6 +488,8 @@ s.waitForBoot({
 	~shepEnxameGrp = Group.new;
 	fork { 6.do { |i| Synth(\shep_risset, [\amp, 0.0, \speed, -0.618], target: ~shepEnxameGrp); 0.1.wait; }; };
 
+	~saidaScarlett = Synth(\crossover_pas, [\corte, 200], target: s, addAction: \addToTail);
+
 	stateArray = Array.fill(16, { [0, 1].choose });
 	rule30 = { |state| var nextState = Array.newClear(state.size); state.size.do { |i| nextState[i] = (30 >> ((state.wrapAt(i - 1) << 2) | (state[i] << 1) | state.wrapAt(i + 1))) & 1; }; nextState; };
 	caTask = Task({ var index = 0; loop { if(stateArray[index] == 1) { Synth(\ca_player, [\rate, 0.8 + (stateArray.sum * 0.05), \globalLorenz, ~glbzState]); }; index = index + 1; if(index >= stateArray.size) { index = 0; stateArray = rule30.value(stateArray); }; 0.0625.wait; } });
@@ -459,13 +498,21 @@ s.waitForBoot({
 
 	// --- 6. INTERFACE GRÁFICA ---
 	defer {
-		var cGr1 = Color.red(0.6), cGr2 = Color.blue(0.6), cGr3 = Color.new255(200, 100, 0), cGr4 = Color.magenta(0.6), cGr5 = Color.green(0.6), cGr6 = Color.cyan(0.7);
-		var topRow, bottomRow, makeSep, g1Layout, g2Layout, g3Layout, g4Layout, g5Layout, g6Layout, masterLayout;
-		var colCaVol2d, caTitleLayout, caVolLabel, caVolSlider, caBtn, xyVolTitleLayout, xyVolLabel, xyVolSlider, xyBtn, xyPadCol, xyPad;
+		var cGr1 = Color.red(0.6), cGr2 = Color.blue(0.6), cGr3 = Color.new255(200, 100, 0), cGr4 = Color.magenta(0.6), cGr5 = Color.green(0.6), cGr6 = Color.cyan(0.7), cGr7 = Color.new255(180, 140, 0);
+		var topRow, bottomRow, makeSep, g1Layout, g2Layout, g3Layout, g4Layout, g5Layout, g6Layout, g7Layout, masterLayout;
+		var colCaVol2d, caTitleLayout, caVolLabel, caVolSlider, caBtn, xyVolTitleLayout, xyVolLabel, xyVolSlider, xyBtn, xyPadCol, xyPad, xyLzBtn;
 		var mTitleLayout, mTitle, mInfoBtn, mVolLabel, mVolSlider, lzGlobalBtn, muteBtn, colShepRate, srTitle, srLbl, srSl;
-		var metronomoBtn; // <-- Variable para o botón do metrónomo
+		var metronomoBtn;
+		var g7AmpLabel, g7AmpSlider, g7TimeSpec, g7TimeLabel, g7TimeSlider, g7StartBtn, g7Col;
 		~glbzState = 0;
-		~metronomoPlayer = nil; // <-- Variable para controlar o metrónomo
+		~metronomoPlayer = nil;
+		~volSliders = (); // Dicionario de sliders de volume por synthKey (para captura Lorenz)
+
+		// --- COMUNICACIÓN BIDIRECCIONAL CON OPEN STAGE CONTROL (porto 8000) ---
+		~oscOut = NetAddr("127.0.0.1", 8000);
+		// Bandeira para evitar loops infinitos: cando o cambio veu da tablet, non reenviar
+		~fromOSC = false;
+		~sendOSC = { |path, val| if(~fromOSC.not) { ~oscOut.sendMsg(path, val) } };
 
 		synths = (
 			abismo: Synth(\abismo), lume_petr: Synth(\lume_petrushka), lume_re9: Synth(\lume_re9), estalidos: Synth(\estalidos_lume), ronco_enxame: Synth(\enxame_harmonico),
@@ -473,12 +520,13 @@ s.waitForBoot({
 			choiva: Synth(\choiva_cristal), soplete: Synth(\soplete_plasma), pand_gran: Synth(\pandeireta_glitch), pand_norm: Synth(\pandeireta_normal),
 			espectro: Synth(\espectro_conxelado), pantasmas: Synth(\pantasmas), slicer: Synth(\slicer), reloxo: Synth(\reloxo_pechado), enxame: Synth(\enxame_frullato), sub: Synth(\sub_lume),
 			campa_bat: Synth(\campa_batimentos), campa_resp: Synth(\campa_resplandor), campa_gran: Synth(\campa_granular), harm_est: Synth(\harm_fa_estatico), harm_oct: Synth(\harm_fa_octa),
-			shep_solo: Synth(\shep_risset, [\amp, 0.0, \speed, -0.618, \replyID, 1]), shep_enxame: ~shepEnxameGrp
+			shep_solo: Synth(\shep_risset, [\amp, 0.0, \speed, -0.618, \replyID, 1]), shep_enxame: ~shepEnxameGrp,
+			reconstrucion: Synth(\reconstrucion, [\amp, 0, \time, 10])
 		);
 
 		CmdPeriod.doOnce { Window.closeAll };
 		win = Window("Mesa Electroacústica", Rect(10, 10, 1350, 850));
-		win.onClose = { synths.do(_.free); ~xySynth.free; caTask.stop; if(~metronomoPlayer.notNil) { ~metronomoPlayer.stop }; };
+		win.onClose = { synths.do(_.free); ~xySynth.free; ~saidaScarlett.free; caTask.stop; if(~metronomoPlayer.notNil) { ~metronomoPlayer.stop }; OSCdef.all.copy.do(_.free); };
 		win.layout = VLayout().spacing_(15);
 		topRow = HLayout().spacing_(8); bottomRow = HLayout().spacing_(8);
 		makeSep = { StaticText().string_("||").font_(Font("Helvetica", 16)).align_(\center).fixedWidth_(5) };
@@ -493,13 +541,25 @@ s.waitForBoot({
 			var volSlider = Slider().orientation_(\vertical).value_(0);
 			var extraLabel = StaticText().string_(extraSpec.units ++ ":" ++ extraSpec.default.round(0.01)).align_(\center).font_(Font("Helvetica", 9));
 			var extraSlider = Slider().orientation_(\vertical).value_(extraSpec.unmap(extraSpec.default));
-
 			var mdAmp = false, mdExt = false;
+			var lzBtn = nil, bypassBtn = nil;
+			var oscBase = "/osc/" ++ synthKey.asString;
 
-			volSlider.action_({ |sl| synths[synthKey].set(\amp, sl.value); volLabel.string_("Vol: " ++ sl.value.round(0.01)); });
+			// Gardar referencia para captura ao desactivar Lorenz (despois de todos os var)
+			~volSliders[synthKey] = volSlider;
+
+			// --- Acción do fader de volume: cambia o synth, etiqueta e reenvía á tablet (se non vén dela) ---
+			volSlider.action_({ |sl|
+				synths[synthKey].set(\amp, sl.value);
+				volLabel.string_("Vol: " ++ sl.value.round(0.01));
+				~sendOSC.value(oscBase ++ "/amp", sl.value.asFloat);
+			});
 			extraSlider.action_({ |sl|
-				var rVal = extraSpec.map(sl.value); synths[synthKey].set(extraParam, rVal); extraLabel.string_(extraSpec.units ++ ":" ++ rVal.round(0.01));
+				var rVal = extraSpec.map(sl.value);
+				synths[synthKey].set(extraParam, rVal);
+				extraLabel.string_(extraSpec.units ++ ":" ++ rVal.round(0.01));
 				if(synthKey == \reloxo) { synths[\slicer].set(\sliceRate, rVal * 1.41421356); };
+				~sendOSC.value(oscBase ++ "/" ++ extraParam.asString, sl.value.asFloat);
 			});
 
 			volSlider.mouseDownAction_({ mdAmp = true; synths[synthKey].set(\overAmp, 1); });
@@ -507,12 +567,28 @@ s.waitForBoot({
 			extraSlider.mouseDownAction_({ mdExt = true; synths[synthKey].set(\overExt, 1); });
 			extraSlider.mouseUpAction_({ mdExt = false; synths[synthKey].set(\overExt, 0); });
 
+			// --- SendReply do motor Lorenz: actualiza UI local + reenvía á tablet en valor normalizado ---
 			if(oscPath.notNil) {
 				OSCdef(synthKey, { |msg|
 					if(replyID == -1 or: { msg[2] == replyID }) {
+						var ampVal = msg[3];
+						var extVal = msg[4];
 						defer {
-							if(mdAmp.not) { volSlider.value_(msg[3]); volLabel.string_("Vol: " ++ msg[3].round(0.01)); };
-							if(msg[4].notNil and: { mdExt.not }) { extraSlider.value_(extraSpec.unmap(msg[4])); extraLabel.string_(extraSpec.units ++ ":" ++ msg[4].round(0.01)); };
+							if(mdAmp.not) {
+								~fromOSC = true;
+								volSlider.value_(ampVal);
+								~fromOSC = false;
+								volLabel.string_("Vol: " ++ ampVal.round(0.01));
+								~oscOut.sendMsg(oscBase ++ "/amp", ampVal.asFloat);
+							};
+							if(extVal.notNil and: { mdExt.not }) {
+								var u = extraSpec.unmap(extVal);
+								~fromOSC = true;
+								extraSlider.value_(u);
+								~fromOSC = false;
+								extraLabel.string_(extraSpec.units ++ ":" ++ extVal.round(0.01));
+								~oscOut.sendMsg(oscBase ++ "/" ++ extraParam.asString, u.asFloat);
+							};
 						};
 					}
 				}, oscPath);
@@ -521,11 +597,87 @@ s.waitForBoot({
 			titleLayout.add(nil); titleLayout.add(title); titleLayout.add(infoBtn);
 			col.add(titleLayout); col.add(volLabel); col.add(volSlider);
 
-			if(synthKey == \pand_norm) { col.add(Button().states_([["Mel", Color.white, Color.blue(0.6)], ["Lmp", Color.black, Color.gray(0.8)]]).value_(1).action_({ |b| synths[synthKey].set(\bypass, b.value); })); }
-			{ if(tenLorenz) { col.add(Button().states_([["LZ OFF", Color.black, Color.gray(0.8)], ["LZ ON", Color.white, Color.red(0.6)]]).value_(0).action_({ |b| synths[synthKey].set(\lorenz, b.value); })); } { col.add(StaticText().string_("").minHeight_(20)); } };
+			if(synthKey == \pand_norm) {
+				bypassBtn = Button().states_([["Mel", Color.white, Color.blue(0.6)], ["Lmp", Color.black, Color.gray(0.8)]]).value_(1).action_({ |b|
+					synths[synthKey].set(\bypass, b.value);
+					~sendOSC.value(oscBase ++ "/bypass", b.value);
+				});
+				col.add(bypassBtn);
+			} {
+				if(tenLorenz) {
+					lzBtn = Button().states_([["LZ OFF", Color.black, Color.gray(0.8)], ["LZ ON", Color.white, Color.red(0.6)]]).value_(0).action_({ |b|
+						if(b.value == 0) {
+							// Captura o nivel actual de Lorenz e mantén o son exactamente igual
+							synths[synthKey].set(\amp, volSlider.value, \lorenz, 0);
+						} {
+							synths[synthKey].set(\lorenz, 1);
+						};
+						~sendOSC.value(oscBase ++ "/lz", b.value);
+					});
+					col.add(lzBtn);
+				} {
+					col.add(StaticText().string_("").minHeight_(20));
+				};
+			};
 
 			if(synthKey == \sub) { extraSlider.visible_(false); extraLabel.visible_(false); };
-			col.add(extraLabel); col.add(extraSlider); col;
+			col.add(extraLabel); col.add(extraSlider);
+
+			// --- OSC IN: faders dende a tablet (con bandeira fromOSC para evitar loop) ---
+			OSCdef((oscBase ++ "/amp").asSymbol, { |m|
+				var v = m[1].asFloat.clip(0, 1);
+				defer {
+					~fromOSC = true;
+					volSlider.valueAction_(v);
+					~fromOSC = false;
+				};
+			}, oscBase ++ "/amp");
+
+			if(synthKey != \sub) {
+				OSCdef((oscBase ++ "/" ++ extraParam.asString).asSymbol, { |m|
+					var v = m[1].asFloat.clip(0, 1);
+					defer {
+						~fromOSC = true;
+						extraSlider.valueAction_(v);
+						~fromOSC = false;
+					};
+				}, oscBase ++ "/" ++ extraParam.asString);
+			};
+
+			// --- OSC IN: TOGGLE Lorenz dende a tablet ---
+			// Lectura limpa de 0/1, aplicación directa ao Synth E actualización visual da UI dentro de defer
+			if(lzBtn.notNil) {
+				OSCdef((oscBase ++ "/lz").asSymbol, { |m|
+					var v = (m[1].asFloat > 0).asInteger;
+					// 1) Aplicar directamente ao Synth (garante que apaga e acende)
+					if(v == 0) {
+						synths[synthKey].set(\amp, volSlider.value, \lorenz, 0);
+					} {
+						synths[synthKey].set(\lorenz, 1);
+					};
+					// 2) Refrescar o botón da UI local sen disparar a acción (evita reenvío)
+					defer {
+						~fromOSC = true;
+						lzBtn.value_(v);
+						~fromOSC = false;
+					};
+				}, oscBase ++ "/lz");
+			};
+
+			// --- OSC IN: TOGGLE Bypass (pand_norm) dende a tablet ---
+			if(bypassBtn.notNil) {
+				OSCdef((oscBase ++ "/bypass").asSymbol, { |m|
+					var v = (m[1].asFloat > 0).asInteger;
+					synths[synthKey].set(\bypass, v);
+					defer {
+						~fromOSC = true;
+						bypassBtn.value_(v);
+						~fromOSC = false;
+					};
+				}, oscBase ++ "/bypass");
+			};
+
+			col;
 		};
 
 		g1Layout = VLayout(StaticText().string_("G1: GRAVES / LUME").align_(\center).font_(Font("Helvetica", 11, true)).stringColor_(cGr1).background_(Color.white(0.9)),
@@ -534,7 +686,10 @@ s.waitForBoot({
 				~makeCol.value("Lu(Petr)", \lume_petr, \resDecay, ControlSpec(0.1, 8.0, 'exp', 0, 3.0, "Dec"), true, "", cGr1, '/ui_lume_petr'),
 				~makeCol.value("Lu(Re9)", \lume_re9, \resDecay, ControlSpec(0.1, 8.0, 'exp', 0, 3.0, "Dec"), true, "", cGr1, '/ui_lume_re9'),
 				~makeCol.value("Sub", \sub, \amp, ControlSpec(0, 1, 'lin', 0, 0, ""), true, "", cGr1, '/ui_sub'),
-				~makeCol.value("M. Sísm", \sismico, \distancia, ControlSpec(0.0, 3.0, 'lin', 0, 0.0, "BatHz"), true, "", cGr1, '/ui_sismico'),
+
+				// --- CONTROLADOR DA UI MODIFICADO PARA O NOVO MOTOR SÍSMICO (paso de '1' forzando saltos enteiros de 0 a 3Hz) ---
+				~makeCol.value("M. Sísm", \sismico, \desfase, ControlSpec(0, 3, 'lin', 1, 0, "Hz"), true, "", cGr1, '/ui_sismico'),
+
 				~makeCol.value("B. Tect", \tectonico, \resDecay, ControlSpec(1.0, 10.0, 'exp', 0, 4.0, "Dec"), true, "", cGr1, '/ui_tectonico'),
 				~makeCol.value("Magma", \magma, \density, ControlSpec(2, 60, 'exp', 0, 20, "Fric."), true, "", cGr1, '/ui_magma')
 			)
@@ -571,21 +726,41 @@ s.waitForBoot({
 		colCaVol2d = VLayout().spacing_(2);
 		caTitleLayout = HLayout().spacing_(2); caTitleLayout.add(nil); caTitleLayout.add(StaticText().string_("Autómata").align_(\center).font_(Font("Helvetica", 10, true)).stringColor_(cGr5)); colCaVol2d.add(caTitleLayout);
 		caVolLabel = StaticText().string_("Vol: 0.50").align_(\center).font_(Font("Helvetica", 9));
-		caVolSlider = Slider().orientation_(\vertical).maxHeight_(120).value_(0.5).action_({ |sl| ~caVolBus.set(sl.value); caVolLabel.string_("Vol: " ++ sl.value.round(0.01)); });
-		caBtn = Button().states_([["CA OFF", Color.black, Color.gray(0.8)], ["CA ON", Color.white, Color.red(0.6)]]).action_({ |b| if(b.value == 1) { caTask.play; } { caTask.stop; }; });
+		caVolSlider = Slider().orientation_(\vertical).maxHeight_(120).value_(0.5).action_({ |sl|
+			~caVolBus.set(sl.value);
+			caVolLabel.string_("Vol: " ++ sl.value.round(0.01));
+			~sendOSC.value("/osc/ca/amp", sl.value.asFloat);
+		});
+		caBtn = Button().states_([["CA OFF", Color.black, Color.gray(0.8)], ["CA ON", Color.white, Color.red(0.6)]]).action_({ |b|
+			if(b.value == 1) { caTask.play; } { caTask.stop; };
+			~sendOSC.value("/osc/ca/on", b.value);
+		});
 		colCaVol2d.add(caVolLabel); colCaVol2d.add(caVolSlider); colCaVol2d.add(caBtn); colCaVol2d.add(StaticText().string_("---").align_(\center).font_(Font("Helvetica", 8)).stringColor_(Color.gray));
 
 		xyVolTitleLayout = HLayout().spacing_(2); xyVolTitleLayout.add(nil); xyVolTitleLayout.add(StaticText().string_("Vol 2D").align_(\center).font_(Font("Helvetica", 10, true)).stringColor_(cGr5)); colCaVol2d.add(xyVolTitleLayout);
 		xyVolLabel = StaticText().string_("Vol: 0.80").align_(\center).font_(Font("Helvetica", 9));
 		xyVolSlider = Slider().orientation_(\vertical).maxHeight_(120).value_(0.8);
 		xyBtn = Button().states_([["2D OFF", Color.black, Color.gray(0.8)], ["2D ON", Color.white, cGr5]]).value_(0);
-		xyVolSlider.action_({ |sl| ~xyMaxAmp = sl.value; xyVolLabel.string_("Vol: " ++ sl.value.round(0.01)); if(xyBtn.value == 1) { ~xySynth.set(\amp, ~xyMaxAmp); }; });
-		xyBtn.action_({ |b| if(b.value == 1) { ~xySynth.set(\amp, ~xyMaxAmp); } { ~xySynth.set(\amp, 0.0); }; });
+		xyVolSlider.action_({ |sl|
+			~xyMaxAmp = sl.value;
+			xyVolLabel.string_("Vol: " ++ sl.value.round(0.01));
+			if(xyBtn.value == 1) { ~xySynth.set(\amp, ~xyMaxAmp); };
+			~sendOSC.value("/osc/xy/amp", sl.value.asFloat);
+		});
+		xyBtn.action_({ |b|
+			if(b.value == 1) { ~xySynth.set(\amp, ~xyMaxAmp); } { ~xySynth.set(\amp, 0.0); };
+			~sendOSC.value("/osc/xy/on", b.value);
+		});
 		colCaVol2d.add(xyVolLabel); colCaVol2d.add(xyVolSlider); colCaVol2d.add(xyBtn); colCaVol2d.add(nil);
 
 		xyPadCol = VLayout(); xyPadCol.add(StaticText().string_("Navegación 2D").align_(\center).font_(Font("Helvetica", 10, true)).stringColor_(cGr5));
-		xyPad = Slider2D().fixedWidth_(140).fixedHeight_(140).background_(Color.black).knobColor_(Color.cyan); xyPad.action_({ |sl| ~xySynth.set(\posX, sl.x, \posY, sl.y); });
-		xyPadCol.add(xyPad); xyPadCol.add(Button().states_([["LZ 2D OFF", Color.black, Color.gray(0.8)], ["LZ 2D ON", Color.white, Color.red(0.6)]]).action_({ |b| ~xySynth.set(\lorenz, b.value); })); xyPadCol.add(nil);
+		xyPad = Slider2D().fixedWidth_(140).fixedHeight_(140).background_(Color.black).knobColor_(Color.cyan);
+		xyPad.action_({ |sl|
+			~xySynth.set(\posX, sl.x, \posY, sl.y);
+			if(~fromOSC.not) { ~oscOut.sendMsg("/osc/xy/pad", sl.x.asFloat, sl.y.asFloat); };
+		});
+		xyLzBtn = Button().states_([["LZ 2D OFF", Color.black, Color.gray(0.8)], ["LZ 2D ON", Color.white, Color.red(0.6)]]).action_({ |b| ~xySynth.set(\lorenz, b.value); });
+		xyPadCol.add(xyPad); xyPadCol.add(xyLzBtn); xyPadCol.add(nil);
 
 		g5Layout = VLayout(StaticText().string_("G5: PERCUSIÓN / I.A.").align_(\center).font_(Font("Helvetica", 11, true)).stringColor_(cGr5).background_(Color.white(0.9)),
 			HLayout(
@@ -600,7 +775,12 @@ s.waitForBoot({
 
 		colShepRate = VLayout().spacing_(2); srTitle = HLayout().spacing_(1); srTitle.add(nil); srTitle.add(StaticText().string_("Ton Base").align_(\center).font_(Font("Helvetica", 10, true)).stringColor_(cGr6)); colShepRate.add(srTitle);
 		srLbl = StaticText().string_("x1.00").align_(\center).font_(Font("Helvetica", 9));
-		srSl = Slider().orientation_(\vertical).value_(ControlSpec(0.25, 4.0, 'exp').unmap(1.0)).action_({ |sl| var val = ControlSpec(0.25, 4.0, 'exp').map(sl.value); ~shepRateBus.set(val); srLbl.string_("x" ++ val.round(0.01)); });
+		srSl = Slider().orientation_(\vertical).value_(ControlSpec(0.25, 4.0, 'exp').unmap(1.0)).action_({ |sl|
+			var val = ControlSpec(0.25, 4.0, 'exp').map(sl.value);
+			~shepRateBus.set(val);
+			srLbl.string_("x" ++ val.round(0.01));
+			~sendOSC.value("/osc/shep/baserate", sl.value.asFloat);
+		});
 		colShepRate.add(srLbl); colShepRate.add(srSl); colShepRate.add(StaticText().string_("").minHeight_(50));
 
 		g6Layout = VLayout(StaticText().string_("G6: ILUSIÓN SHEPARD").align_(\center).font_(Font("Helvetica", 11, true)).stringColor_(cGr6).background_(Color.white(0.9)),
@@ -615,34 +795,154 @@ s.waitForBoot({
 			VLayout(
 				HLayout(nil, StaticText().string_("MASTER").align_(\center).font_(Font("Helvetica", 10, true)).stringColor_(Color.red(0.6))),
 				mVolLabel = StaticText().string_("Vol: 1.00").align_(\center).font_(Font("Helvetica", 9)),
-				mVolSlider = Slider().orientation_(\vertical).value_(1.0).action_({ |sl| mVolLabel.string_("Vol: " ++ sl.value.round(0.01)); if(muteBtn.value == 0) { ~masterBus.set(sl.value); }; }),
+				mVolSlider = Slider().orientation_(\vertical).value_(1.0).action_({ |sl|
+					mVolLabel.string_("Vol: " ++ sl.value.round(0.01));
+					if(muteBtn.value == 0) { ~masterBus.set(sl.value); };
+					~sendOSC.value("/osc/master/amp", sl.value.asFloat);
+				}),
 
-				// --- BOTÓN DO METRÓNOMO ---
 				metronomoBtn = Button().states_([["Metrónomo OFF", Color.black, Color.gray(0.8)], ["Metrónomo ON", Color.white, Color.magenta(0.6)]]).value_(0).action_({ |b|
 					if(b.value == 1) {
 						~metronomoPlayer = Pbind(\instrument, \tic_ferrenas, \dur, 1, \amp, 0.05).play;
 					} {
-						~metronomoPlayer.stop;
+						if(~metronomoPlayer.notNil) { ~metronomoPlayer.stop };
 					};
+					~sendOSC.value("/osc/master/metro", b.value);
 				}),
 
 				lzGlobalBtn = Button().states_([["GLBZ CAOS OFF", Color.black, Color.gray(0.8)], ["GLBZ CAOS ON", Color.white, Color.blue(0.8)]]).value_(0).action_({ |b|
 					~glbzState = b.value;
-					synths.keysValuesDo { |k, synth|
-						// EXCEPCIÓN: A Pandeireta Normal e o Frullato quedan fóra do Lorenz Global
-						if(k != \pand_norm and: { k != \enxame }) {
-							synth.set(\globalLorenz, b.value);
+					if(b.value == 0) {
+						// Captura o nivel actual de cada sintetizador antes de desactivar GlobalLorenz
+						synths.keysValuesDo { |k, synth|
+							if(k != \pand_norm and: { k != \enxame and: { k != \reconstrucion } }) {
+								if(~volSliders[k].notNil) {
+									synth.set(\amp, ~volSliders[k].value, \globalLorenz, 0);
+								} {
+									synth.set(\globalLorenz, 0);
+								};
+							};
+						};
+					} {
+						synths.keysValuesDo { |k, synth|
+							if(k != \pand_norm and: { k != \enxame and: { k != \reconstrucion } }) {
+								synth.set(\globalLorenz, 1);
+							};
 						};
 					};
 					~xySynth.set(\globalLorenz, b.value);
+					~sendOSC.value("/osc/master/glbz", b.value);
 				}),
-				muteBtn = Button().states_([["Son ON", Color.black, Color.green(0.7)], ["MUTE", Color.white, Color.red(0.7)]]).value_(0).action_({ |b| if(b.value == 1) { ~masterBus.set(0.0); } { ~masterBus.set(mVolSlider.value); }; })
+				muteBtn = Button().states_([["Son ON", Color.black, Color.green(0.7)], ["MUTE", Color.white, Color.red(0.7)]]).value_(0).action_({ |b|
+					if(b.value == 1) { ~masterBus.set(0.0); } { ~masterBus.set(mVolSlider.value); };
+					~sendOSC.value("/osc/master/mute", b.value);
+				})
 			)
 		);
 
-		bottomRow.add(g4Layout); bottomRow.add(makeSep.value); bottomRow.add(g5Layout); bottomRow.add(makeSep.value); bottomRow.add(g6Layout); bottomRow.add(makeSep.value); bottomRow.add(masterLayout); bottomRow.add(nil);
+		// --- G7: RECONSTRUCIÓN ESPECTRAL (sen Lorenz) ---
+		g7TimeSpec = ControlSpec(1.0, 30.0, 'lin', 0, 10.0, "s");
+		g7AmpLabel = StaticText().string_("Vol: 0.0").align_(\center).font_(Font("Helvetica", 9));
+		g7AmpSlider = Slider().orientation_(\vertical).value_(0).action_({ |sl|
+			synths[\reconstrucion].set(\amp, sl.value); g7AmpLabel.string_("Vol: " ++ sl.value.round(0.01));
+			~sendOSC.value("/osc/g7/amp", sl.value.asFloat);
+		});
+		~volSliders[\reconstrucion] = g7AmpSlider;
+		g7TimeLabel = StaticText().string_("Tempo: 10.0 s").align_(\center).font_(Font("Helvetica", 9));
+		g7TimeSlider = Slider().orientation_(\vertical).value_(g7TimeSpec.unmap(g7TimeSpec.default)).action_({ |sl|
+			var v = g7TimeSpec.map(sl.value);
+			synths[\reconstrucion].set(\time, v); g7TimeLabel.string_("Tempo: " ++ v.round(0.1) ++ " s");
+			~sendOSC.value("/osc/g7/time", sl.value.asFloat);
+		});
+		g7StartBtn = Button().states_([["START", Color.white, cGr7]]).action_({
+			synths[\reconstrucion].set(\t_trig, 1);
+			if(~fromOSC.not) { ~oscOut.sendMsg("/osc/g7/start", 1) };
+		});
+		g7Col = VLayout(
+			HLayout(nil, StaticText().string_("Reconstrución").align_(\center).font_(Font("Helvetica", 10, true)).stringColor_(cGr7), nil),
+			g7AmpLabel, g7AmpSlider,
+			g7TimeLabel, g7TimeSlider,
+			g7StartBtn
+		);
+		g7Layout = VLayout(
+			StaticText().string_("G7: RECONSTRUCIÓN").align_(\center).font_(Font("Helvetica", 11, true)).stringColor_(cGr7).background_(Color.white(0.9)),
+			HLayout(g7Col)
+		);
+
+		// G7 colócase XUSTO Á ESQUERDA do masterLayout
+		bottomRow.add(g4Layout); bottomRow.add(makeSep.value); bottomRow.add(g5Layout); bottomRow.add(makeSep.value); bottomRow.add(g6Layout); bottomRow.add(makeSep.value); bottomRow.add(g7Layout); bottomRow.add(makeSep.value); bottomRow.add(masterLayout); bottomRow.add(nil);
+
+		// --- OSC IN: G7 ---
+		OSCdef(\g7_amp_in, { |m|
+			var v = m[1].asFloat.clip(0, 1);
+			defer { ~fromOSC = true; g7AmpSlider.valueAction_(v); ~fromOSC = false; };
+		}, "/osc/g7/amp");
+		OSCdef(\g7_time_in, { |m|
+			// Acepta valor normalizado 0..1 (envío directo do fader de O.S.C.)
+			var v = m[1].asFloat.clip(0, 1);
+			defer { ~fromOSC = true; g7TimeSlider.valueAction_(v); ~fromOSC = false; };
+		}, "/osc/g7/time");
+		OSCdef(\g7_start_in, { |m|
+			// Trigger ao recibir calquera valor > 0 (compatible con botón momentáneo)
+			if(m[1].asFloat > 0) {
+				synths[\reconstrucion].set(\t_trig, 1);
+			};
+		}, "/osc/g7/start");
+
+		// --- OSC IN: MASTER / GLOBAIS ---
+		OSCdef(\master_amp_in, { |m|
+			var v = m[1].asFloat.clip(0, 1);
+			defer { ~fromOSC = true; mVolSlider.valueAction_(v); ~fromOSC = false; };
+		}, "/osc/master/amp");
+		OSCdef(\master_mute_in, { |m|
+			var v = (m[1].asFloat > 0).asInteger;
+			// Aplicar directamente E refrescar a UI dentro de defer
+			if(v == 1) { ~masterBus.set(0.0) } { ~masterBus.set(mVolSlider.value) };
+			defer { ~fromOSC = true; muteBtn.value_(v); ~fromOSC = false; };
+		}, "/osc/master/mute");
+		OSCdef(\master_glbz_in, { |m|
+			var v = (m[1].asFloat > 0).asInteger;
+			defer { ~fromOSC = true; lzGlobalBtn.valueAction_(v); ~fromOSC = false; };
+		}, "/osc/master/glbz");
+		OSCdef(\master_metro_in, { |m|
+			var v = (m[1].asFloat > 0).asInteger;
+			defer { ~fromOSC = true; metronomoBtn.valueAction_(v); ~fromOSC = false; };
+		}, "/osc/master/metro");
+
+		// --- OSC IN: AUTÓMATA ---
+		OSCdef(\ca_amp_in, { |m|
+			var v = m[1].asFloat.clip(0, 1);
+			defer { ~fromOSC = true; caVolSlider.valueAction_(v); ~fromOSC = false; };
+		}, "/osc/ca/amp");
+		OSCdef(\ca_on_in, { |m|
+			var v = (m[1].asFloat > 0).asInteger;
+			defer { ~fromOSC = true; caBtn.valueAction_(v); ~fromOSC = false; };
+		}, "/osc/ca/on");
+
+		// --- OSC IN: NAVEGACIÓN 2D / XY ---
+		OSCdef(\xy_amp_in, { |m|
+			var v = m[1].asFloat.clip(0, 1);
+			defer { ~fromOSC = true; xyVolSlider.valueAction_(v); ~fromOSC = false; };
+		}, "/osc/xy/amp");
+		OSCdef(\xy_on_in, { |m|
+			var v = (m[1].asFloat > 0).asInteger;
+			defer { ~fromOSC = true; xyBtn.valueAction_(v); ~fromOSC = false; };
+		}, "/osc/xy/on");
+		OSCdef(\xy_pad_in, { |m|
+			var x = m[1].asFloat.clip(0, 1);
+			var y = m[2].asFloat.clip(0, 1);
+			~xySynth.set(\posX, x, \posY, y);
+			defer { ~fromOSC = true; xyPad.setXY(x, y); ~fromOSC = false; };
+		}, "/osc/xy/pad");
+
+		// --- OSC IN: SHEPARD BASE RATE ---
+		OSCdef(\shep_baserate_in, { |m|
+			var v = m[1].asFloat.clip(0, 1);
+			defer { ~fromOSC = true; srSl.valueAction_(v); ~fromOSC = false; };
+		}, "/osc/shep/baserate");
 
 		win.layout.add(topRow); win.layout.add(StaticText().string_("==========================================================================================================").align_(\center).font_(Font("Helvetica", 12)).stringColor_(Color.gray(0.7))); win.layout.add(bottomRow); win.layout.add(nil);
 		win.front;
+		("Open Stage Control: enviar OSC ao porto sclang " ++ NetAddr.langPort.asString ++ " (127.0.0.1). Saída cara á tablet en 127.0.0.1:8000.").postln;
 	};
 });
