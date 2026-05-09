@@ -6,104 +6,8 @@
   "tabs": [
     {
       "type": "tab",
-      "id": "tab_master",
-      "label": "MASTER",
-      "widgets": [
-        {
-          "type": "text",
-          "id": "m_t",
-          "top": 5,
-          "left": 10,
-          "width": 110,
-          "height": 22,
-          "value": "MASTER",
-          "align": "center",
-          "size": 14,
-          "color": "#ff6666"
-        },
-        {
-          "type": "fader",
-          "id": "master_amp",
-          "top": 35,
-          "left": 10,
-          "width": 110,
-          "height": 420,
-          "label": "Master",
-          "address": "/osc/master/amp",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "range": {
-            "min": 0.0,
-            "max": 1.0
-          },
-          "value": 1.0,
-          "snap": false,
-          "color": "#ff6666"
-        },
-        {
-          "type": "switch",
-          "id": "master_mute",
-          "top": 462,
-          "left": 10,
-          "width": 110,
-          "height": 48,
-          "label": "MUTE",
-          "address": "/osc/master/mute",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "MUTE",
-          "offLabel": "Son ON",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
-          "type": "switch",
-          "id": "master_glbz",
-          "top": 518,
-          "left": 10,
-          "width": 110,
-          "height": 48,
-          "label": "GLBZ CAOS",
-          "address": "/osc/master/glbz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "GLBZ ON",
-          "offLabel": "GLBZ OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
-          "type": "switch",
-          "id": "master_metro",
-          "top": 574,
-          "left": 10,
-          "width": 110,
-          "height": 48,
-          "label": "Metrónomo",
-          "address": "/osc/master/metro",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "Metro ON",
-          "offLabel": "Metro OFF",
-          "value": 0,
-          "mode": "toggle"
-        }
-      ]
-    },
-    {
-      "type": "tab",
-      "id": "tab_g1",
-      "label": "G1 GRAVES",
+      "id": "tab_graves_atmos",
+      "label": "GRAVES / ATMOS",
       "widgets": [
         {
           "type": "text",
@@ -158,25 +62,6 @@
           "color": "#ff9999"
         },
         {
-          "type": "switch",
-          "id": "ronco_enxame_lz",
-          "top": 472,
-          "left": 10,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/ronco_enxame/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "lume_petr_t",
           "top": 8,
@@ -227,25 +112,6 @@
           "value": 0.0,
           "snap": false,
           "color": "#ff9999"
-        },
-        {
-          "type": "switch",
-          "id": "lume_petr_lz",
-          "top": 472,
-          "left": 100,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/lume_petr/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
         },
         {
           "type": "text",
@@ -300,25 +166,6 @@
           "color": "#ff9999"
         },
         {
-          "type": "switch",
-          "id": "lume_re9_lz",
-          "top": 472,
-          "left": 190,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/lume_re9/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "sismico_t",
           "top": 8,
@@ -369,25 +216,6 @@
           "value": 0.0,
           "snap": false,
           "color": "#ff9999"
-        },
-        {
-          "type": "switch",
-          "id": "sismico_lz",
-          "top": 472,
-          "left": 280,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/sismico/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
         },
         {
           "type": "text",
@@ -442,25 +270,6 @@
           "color": "#ff9999"
         },
         {
-          "type": "switch",
-          "id": "tectonico_lz",
-          "top": 472,
-          "left": 370,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/tectonico/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "magma_t",
           "top": 8,
@@ -513,25 +322,6 @@
           "color": "#ff9999"
         },
         {
-          "type": "switch",
-          "id": "magma_lz",
-          "top": 472,
-          "left": 460,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/magma/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "sub_t",
           "top": 8,
@@ -564,36 +354,10 @@
           "color": "#ff9999"
         },
         {
-          "type": "switch",
-          "id": "sub_lz",
-          "top": 508,
-          "left": 550,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/sub/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        }
-      ]
-    },
-    {
-      "type": "tab",
-      "id": "tab_g2",
-      "label": "G2 ATMOS",
-      "widgets": [
-        {
           "type": "text",
           "id": "abismo_t",
           "top": 8,
-          "left": 10,
+          "left": 650,
           "width": 70,
           "height": 18,
           "value": "Dr.Gaita",
@@ -605,7 +369,7 @@
           "type": "fader",
           "id": "abismo_amp",
           "top": 30,
-          "left": 10,
+          "left": 650,
           "width": 70,
           "height": 230,
           "label": "Vol",
@@ -625,7 +389,7 @@
           "type": "fader",
           "id": "abismo_verbMix",
           "top": 266,
-          "left": 10,
+          "left": 650,
           "width": 70,
           "height": 200,
           "label": "Rev",
@@ -642,29 +406,10 @@
           "color": "#9999ff"
         },
         {
-          "type": "switch",
-          "id": "abismo_lz",
-          "top": 472,
-          "left": 10,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/abismo/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "pantasmas_t",
           "top": 8,
-          "left": 100,
+          "left": 740,
           "width": 70,
           "height": 18,
           "value": "Pantas.",
@@ -676,7 +421,7 @@
           "type": "fader",
           "id": "pantasmas_amp",
           "top": 30,
-          "left": 100,
+          "left": 740,
           "width": 70,
           "height": 230,
           "label": "Vol",
@@ -696,7 +441,7 @@
           "type": "fader",
           "id": "pantasmas_feedback",
           "top": 266,
-          "left": 100,
+          "left": 740,
           "width": 70,
           "height": 200,
           "label": "Eco",
@@ -713,29 +458,10 @@
           "color": "#9999ff"
         },
         {
-          "type": "switch",
-          "id": "pantasmas_lz",
-          "top": 472,
-          "left": 100,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/pantasmas/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "enxame_t",
           "top": 8,
-          "left": 190,
+          "left": 830,
           "width": 70,
           "height": 18,
           "value": "Frullato",
@@ -747,7 +473,7 @@
           "type": "fader",
           "id": "enxame_amp",
           "top": 30,
-          "left": 190,
+          "left": 830,
           "width": 70,
           "height": 230,
           "label": "Vol",
@@ -767,7 +493,7 @@
           "type": "fader",
           "id": "enxame_swarmPitch",
           "top": 266,
-          "left": 190,
+          "left": 830,
           "width": 70,
           "height": 200,
           "label": "Ptch",
@@ -784,29 +510,10 @@
           "color": "#9999ff"
         },
         {
-          "type": "switch",
-          "id": "enxame_lz",
-          "top": 472,
-          "left": 190,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/enxame/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "campa_bat_t",
           "top": 8,
-          "left": 280,
+          "left": 920,
           "width": 70,
           "height": 18,
           "value": "C.Batim",
@@ -818,7 +525,7 @@
           "type": "fader",
           "id": "campa_bat_amp",
           "top": 30,
-          "left": 280,
+          "left": 920,
           "width": 70,
           "height": 230,
           "label": "Vol",
@@ -838,7 +545,7 @@
           "type": "fader",
           "id": "campa_bat_freqBat",
           "top": 266,
-          "left": 280,
+          "left": 920,
           "width": 70,
           "height": 200,
           "label": "Vib",
@@ -855,29 +562,10 @@
           "color": "#9999ff"
         },
         {
-          "type": "switch",
-          "id": "campa_bat_lz",
-          "top": 472,
-          "left": 280,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/campa_bat/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "campa_resp_t",
           "top": 8,
-          "left": 370,
+          "left": 1010,
           "width": 70,
           "height": 18,
           "value": "C.Respl",
@@ -889,7 +577,7 @@
           "type": "fader",
           "id": "campa_resp_amp",
           "top": 30,
-          "left": 370,
+          "left": 1010,
           "width": 70,
           "height": 230,
           "label": "Vol",
@@ -909,7 +597,7 @@
           "type": "fader",
           "id": "campa_resp_cola",
           "top": 266,
-          "left": 370,
+          "left": 1010,
           "width": 70,
           "height": 200,
           "label": "Rev",
@@ -924,32 +612,13 @@
           "value": 0.0,
           "snap": false,
           "color": "#9999ff"
-        },
-        {
-          "type": "switch",
-          "id": "campa_resp_lz",
-          "top": 472,
-          "left": 370,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/campa_resp/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
         }
       ]
     },
     {
       "type": "tab",
-      "id": "tab_g3",
-      "label": "G3 RITMO",
+      "id": "tab_ritmo_rec",
+      "label": "RITMO / XEO / SHEP / REC",
       "widgets": [
         {
           "type": "text",
@@ -1004,25 +673,6 @@
           "color": "#cc8800"
         },
         {
-          "type": "switch",
-          "id": "slicer_lz",
-          "top": 472,
-          "left": 10,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/slicer/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "reloxo_t",
           "top": 8,
@@ -1075,36 +725,10 @@
           "color": "#cc8800"
         },
         {
-          "type": "switch",
-          "id": "reloxo_lz",
-          "top": 472,
-          "left": 100,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/reloxo/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        }
-      ]
-    },
-    {
-      "type": "tab",
-      "id": "tab_g4",
-      "label": "G4 XEO",
-      "widgets": [
-        {
           "type": "text",
           "id": "halo_t",
           "top": 8,
-          "left": 10,
+          "left": 200,
           "width": 70,
           "height": 18,
           "value": "Halo Xel.",
@@ -1116,7 +740,7 @@
           "type": "fader",
           "id": "halo_amp",
           "top": 30,
-          "left": 10,
+          "left": 200,
           "width": 70,
           "height": 230,
           "label": "Vol",
@@ -1136,7 +760,7 @@
           "type": "fader",
           "id": "halo_shimmer",
           "top": 266,
-          "left": 10,
+          "left": 200,
           "width": 70,
           "height": 200,
           "label": "Mix",
@@ -1153,29 +777,10 @@
           "color": "#cc88ff"
         },
         {
-          "type": "switch",
-          "id": "halo_lz",
-          "top": 472,
-          "left": 10,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/halo/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "soplete_t",
           "top": 8,
-          "left": 100,
+          "left": 290,
           "width": 70,
           "height": 18,
           "value": "Soplete",
@@ -1187,7 +792,7 @@
           "type": "fader",
           "id": "soplete_amp",
           "top": 30,
-          "left": 100,
+          "left": 290,
           "width": 70,
           "height": 230,
           "label": "Vol",
@@ -1207,7 +812,7 @@
           "type": "fader",
           "id": "soplete_drive",
           "top": 266,
-          "left": 100,
+          "left": 290,
           "width": 70,
           "height": 200,
           "label": "Dist",
@@ -1224,29 +829,10 @@
           "color": "#cc88ff"
         },
         {
-          "type": "switch",
-          "id": "soplete_lz",
-          "top": 472,
-          "left": 100,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/soplete/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "harm_est_t",
           "top": 8,
-          "left": 190,
+          "left": 380,
           "width": 70,
           "height": 18,
           "value": "Fa# Vento",
@@ -1258,7 +844,7 @@
           "type": "fader",
           "id": "harm_est_amp",
           "top": 30,
-          "left": 190,
+          "left": 380,
           "width": 70,
           "height": 230,
           "label": "Vol",
@@ -1278,7 +864,7 @@
           "type": "fader",
           "id": "harm_est_pan",
           "top": 266,
-          "left": 190,
+          "left": 380,
           "width": 70,
           "height": 200,
           "label": "Pan",
@@ -1295,29 +881,10 @@
           "color": "#cc88ff"
         },
         {
-          "type": "switch",
-          "id": "harm_est_lz",
-          "top": 472,
-          "left": 190,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/harm_est/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "harm_oct_t",
           "top": 8,
-          "left": 280,
+          "left": 470,
           "width": 70,
           "height": 18,
           "value": "Fa# Octa",
@@ -1329,7 +896,7 @@
           "type": "fader",
           "id": "harm_oct_amp",
           "top": 30,
-          "left": 280,
+          "left": 470,
           "width": 70,
           "height": 230,
           "label": "Vol",
@@ -1349,7 +916,7 @@
           "type": "fader",
           "id": "harm_oct_notaRate",
           "top": 266,
-          "left": 280,
+          "left": 470,
           "width": 70,
           "height": 200,
           "label": "Vel",
@@ -1366,23 +933,209 @@
           "color": "#cc88ff"
         },
         {
-          "type": "switch",
-          "id": "harm_oct_lz",
-          "top": 472,
-          "left": 280,
+          "type": "text",
+          "id": "ss_t",
+          "top": 8,
+          "left": 570,
           "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/harm_oct/lz",
+          "height": 18,
+          "value": "Shp.Solo",
+          "align": "center",
+          "size": 11,
+          "color": "#88dddd"
+        },
+        {
+          "type": "fader",
+          "id": "shep_solo_amp",
+          "top": 30,
+          "left": 570,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/shep_solo/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88dddd"
+        },
+        {
+          "type": "fader",
+          "id": "shep_solo_speed",
+          "top": 268,
+          "left": 570,
+          "width": 70,
+          "height": 200,
+          "label": "Vel",
+          "address": "/osc/shep_solo/speed",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88dddd"
+        },
+        {
+          "type": "text",
+          "id": "se_t",
+          "top": 8,
+          "left": 660,
+          "width": 70,
+          "height": 18,
+          "value": "Shp.Enx",
+          "align": "center",
+          "size": 11,
+          "color": "#88dddd"
+        },
+        {
+          "type": "fader",
+          "id": "shep_enxame_amp",
+          "top": 30,
+          "left": 660,
+          "width": 70,
+          "height": 230,
+          "label": "Vol",
+          "address": "/osc/shep_enxame/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88dddd"
+        },
+        {
+          "type": "fader",
+          "id": "shep_enxame_speed",
+          "top": 268,
+          "left": 660,
+          "width": 70,
+          "height": 200,
+          "label": "Vel",
+          "address": "/osc/shep_enxame/speed",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88dddd"
+        },
+        {
+          "type": "text",
+          "id": "sb_t",
+          "top": 8,
+          "left": 750,
+          "width": 70,
+          "height": 18,
+          "value": "Ton Base",
+          "align": "center",
+          "size": 11,
+          "color": "#88dddd"
+        },
+        {
+          "type": "fader",
+          "id": "shep_base",
+          "top": 30,
+          "left": 750,
+          "width": 70,
+          "height": 460,
+          "label": "Rate",
+          "address": "/osc/shep/baserate",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#88dddd"
+        },
+        {
+          "type": "text",
+          "id": "g7_t",
+          "top": 5,
+          "left": 850,
+          "width": 300,
+          "height": 22,
+          "value": "G7: RECONSTRUCIÓN",
+          "align": "center",
+          "size": 14,
+          "color": "#ddbb44"
+        },
+        {
+          "type": "fader",
+          "id": "g7_amp",
+          "top": 40,
+          "left": 850,
+          "width": 80,
+          "height": 480,
+          "label": "Vol",
+          "address": "/osc/g7/amp",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ddbb44"
+        },
+        {
+          "type": "fader",
+          "id": "g7_time",
+          "top": 40,
+          "left": 950,
+          "width": 80,
+          "height": 480,
+          "label": "Tempo",
+          "address": "/osc/g7/time",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 1.0
+          },
+          "value": 0.0,
+          "snap": false,
+          "color": "#ddbb44"
+        },
+        {
+          "type": "button",
+          "id": "g7_start",
+          "top": 40,
+          "left": 1050,
+          "width": 120,
+          "height": 480,
+          "label": "▶ START",
+          "address": "/osc/g7/start",
           "target": [
             "127.0.0.1:57120"
           ],
           "on": 1,
           "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
+          "mode": "tap",
+          "color": "#aa5500"
         }
       ]
     },
@@ -1515,25 +1268,6 @@
           "color": "#88cc88"
         },
         {
-          "type": "switch",
-          "id": "pand_gran_lz",
-          "top": 472,
-          "left": 100,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/pand_gran/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "estalidos_t",
           "top": 8,
@@ -1584,25 +1318,6 @@
           "value": 0.0,
           "snap": false,
           "color": "#88cc88"
-        },
-        {
-          "type": "switch",
-          "id": "estalidos_lz",
-          "top": 472,
-          "left": 190,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/estalidos/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
         },
         {
           "type": "text",
@@ -1657,25 +1372,6 @@
           "color": "#88cc88"
         },
         {
-          "type": "switch",
-          "id": "asubiador_lz",
-          "top": 472,
-          "left": 280,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/asubiador/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
-        },
-        {
           "type": "text",
           "id": "campa_gran_t",
           "top": 8,
@@ -1726,25 +1422,6 @@
           "value": 0.0,
           "snap": false,
           "color": "#88cc88"
-        },
-        {
-          "type": "switch",
-          "id": "campa_gran_lz",
-          "top": 472,
-          "left": 370,
-          "width": 70,
-          "height": 40,
-          "label": "LZ",
-          "address": "/osc/campa_gran/lz",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "on": 1,
-          "off": 0,
-          "onLabel": "ON",
-          "offLabel": "OFF",
-          "value": 0,
-          "mode": "toggle"
         },
         {
           "type": "text",
@@ -1889,173 +1566,30 @@
     },
     {
       "type": "tab",
-      "id": "tab_g6",
-      "label": "G6 SHEPARD",
+      "id": "tab_master",
+      "label": "MASTER",
       "widgets": [
         {
           "type": "text",
-          "id": "ss_t",
-          "top": 8,
-          "left": 10,
-          "width": 70,
-          "height": 18,
-          "value": "Shp.Solo",
-          "align": "center",
-          "size": 11,
-          "color": "#88dddd"
-        },
-        {
-          "type": "fader",
-          "id": "shep_solo_amp",
-          "top": 30,
-          "left": 10,
-          "width": 70,
-          "height": 230,
-          "label": "Vol",
-          "address": "/osc/shep_solo/amp",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "range": {
-            "min": 0.0,
-            "max": 1.0
-          },
-          "value": 0.0,
-          "snap": false,
-          "color": "#88dddd"
-        },
-        {
-          "type": "fader",
-          "id": "shep_solo_speed",
-          "top": 268,
-          "left": 10,
-          "width": 70,
-          "height": 200,
-          "label": "Vel",
-          "address": "/osc/shep_solo/speed",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "range": {
-            "min": 0.0,
-            "max": 1.0
-          },
-          "value": 0.0,
-          "snap": false,
-          "color": "#88dddd"
-        },
-        {
-          "type": "text",
-          "id": "se_t",
-          "top": 8,
-          "left": 100,
-          "width": 70,
-          "height": 18,
-          "value": "Shp.Enx",
-          "align": "center",
-          "size": 11,
-          "color": "#88dddd"
-        },
-        {
-          "type": "fader",
-          "id": "shep_enxame_amp",
-          "top": 30,
-          "left": 100,
-          "width": 70,
-          "height": 230,
-          "label": "Vol",
-          "address": "/osc/shep_enxame/amp",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "range": {
-            "min": 0.0,
-            "max": 1.0
-          },
-          "value": 0.0,
-          "snap": false,
-          "color": "#88dddd"
-        },
-        {
-          "type": "fader",
-          "id": "shep_enxame_speed",
-          "top": 268,
-          "left": 100,
-          "width": 70,
-          "height": 200,
-          "label": "Vel",
-          "address": "/osc/shep_enxame/speed",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "range": {
-            "min": 0.0,
-            "max": 1.0
-          },
-          "value": 0.0,
-          "snap": false,
-          "color": "#88dddd"
-        },
-        {
-          "type": "text",
-          "id": "sb_t",
-          "top": 8,
-          "left": 190,
-          "width": 70,
-          "height": 18,
-          "value": "Ton Base",
-          "align": "center",
-          "size": 11,
-          "color": "#88dddd"
-        },
-        {
-          "type": "fader",
-          "id": "shep_base",
-          "top": 30,
-          "left": 190,
-          "width": 70,
-          "height": 460,
-          "label": "Rate",
-          "address": "/osc/shep/baserate",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "range": {
-            "min": 0.0,
-            "max": 1.0
-          },
-          "value": 0.0,
-          "snap": false,
-          "color": "#88dddd"
-        }
-      ]
-    },
-    {
-      "type": "tab",
-      "id": "tab_g7",
-      "label": "G7 RECONSTR",
-      "widgets": [
-        {
-          "type": "text",
-          "id": "g7_t",
+          "id": "m_t",
           "top": 5,
           "left": 10,
-          "width": 300,
+          "width": 110,
           "height": 22,
-          "value": "G7: RECONSTRUCIÓN",
+          "value": "MASTER",
           "align": "center",
           "size": 14,
-          "color": "#ddbb44"
+          "color": "#ff6666"
         },
         {
           "type": "fader",
-          "id": "g7_amp",
-          "top": 40,
+          "id": "master_amp",
+          "top": 35,
           "left": 10,
-          "width": 80,
-          "height": 480,
-          "label": "Vol",
-          "address": "/osc/g7/amp",
+          "width": 110,
+          "height": 420,
+          "label": "Master",
+          "address": "/osc/master/amp",
           "target": [
             "127.0.0.1:57120"
           ],
@@ -2063,46 +1597,28 @@
             "min": 0.0,
             "max": 1.0
           },
-          "value": 0.0,
+          "value": 1.0,
           "snap": false,
-          "color": "#ddbb44"
+          "color": "#ff6666"
         },
         {
-          "type": "fader",
-          "id": "g7_time",
-          "top": 40,
-          "left": 110,
-          "width": 80,
-          "height": 480,
-          "label": "Tempo",
-          "address": "/osc/g7/time",
-          "target": [
-            "127.0.0.1:57120"
-          ],
-          "range": {
-            "min": 0.0,
-            "max": 1.0
-          },
-          "value": 0.0,
-          "snap": false,
-          "color": "#ddbb44"
-        },
-        {
-          "type": "button",
-          "id": "g7_start",
-          "top": 40,
-          "left": 210,
-          "width": 120,
-          "height": 480,
-          "label": "▶ START",
-          "address": "/osc/g7/start",
+          "type": "switch",
+          "id": "master_mute",
+          "top": 462,
+          "left": 10,
+          "width": 110,
+          "height": 48,
+          "label": "MUTE",
+          "address": "/osc/master/mute",
           "target": [
             "127.0.0.1:57120"
           ],
           "on": 1,
           "off": 0,
-          "mode": "tap",
-          "color": "#aa5500"
+          "onLabel": "MUTE",
+          "offLabel": "Son ON",
+          "value": 0,
+          "mode": "toggle"
         }
       ]
     }

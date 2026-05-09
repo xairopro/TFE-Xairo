@@ -38,13 +38,6 @@ s.waitForBoot({
 
 	// --- 3. SINTETIZADORES CO MOTOR LORENZ DINÁMICO 0-100% ---
 
-	// --- SINTETIZADOR DO METRÓNOMO INDEPENDENTE ---
-	SynthDef(\tic_ferrenas, { |out=0, amp=0.05, pan=0|
-		var env = EnvGen.ar(Env.perc(0.005, 0.1), doneAction: 2);
-		var sig = BPF.ar(WhiteNoise.ar, 8000, 0.5) * env;
-		Out.ar(out, Pan2.ar(sig, pan, amp));
-	}).add;
-
 	SynthDef(\abismo, {
 		var gLz = \globalLorenz.kr(0).lag(0.5); var locLz = \lorenz.kr(0).lag(0.1); var useLz = Clip.kr(gLz + locLz, 0, 1);
 		var aMan = \amp.kr(0).lag(0.1); var eMan = \verbMix.kr(0.5).lag(0.1);
@@ -502,10 +495,8 @@ s.waitForBoot({
 		var topRow, bottomRow, makeSep, g1Layout, g2Layout, g3Layout, g4Layout, g5Layout, g6Layout, g7Layout, masterLayout;
 		var colCaVol2d, caTitleLayout, caVolLabel, caVolSlider, caBtn, xyVolTitleLayout, xyVolLabel, xyVolSlider, xyBtn, xyPadCol, xyPad, xyLzBtn;
 		var mTitleLayout, mTitle, mInfoBtn, mVolLabel, mVolSlider, lzGlobalBtn, muteBtn, colShepRate, srTitle, srLbl, srSl;
-		var metronomoBtn;
 		var g7AmpLabel, g7AmpSlider, g7TimeSpec, g7TimeLabel, g7TimeSlider, g7StartBtn, g7Col;
 		~glbzState = 0;
-		~metronomoPlayer = nil;
 		~volSliders = (); // Dicionario de sliders de volume por synthKey (para captura Lorenz)
 
 		// --- COMUNICACIÓN BIDIRECCIONAL CON OPEN STAGE CONTROL (porto 8000) ---
@@ -526,7 +517,7 @@ s.waitForBoot({
 
 		CmdPeriod.doOnce { Window.closeAll };
 		win = Window("Mesa Electroacústica", Rect(10, 10, 1350, 850));
-		win.onClose = { synths.do(_.free); ~xySynth.free; ~saidaScarlett.free; caTask.stop; if(~metronomoPlayer.notNil) { ~metronomoPlayer.stop }; OSCdef.all.copy.do(_.free); };
+		win.onClose = { synths.do(_.free); ~xySynth.free; ~saidaScarlett.free; caTask.stop; OSCdef.all.copy.do(_.free); };
 		win.layout = VLayout().spacing_(15);
 		topRow = HLayout().spacing_(8); bottomRow = HLayout().spacing_(8);
 		makeSep = { StaticText().string_("||").font_(Font("Helvetica", 16)).align_(\center).fixedWidth_(5) };
@@ -645,35 +636,16 @@ s.waitForBoot({
 			};
 
 			// --- OSC IN: TOGGLE Lorenz dende a tablet ---
-			// Lectura limpa de 0/1, aplicación directa ao Synth E actualización visual da UI dentro de defer
 			if(lzBtn.notNil) {
 				OSCdef((oscBase ++ "/lz").asSymbol, { |m|
-					var v = (m[1].asFloat > 0).asInteger;
-					// 1) Aplicar directamente ao Synth (garante que apaga e acende)
-					if(v == 0) {
-						synths[synthKey].set(\amp, volSlider.value, \lorenz, 0);
-					} {
-						synths[synthKey].set(\lorenz, 1);
-					};
-					// 2) Refrescar o botón da UI local sen disparar a acción (evita reenvío)
-					defer {
-						~fromOSC = true;
-						lzBtn.value_(v);
-						~fromOSC = false;
-					};
+					defer { ~fromOSC = true; lzBtn.valueAction_(m[1].asInteger); ~fromOSC = false; };
 				}, oscBase ++ "/lz");
 			};
 
 			// --- OSC IN: TOGGLE Bypass (pand_norm) dende a tablet ---
 			if(bypassBtn.notNil) {
 				OSCdef((oscBase ++ "/bypass").asSymbol, { |m|
-					var v = (m[1].asFloat > 0).asInteger;
-					synths[synthKey].set(\bypass, v);
-					defer {
-						~fromOSC = true;
-						bypassBtn.value_(v);
-						~fromOSC = false;
-					};
+					defer { ~fromOSC = true; bypassBtn.valueAction_(m[1].asInteger); ~fromOSC = false; };
 				}, oscBase ++ "/bypass");
 			};
 
@@ -801,16 +773,7 @@ s.waitForBoot({
 					~sendOSC.value("/osc/master/amp", sl.value.asFloat);
 				}),
 
-				metronomoBtn = Button().states_([["Metrónomo OFF", Color.black, Color.gray(0.8)], ["Metrónomo ON", Color.white, Color.magenta(0.6)]]).value_(0).action_({ |b|
-					if(b.value == 1) {
-						~metronomoPlayer = Pbind(\instrument, \tic_ferrenas, \dur, 1, \amp, 0.05).play;
-					} {
-						if(~metronomoPlayer.notNil) { ~metronomoPlayer.stop };
-					};
-					~sendOSC.value("/osc/master/metro", b.value);
-				}),
-
-				lzGlobalBtn = Button().states_([["GLBZ CAOS OFF", Color.black, Color.gray(0.8)], ["GLBZ CAOS ON", Color.white, Color.blue(0.8)]]).value_(0).action_({ |b|
+					lzGlobalBtn = Button().states_([["GLBZ CAOS OFF", Color.black, Color.gray(0.8)], ["GLBZ CAOS ON", Color.white, Color.blue(0.8)]]).value_(0).action_({ |b|
 					~glbzState = b.value;
 					if(b.value == 0) {
 						// Captura o nivel actual de cada sintetizador antes de desactivar GlobalLorenz
@@ -895,20 +858,12 @@ s.waitForBoot({
 			defer { ~fromOSC = true; mVolSlider.valueAction_(v); ~fromOSC = false; };
 		}, "/osc/master/amp");
 		OSCdef(\master_mute_in, { |m|
-			var v = (m[1].asFloat > 0).asInteger;
-			// Aplicar directamente E refrescar a UI dentro de defer
-			if(v == 1) { ~masterBus.set(0.0) } { ~masterBus.set(mVolSlider.value) };
-			defer { ~fromOSC = true; muteBtn.value_(v); ~fromOSC = false; };
+			defer { ~fromOSC = true; muteBtn.valueAction_(m[1].asInteger); ~fromOSC = false; };
 		}, "/osc/master/mute");
 		OSCdef(\master_glbz_in, { |m|
 			var v = (m[1].asFloat > 0).asInteger;
 			defer { ~fromOSC = true; lzGlobalBtn.valueAction_(v); ~fromOSC = false; };
 		}, "/osc/master/glbz");
-		OSCdef(\master_metro_in, { |m|
-			var v = (m[1].asFloat > 0).asInteger;
-			defer { ~fromOSC = true; metronomoBtn.valueAction_(v); ~fromOSC = false; };
-		}, "/osc/master/metro");
-
 		// --- OSC IN: AUTÓMATA ---
 		OSCdef(\ca_amp_in, { |m|
 			var v = m[1].asFloat.clip(0, 1);
