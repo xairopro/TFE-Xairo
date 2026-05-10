@@ -498,6 +498,7 @@ s.waitForBoot({
 		var g7AmpLabel, g7AmpSlider, g7TimeSpec, g7TimeLabel, g7TimeSlider, g7StartBtn, g7Col;
 		~glbzState = 0;
 		~volSliders = (); // Dicionario de sliders de volume por synthKey (para captura Lorenz)
+		~extraSliders = (); // Dicionario de sliders extra (parámetro secundario) por synthKey (para presets)
 
 		// --- COMUNICACIÓN BIDIRECCIONAL CON OPEN STAGE CONTROL (porto 8000) ---
 		~oscOut = NetAddr("127.0.0.1", 8000);
@@ -538,6 +539,7 @@ s.waitForBoot({
 
 			// Gardar referencia para captura ao desactivar Lorenz (despois de todos os var)
 			~volSliders[synthKey] = volSlider;
+			~extraSliders[synthKey] = extraSlider; // Gardar referencia ao slider extra para o sistema de presets
 
 			// --- Acción do fader de volume: cambia o synth, etiqueta e reenvía á tablet (se non vén dela) ---
 			volSlider.action_({ |sl|
@@ -920,6 +922,82 @@ s.waitForBoot({
 				defer { mVolSlider.valueAction_(0); };
 			};
 		}, "/osc/tab4/mute");
+
+		// =====================================================================
+		// SISTEMA DE PRESETS
+		// Garda/carga a posición normalizada (0..1) de TODOS os faders.
+		// Persistencia en disco: presets_muineira.archive (mesma carpeta que o .scd)
+		// =====================================================================
+		~presets = ();
+		{
+			var archivePath = pathDir +/+ "presets_muineira.archive";
+			if(File.exists(archivePath)) {
+				~presets = Object.readArchive(archivePath);
+				("Presets cargados dende: " ++ archivePath).postln;
+			};
+		}.value;
+
+		// --- Gardar preset ---
+		~savePreset = { |id|
+			defer {
+				var data = ();
+				var archivePath = pathDir +/+ "presets_muineira.archive";
+				// Todos os vol-sliders (por ~makeCol + g7 + reconstrucion)
+				~volSliders.keysValuesDo { |k, sl| data[("vol_" ++ k.asString).asSymbol] = sl.value };
+				// Todos os extra-sliders (parámetro secundario de cada canle)
+				~extraSliders.keysValuesDo { |k, sl| data[("ext_" ++ k.asString).asSymbol] = sl.value };
+				// Sliders globais
+				data[\master_vol] = mVolSlider.value;
+				data[\ca_vol]     = caVolSlider.value;
+				data[\xy_vol]     = xyVolSlider.value;
+				data[\shep_rate]  = srSl.value;
+				data[\g7_time]    = g7TimeSlider.value;
+				// Gardar na memoria e en disco
+				~presets[id.asInteger] = data;
+				~presets.writeArchive(archivePath);
+				(">>> Preset " ++ id ++ " GARDADO.").postln;
+			};
+		};
+
+		// --- Cargar preset ---
+		~loadPreset = { |id|
+			var data = ~presets[id.asInteger];
+			if(data.notNil) {
+				defer {
+					// Vol-sliders: valueAction_ xa actualiza o Synth e envía feedback á tablet
+					~volSliders.keysValuesDo { |k, sl|
+						var key = ("vol_" ++ k.asString).asSymbol;
+						if(data[key].notNil) { sl.valueAction_(data[key]) };
+					};
+					// Extra-sliders
+					~extraSliders.keysValuesDo { |k, sl|
+						var key = ("ext_" ++ k.asString).asSymbol;
+						if(data[key].notNil) { sl.valueAction_(data[key]) };
+					};
+					// Sliders globais
+					if(data[\master_vol].notNil) { mVolSlider.valueAction_(data[\master_vol]) };
+					if(data[\ca_vol].notNil)     { caVolSlider.valueAction_(data[\ca_vol]) };
+					if(data[\xy_vol].notNil)     { xyVolSlider.valueAction_(data[\xy_vol]) };
+					if(data[\shep_rate].notNil)  { srSl.valueAction_(data[\shep_rate]) };
+					if(data[\g7_time].notNil)    { g7TimeSlider.valueAction_(data[\g7_time]) };
+				};
+				(">>> Preset " ++ id ++ " CARGADO.").postln;
+			} {
+				(">>> Preset " ++ id ++ " non atopado. Gárdao primeiro con SAVE.").postln;
+			};
+		};
+
+		// --- OSC IN: PRESETS dende a tablet ---
+		OSCdef(\preset_save_in, { |m|
+			var id = m[1].asInteger;
+			if(id > 0) { ~savePreset.value(id) };
+		}, "/osc/preset/save");
+
+		OSCdef(\preset_load_in, { |m|
+			var id = m[1].asInteger;
+			if(id > 0) { ~loadPreset.value(id) };
+		}, "/osc/preset/load");
+		// =====================================================================
 
 		win.layout.add(topRow); win.layout.add(StaticText().string_("==========================================================================================================").align_(\center).font_(Font("Helvetica", 12)).stringColor_(Color.gray(0.7))); win.layout.add(bottomRow); win.layout.add(nil);
 		win.front;

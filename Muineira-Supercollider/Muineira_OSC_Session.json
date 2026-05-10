@@ -1664,6 +1664,178 @@
           "on": 1,
           "off": 0,
           "color": "#cc2222"
+        },
+        {
+          "type": "text",
+          "id": "preset_title",
+          "top": 5,
+          "left": 140,
+          "width": 540,
+          "height": 24,
+          "value": "— SISTEMA DE PRESETS —",
+          "align": "center",
+          "size": 14,
+          "color": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "preset_save_label",
+          "top": 38,
+          "left": 140,
+          "width": 540,
+          "height": 20,
+          "value": "GARDAR",
+          "align": "center",
+          "size": 12,
+          "color": "#ff8888"
+        },
+        {
+          "type": "button",
+          "id": "preset_save_1",
+          "top": 66,
+          "left": 140,
+          "width": 125,
+          "height": 65,
+          "label": "SAVE 1",
+          "address": "/osc/preset/save",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "mode": "tap",
+          "color": "#7a1a1a"
+        },
+        {
+          "type": "button",
+          "id": "preset_save_2",
+          "top": 66,
+          "left": 275,
+          "width": 125,
+          "height": 65,
+          "label": "SAVE 2",
+          "address": "/osc/preset/save",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 2,
+          "off": 0,
+          "mode": "tap",
+          "color": "#7a1a1a"
+        },
+        {
+          "type": "button",
+          "id": "preset_save_3",
+          "top": 66,
+          "left": 410,
+          "width": 125,
+          "height": 65,
+          "label": "SAVE 3",
+          "address": "/osc/preset/save",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 3,
+          "off": 0,
+          "mode": "tap",
+          "color": "#7a1a1a"
+        },
+        {
+          "type": "button",
+          "id": "preset_save_4",
+          "top": 66,
+          "left": 545,
+          "width": 125,
+          "height": 65,
+          "label": "SAVE 4",
+          "address": "/osc/preset/save",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 4,
+          "off": 0,
+          "mode": "tap",
+          "color": "#7a1a1a"
+        },
+        {
+          "type": "text",
+          "id": "preset_load_label",
+          "top": 148,
+          "left": 140,
+          "width": 540,
+          "height": 20,
+          "value": "CARGAR",
+          "align": "center",
+          "size": 12,
+          "color": "#88ff88"
+        },
+        {
+          "type": "button",
+          "id": "preset_load_1",
+          "top": 176,
+          "left": 140,
+          "width": 125,
+          "height": 65,
+          "label": "LOAD 1",
+          "address": "/osc/preset/load",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 1,
+          "off": 0,
+          "mode": "tap",
+          "color": "#1a4a1a"
+        },
+        {
+          "type": "button",
+          "id": "preset_load_2",
+          "top": 176,
+          "left": 275,
+          "width": 125,
+          "height": 65,
+          "label": "LOAD 2",
+          "address": "/osc/preset/load",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 2,
+          "off": 0,
+          "mode": "tap",
+          "color": "#1a4a1a"
+        },
+        {
+          "type": "button",
+          "id": "preset_load_3",
+          "top": 176,
+          "left": 410,
+          "width": 125,
+          "height": 65,
+          "label": "LOAD 3",
+          "address": "/osc/preset/load",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 3,
+          "off": 0,
+          "mode": "tap",
+          "color": "#1a4a1a"
+        },
+        {
+          "type": "button",
+          "id": "preset_load_4",
+          "top": 176,
+          "left": 545,
+          "width": 125,
+          "height": 65,
+          "label": "LOAD 4",
+          "address": "/osc/preset/load",
+          "target": [
+            "127.0.0.1:57120"
+          ],
+          "on": 4,
+          "off": 0,
+          "mode": "tap",
+          "color": "#1a4a1a"
         }
       ]
     }
