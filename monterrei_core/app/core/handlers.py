@@ -244,6 +244,9 @@ async def a_cmd(sid, data):
         })
         await m4_foliada.start_shutdown_mode()
 
+    elif cmd == "m4_emergency_shutdown":
+        await m4_foliada.start_emergency_shutdown()
+
     # Color override
     elif cmd == "color_apply":
         await color_engine.apply(int(args.get("r",0)), int(args.get("g",0)), int(args.get("b",0)),

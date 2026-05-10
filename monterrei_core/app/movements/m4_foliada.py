@@ -32,8 +32,10 @@ _shutdown_task: Optional[asyncio.Task] = None
 # a forzar apagados se o público vai amodo. Após o splash de 5s no
 # proxector, queremos que comece axiña -> 5s.
 SHUTDOWN_HOLD_SECONDS = 5.0
-# Duración máxima total do apagado: após isto forézase a TODOS rapidamente.
+# Duración máxima total do apagado supervisor normal.
 MAX_SHUTDOWN_SECONDS = 20.0
+# Duración total do apagado de emerxencia (desde que se preme o botón).
+EMERGENCY_SHUTDOWN_SECONDS = 15.0
 
 
 # ---------------------------------------------------------------- VOTACIÓN ---
@@ -267,12 +269,9 @@ async def start_shutdown_mode():
     await to_projection("projection:musicians_alive", {"count": alive_count})
     await to_admin("admin:musicians_alive", {"count": alive_count})
     log.info(f"M4 apagado iniciado cooldown={cooldown:.2f}s")
-    if _shutdown_task and not _shutdown_task.done():
-        _shutdown_task.cancel()
-    _shutdown_task = asyncio.create_task(_shutdown_supervisor())
 
 
-async def _shutdown_supervisor():
+async def _shutdown_supervisor(max_seconds: float = MAX_SHUTDOWN_SECONDS):
     try:
         while state.snap.shutdown_active:
             await asyncio.sleep(0.4)
@@ -284,20 +283,18 @@ async def _shutdown_supervisor():
             if not alive:
                 state.snap.shutdown_active = False
                 break
-            # Tras MAX_SHUTDOWN_SECONDS forézase TODO rapidamente.
-            if elapsed >= MAX_SHUTDOWN_SECONDS:
+            # Tras max_seconds forézase TODO rapidamente.
+            if elapsed >= max_seconds:
                 target = random.choice(alive)
                 await silence_musician(target, by_public_sid=None, server_forced=True)
                 # Burst final: 0.15s entre apagados.
                 await asyncio.sleep(0.15)
                 continue
-            # Progresivo: canto máis preto de MAX, máis agresivo o forzado.
-            # Frame de tempo útil: [HOLD .. MAX].
-            t_window = max(0.001, MAX_SHUTDOWN_SECONDS - SHUTDOWN_HOLD_SECONDS)
+            # Progresivo: canto máis preto de max_seconds, máis agresivo o forzado.
+            t_window = max(0.001, max_seconds - SHUTDOWN_HOLD_SECONDS)
             phase = max(0.0, min(1.0, (elapsed - SHUTDOWN_HOLD_SECONDS) / t_window))
             publico = max(1, len(state.public_alive()))
-            base_rate = publico / state.snap.shutdown_cooldown  # apagados/s esperados do público
-            # Reforzo lineal: a phase=0 nada extra; a phase=1 dobra a taxa.
+            base_rate = publico / state.snap.shutdown_cooldown
             expected_rate = base_rate * (1.0 + phase)
             silenced_count = sum(1 for m in state.musicians.values() if m.silenced)
             expected = expected_rate * elapsed
@@ -306,6 +303,31 @@ async def _shutdown_supervisor():
                 await silence_musician(target, by_public_sid=None, server_forced=True)
     except asyncio.CancelledError:
         pass
+
+
+async def start_emergency_shutdown():
+    """Apaga aleatoriamente tódolos músicos restantes nun máximo de 15s.
+
+    Pode chamarse tanto se o modo apagado xa está activo como se non.
+    Non precisa cooldown nin interacción do público: é o servidor quen
+    silencia directamente. Resetea o reloxo interno para que os 15s
+    empecen a contar desde este momento.
+    """
+    global _shutdown_task
+    if not state.snap.shutdown_active:
+        # Activar o modo apagado básico se non estaba xa iniciado
+        await start_shutdown_mode()
+    # Resetear o temporizador: os EMERGENCY_SHUTDOWN_SECONDS empezan agora.
+    now = time.time()
+    state.snap.shutdown_started_at = now
+    state.snap.shutdown_progressive_at = now  # Sen período de gracia
+    log.info("M4 apagado de emerxencia: supervisor 15s iniciado")
+    await to_admin("m4:emergency_shutdown", {"duration_ms": int(EMERGENCY_SHUTDOWN_SECONDS * 1000)})
+    if _shutdown_task and not _shutdown_task.done():
+        _shutdown_task.cancel()
+    _shutdown_task = asyncio.create_task(
+        _shutdown_supervisor(max_seconds=EMERGENCY_SHUTDOWN_SECONDS)
+    )
 
 
 async def shutdown_click(public_sid: str) -> Optional[str]:

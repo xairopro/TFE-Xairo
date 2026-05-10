@@ -125,18 +125,8 @@
     feed.prepend(el);
     while (feed.children.length > 12) feed.removeChild(feed.lastChild);
   });
-  // Stack: cada apagado xera o seu propio elemento, vive ~5s, nón se sobrescribe
-  // co seguinte. Posición aleatoria entre 8 cantos/medios.
-  const SHUT_SLOTS = [
-    {top: '6vh',  left: '4vw',  align: 'flex-start', text: 'left'},
-    {top: '6vh',  right: '4vw', align: 'flex-end',   text: 'right'},
-    {bottom: '8vh', left: '4vw',  align: 'flex-start', text: 'left'},
-    {bottom: '8vh', right: '4vw', align: 'flex-end',   text: 'right'},
-    {top: '6vh',  left: '32vw', align: 'center',     text: 'center'},
-    {bottom: '8vh', left: '32vw', align: 'center',    text: 'center'},
-    {top: '38vh', left: '4vw',  align: 'flex-start', text: 'left'},
-    {top: '38vh', right: '4vw', align: 'flex-end',   text: 'right'},
-  ];
+  // Stack: cada apagado xera o seu propio elemento, vive ~5s, non se sobrescribe
+  // co seguinte. Posición completamente aleatoria dentro da área segura da pantalla.
   socket.on('m4:musician_off_text', d => {
     const dur = d.duration_ms || 5000;
     const item = document.createElement('div');
@@ -146,13 +136,13 @@
     const nm = document.createElement('div');
     nm.className = 'name'; nm.textContent = d.instrument || '';
     item.appendChild(lab); item.appendChild(nm);
-    const s = SHUT_SLOTS[Math.floor(Math.random() * SHUT_SLOTS.length)];
-    if (s.top !== undefined)    item.style.top = s.top;
-    if (s.bottom !== undefined) item.style.bottom = s.bottom;
-    if (s.left !== undefined)   item.style.left = s.left;
-    if (s.right !== undefined)  item.style.right = s.right;
-    item.style.alignItems = s.align;
-    item.style.textAlign = s.text;
+    // Posición aleatoria: top 5–78vh, left 3–47vw (deixa marxe para o texto de max-width 50vw)
+    const top  = (Math.random() * 73 + 5).toFixed(1);
+    const left = (Math.random() * 44 + 3).toFixed(1);
+    item.style.top = top + 'vh';
+    item.style.left = left + 'vw';
+    item.style.alignItems = 'flex-start';
+    item.style.textAlign = 'left';
     item.style.animationDuration = (dur / 1000) + 's';
     shutdownStack.appendChild(item);
     setTimeout(() => { try { shutdownStack.removeChild(item); } catch(e){} }, dur + 200);
