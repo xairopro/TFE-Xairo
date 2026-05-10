@@ -425,7 +425,7 @@ s.waitForBoot({
 		// Despois do trigger, Sweep ramp 0->1 en 'time' segs => wipe 1->0 (vai destapando bins ata o son completo).
 		phase = Sweep.kr(t_trig, 1.0 / timeL).clip(0, 1);
 		wipe = 1.0 - phase;
-		src = PlayBuf.ar(1, bufRonco, BufRateScale.kr(bufRonco), loop: 1);
+		src = PlayBuf.ar(1, bufRonco, BufRateScale.kr(bufRonco) * (130/120), loop: 1); // Fundamental transposta a 130Hz (orixinal: 120Hz)
 		chain = FFT(LocalBuf(2048), src);
 		// PV_RandComb elimina aleatoriamente bins (wipe=1 todos eliminados, wipe=0 ningún)
 		// Re-aleatoriza con Impulse: novos parciais aparecen progresivamente segundo baixa wipe.
@@ -496,9 +496,11 @@ s.waitForBoot({
 		var colCaVol2d, caTitleLayout, caVolLabel, caVolSlider, caBtn, xyVolTitleLayout, xyVolLabel, xyVolSlider, xyBtn, xyPadCol, xyPad, xyLzBtn;
 		var mTitleLayout, mTitle, mInfoBtn, mVolLabel, mVolSlider, lzGlobalBtn, muteBtn, colShepRate, srTitle, srLbl, srSl;
 		var g7AmpLabel, g7AmpSlider, g7TimeSpec, g7TimeLabel, g7TimeSlider, g7StartBtn, g7Col;
+		var ptTimeLabel, ptTimeSl; // Slider de tempo de transición de presets
 		~glbzState = 0;
 		~volSliders = (); // Dicionario de sliders de volume por synthKey (para captura Lorenz)
 		~extraSliders = (); // Dicionario de sliders extra (parámetro secundario) por synthKey (para presets)
+		~presetTransitionTime = 0.0; // Tempo de interpolación de presets en segundos (0 = instantáneo)
 
 		// --- COMUNICACIÓN BIDIRECCIONAL CON OPEN STAGE CONTROL (porto 8000) ---
 		~oscOut = NetAddr("127.0.0.1", 8000);
@@ -800,6 +802,14 @@ s.waitForBoot({
 				}),
 				muteBtn = Button().states_([["Son ON", Color.black, Color.green(0.7)], ["MUTE", Color.white, Color.red(0.7)]]).value_(0).action_({ |b|
 					if(b.value == 1) { ~masterBus.set(0.0); } { ~masterBus.set(mVolSlider.value); };
+				}),
+				StaticText().string_("").minHeight_(6),
+				HLayout(nil, StaticText().string_("Morph").align_(\center).font_(Font("Helvetica", 9, true)).stringColor_(Color.red(0.4)), nil),
+				ptTimeLabel = StaticText().string_("0.0 s").align_(\center).font_(Font("Helvetica", 9)),
+				ptTimeSl = Slider().orientation_(\vertical).value_(0).action_({ |sl|
+					~presetTransitionTime = sl.value * 20.0;
+					ptTimeLabel.string_(~presetTransitionTime.round(0.1) ++ " s");
+					~sendOSC.value("/osc/preset/time", sl.value.asFloat);
 				})
 			)
 		);
@@ -959,29 +969,69 @@ s.waitForBoot({
 			};
 		};
 
-		// --- Cargar preset ---
+		// --- Cargar preset (con interpolación suave opcional) ---
 		~loadPreset = { |id|
 			var data = ~presets[id.asInteger];
+			var t, fps, steps, dt;
 			if(data.notNil) {
-				defer {
-					// Vol-sliders: valueAction_ xa actualiza o Synth e envía feedback á tablet
-					~volSliders.keysValuesDo { |k, sl|
-						var key = ("vol_" ++ k.asString).asSymbol;
-						if(data[key].notNil) { sl.valueAction_(data[key]) };
+				t = ~presetTransitionTime;
+				if(t <= 0.02) {
+					// ---- Carga INSTANTÁNEA ----
+					defer {
+						~volSliders.keysValuesDo { |k, sl|
+							var key = ("vol_" ++ k.asString).asSymbol;
+							if(data[key].notNil) { sl.valueAction_(data[key]) };
+						};
+						~extraSliders.keysValuesDo { |k, sl|
+							var key = ("ext_" ++ k.asString).asSymbol;
+							if(data[key].notNil) { sl.valueAction_(data[key]) };
+						};
+						if(data[\master_vol].notNil) { mVolSlider.valueAction_(data[\master_vol]) };
+						if(data[\ca_vol].notNil)     { caVolSlider.valueAction_(data[\ca_vol]) };
+						if(data[\xy_vol].notNil)     { xyVolSlider.valueAction_(data[\xy_vol]) };
+						if(data[\shep_rate].notNil)  { srSl.valueAction_(data[\shep_rate]) };
+						if(data[\g7_time].notNil)    { g7TimeSlider.valueAction_(data[\g7_time]) };
 					};
-					// Extra-sliders
-					~extraSliders.keysValuesDo { |k, sl|
-						var key = ("ext_" ++ k.asString).asSymbol;
-						if(data[key].notNil) { sl.valueAction_(data[key]) };
+				} {
+					// ---- Carga con MORPHING suave ----
+					fps = 30.0;
+					steps = (t * fps).round.asInteger.max(1);
+					dt = t / steps;
+					// Un único defer captura os valores iniciais e lanza o bucle de interpolación
+					defer {
+						var startVols = (), startExts = ();
+						var startMaster = mVolSlider.value;
+						var startCa     = caVolSlider.value;
+						var startXy     = xyVolSlider.value;
+						var startSr     = srSl.value;
+						var startG7     = g7TimeSlider.value;
+						~volSliders.keysValuesDo  { |k, sl| startVols[k] = sl.value };
+						~extraSliders.keysValuesDo { |k, sl| startExts[k] = sl.value };
+						// Fork sobre SystemClock para temporización precisa; cada paso chama defer para a GUI
+						{
+							steps.do { |i|
+								var prog = (i + 1) / steps;
+								defer {
+									~volSliders.keysValuesDo { |k, sl|
+										var key = ("vol_" ++ k.asString).asSymbol;
+										sl.valueAction_(startVols[k].blend(data[key] ? startVols[k], prog));
+									};
+									~extraSliders.keysValuesDo { |k, sl|
+										var key = ("ext_" ++ k.asString).asSymbol;
+										sl.valueAction_(startExts[k].blend(data[key] ? startExts[k], prog));
+									};
+									mVolSlider.valueAction_(startMaster.blend(data[\master_vol] ? startMaster, prog));
+									caVolSlider.valueAction_(startCa.blend(data[\ca_vol] ? startCa, prog));
+									xyVolSlider.valueAction_(startXy.blend(data[\xy_vol] ? startXy, prog));
+									srSl.valueAction_(startSr.blend(data[\shep_rate] ? startSr, prog));
+									g7TimeSlider.valueAction_(startG7.blend(data[\g7_time] ? startG7, prog));
+								};
+								dt.wait;
+							};
+						}.fork(SystemClock);
 					};
-					// Sliders globais
-					if(data[\master_vol].notNil) { mVolSlider.valueAction_(data[\master_vol]) };
-					if(data[\ca_vol].notNil)     { caVolSlider.valueAction_(data[\ca_vol]) };
-					if(data[\xy_vol].notNil)     { xyVolSlider.valueAction_(data[\xy_vol]) };
-					if(data[\shep_rate].notNil)  { srSl.valueAction_(data[\shep_rate]) };
-					if(data[\g7_time].notNil)    { g7TimeSlider.valueAction_(data[\g7_time]) };
 				};
-				(">>> Preset " ++ id ++ " CARGADO.").postln;
+				(">>> Preset " ++ id ++ " CARGADO" ++ if(t > 0.02) { " (morph " ++ t.round(0.1) ++ "s)" } { "" } ++ ".").postln;
 			} {
 				(">>> Preset " ++ id ++ " non atopado. Gárdao primeiro con SAVE.").postln;
 			};
@@ -997,6 +1047,15 @@ s.waitForBoot({
 			var id = m[1].asInteger;
 			if(id > 0) { ~loadPreset.value(id) };
 		}, "/osc/preset/load");
+
+		OSCdef(\preset_time_in, { |m|
+			var v = m[1].asFloat.clip(0, 1);
+			~presetTransitionTime = v * 20.0;
+			defer {
+				ptTimeSl.value_(v);
+				ptTimeLabel.string_(~presetTransitionTime.round(0.1) ++ " s");
+			};
+		}, "/osc/preset/time");
 		// =====================================================================
 
 		win.layout.add(topRow); win.layout.add(StaticText().string_("==========================================================================================================").align_(\center).font_(Font("Helvetica", 12)).stringColor_(Color.gray(0.7))); win.layout.add(bottomRow); win.layout.add(nil);
