@@ -10,9 +10,8 @@
   const cooldownEl = document.getElementById('shutdown-cooldown');
   const lastSilenced = document.getElementById('last-silenced');
   let endsAt = 0;
-  let cooldownEndsAt = 0;
-  let cooldownSec = 1.0;
   let mySelected = null;
+  let inQueue = false;  // true cando o usuario está en cola de apagado
 
   function showVoting(choices, colors) {
     voting.style.display = '';
@@ -34,8 +33,7 @@
     });
   }
 
-  function showShutdown(cd) {
-    cooldownSec = cd;
+  function showShutdown() {
     voting.style.display = 'none';
     idle.style.display = 'none';
     shutdown.style.display = 'flex';
@@ -63,11 +61,11 @@
   }
 
   shutdownBtn.addEventListener('click', () => {
-    if (Date.now()/1000 < cooldownEndsAt) return;
+    if (shutdownBtn.disabled) return;
     socket.emit('shutdown_click', { sid: SID });
-    cooldownEndsAt = Date.now()/1000 + cooldownSec;
     shutdownBtn.disabled = true;
     shutdownBtn.classList.add('pressed');
+    cooldownEl.textContent = '...';
   });
 
   setInterval(() => {
@@ -75,18 +73,6 @@
       const remaining = Math.max(0, endsAt - Date.now()/1000);
       const m = Math.floor(remaining/60), s = Math.floor(remaining%60);
       timer.textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-    }
-    if (cooldownEndsAt > 0) {
-      const r = cooldownEndsAt - Date.now()/1000;
-      if (r > 0) {
-        cooldownEl.textContent = `... ${r.toFixed(1)}s`;
-        shutdownBtn.disabled = true;
-      } else {
-        cooldownEl.textContent = '';
-        shutdownBtn.disabled = false;
-        shutdownBtn.classList.remove('pressed');
-        cooldownEndsAt = 0;
-      }
     }
   }, 100);
 
@@ -96,7 +82,7 @@
     // Mostra durante uns segundos qué loop saíu ganándo
     showWinner(d.winner, d.color);
   });
-  socket.on('m4:shutdown_mode', d => { showShutdown(d.cooldown); });
+  socket.on('m4:shutdown_mode', _d => { showShutdown(); });
   socket.on('public:update', d => {
     if (d.silenced) {
       lastSilenced.innerHTML = `<span class="who">Silenciaches a</span>${d.silenced}`;
@@ -110,9 +96,48 @@
     clearTimeout(window.__silTimer);
     window.__silTimer = setTimeout(() => { lastSilenced.innerHTML = ''; }, 4000);
   });
-  socket.on('vote_ack', d => { /* visual feedback already applied */ });
+  socket.on('vote_ack', _d => { /* visual feedback already applied */ });
 
-  // Aviso fullscreen "Comeza votaci\u00f3n!"
+  // Resposta ao pedido de apagado (inmediato ou en cola).
+  socket.on('shutdown_ack', d => {
+    const status = d && d.status;
+    if (status === 'executed') {
+      inQueue = false;
+      cooldownEl.textContent = d.instrument ? `✓ ${d.instrument}` : '';
+      setTimeout(() => {
+        shutdownBtn.disabled = false;
+        shutdownBtn.classList.remove('pressed');
+        cooldownEl.textContent = '';
+      }, 2000);
+    } else if (status === 'queued') {
+      inQueue = true;
+      cooldownEl.textContent = `EN COLA #${d.position}`;
+    } else if (status === 'already_queued') {
+      inQueue = true;
+      cooldownEl.textContent = `EN COLA #${d.position}`;
+    } else {
+      // rejected ou formato legado
+      inQueue = false;
+      shutdownBtn.disabled = false;
+      shutdownBtn.classList.remove('pressed');
+      cooldownEl.textContent = '';
+    }
+  });
+
+  // Notificación persoal: o apagado en cola executouse.
+  socket.on('shutdown_executed', d => {
+    inQueue = false;
+    shutdownBtn.disabled = false;
+    shutdownBtn.classList.remove('pressed');
+    cooldownEl.textContent = '';
+    if (d && d.instrument) {
+      lastSilenced.innerHTML = `<span class="who">Apagaches a</span>${d.instrument}`;
+      clearTimeout(window.__mysilTimer);
+      window.__mysilTimer = setTimeout(() => { lastSilenced.innerHTML = ''; }, 4000);
+    }
+  });
+
+  // Aviso fullscreen "Comeza votación!"
   const voteAnnounce = document.getElementById('vote-announce');
   socket.on('public:vote_announce_show', d => {
     if (d && d.text && voteAnnounce) voteAnnounce.textContent = d.text;
@@ -121,22 +146,20 @@
   socket.on('public:vote_announce_hide', () => {
     if (voteAnnounce) voteAnnounce.style.display = 'none';
   });
-  socket.on('shutdown_ack', d => {
-    if (!d.ok) {
-      cooldownEndsAt = 0;
-      shutdownBtn.disabled = false;
-    }
-  });
+
   socket.on('state:restore', d => {
-    if (d.shutdown_mode) showShutdown(1.0);
+    if (d.shutdown_mode) showShutdown();
     else if (d.voting_open) showVoting(d.voting_choices || [], {});
     else showIdle();
   });
 
   socket.on('reset:all', (data) => {
     endsAt = 0;
-    cooldownEndsAt = 0;
+    inQueue = false;
     mySelected = null;
+    cooldownEl.textContent = '';
+    shutdownBtn.disabled = false;
+    shutdownBtn.classList.remove('pressed');
     lastSilenced.textContent = '';
     idle.innerHTML = 'Agarda á seguinte quenda...';
     showIdle();
@@ -147,8 +170,11 @@
 
   socket.on('reset:soft', () => {
     endsAt = 0;
-    cooldownEndsAt = 0;
+    inQueue = false;
     mySelected = null;
+    cooldownEl.textContent = '';
+    shutdownBtn.disabled = false;
+    shutdownBtn.classList.remove('pressed');
     lastSilenced.textContent = '';
     idle.innerHTML = 'Agarda á seguinte quenda...';
     showIdle();

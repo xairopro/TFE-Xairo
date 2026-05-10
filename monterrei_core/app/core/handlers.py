@@ -145,8 +145,8 @@ async def p_vote(sid, data):
 @sio.on("shutdown_click", namespace="/public")
 async def p_shutdown(sid, data):
     cookie_sid = (data or {}).get("sid")
-    ok = await m4_foliada.shutdown_click(cookie_sid)
-    await sio.emit("shutdown_ack", {"ok": ok}, to=sid, namespace="/public")
+    result = await m4_foliada.shutdown_click(cookie_sid)
+    await sio.emit("shutdown_ack", result, to=sid, namespace="/public")
 
 
 # ---------- /admin -----------------------------------------
@@ -369,7 +369,7 @@ async def _global_reset():
     # Cancela tarefas internas de m4 (shutdown / voting auto-close)
     try:
         from ..movements import m4_foliada as _m4
-        for attr in ("_voting_task", "_shutdown_task"):
+        for attr in ("_voting_task", "_shutdown_task", "_queue_task"):
             t = getattr(_m4, attr, None)
             if t and not t.done():
                 t.cancel()
@@ -444,7 +444,7 @@ async def _soft_reset():
             logger.warning(f"soft_reset: {fn.__name__} fallou: {e}")
     try:
         from ..movements import m4_foliada as _m4
-        for attr in ("_voting_task", "_shutdown_task"):
+        for attr in ("_voting_task", "_shutdown_task", "_queue_task"):
             t = getattr(_m4, attr, None)
             if t and not t.done():
                 t.cancel()
