@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monterrei Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ── CABECEIRA ─────────────────────────────────────────────────────── -->
+<header>
+  <h1>MONTERREI SIMULATOR</h1>
+  <div class="status-bar">
+    <span class="status-dot" id="st-server" title="Simulator server">⬤ SIM</span>
+    <span class="status-dot" id="st-voting" title="Votación activa">⬤ VOTACIÓN</span>
+    <span class="status-dot" id="st-shutdown" title="Modo apagado">⬤ APAGADO</span>
+    <span class="bpm-badge" id="bpm-badge">— BPM</span>
+  </div>
+</header>
+
+<!-- ── LAYOUT PRINCIPAL ──────────────────────────────────────────────── -->
+<div class="layout">
+
+  <!-- Barra lateral de controis -->
+  <aside class="sidebar">
+
+    <!-- Músicos -->
+    <section class="panel">
+      <h3>MÚSICOS VIRTUAIS</h3>
+      <div class="panel-stat" id="musician-count">0 conectados</div>
+      <div class="row">
+        <input type="number" id="musician-n" value="5" min="1" max="60">
+        <button class="btn-primary" id="btn-add-musicians">+ Conectar</button>
+      </div>
+      <button class="btn-secondary full" id="btn-remove-all-musicians">Desconectar todos</button>
+    </section>
+
+    <!-- Público -->
+    <section class="panel">
+      <h3>PÚBLICO VIRTUAL</h3>
+      <div class="panel-stat" id="public-count">0 conectados</div>
+      <div class="row">
+        <input type="number" id="public-n" value="10" min="1" max="200">
+        <button class="btn-primary" id="btn-add-publics">+ Conectar</button>
+      </div>
+      <button class="btn-secondary full" id="btn-remove-all-publics">Desconectar todos</button>
+    </section>
+
+    <!-- Automatización -->
+    <section class="panel">
+      <h3>AUTOMATIZACIÓN</h3>
+      <label class="toggle-row">
+        <span>Auto-Votar</span>
+        <span class="toggle-wrap">
+          <input type="checkbox" id="auto-vote" checked>
+          <span class="knob"></span>
+        </span>
+      </label>
+      <label class="toggle-row">
+        <span>Auto-Apagar</span>
+        <span class="toggle-wrap">
+          <input type="checkbox" id="auto-shutdown" checked>
+          <span class="knob"></span>
+        </span>
+      </label>
+    </section>
+
+    <!-- Panel de votación (visible cando está activa) -->
+    <section class="panel panel-vote" id="panel-vote" style="display:none">
+      <h3>VOTACIÓN ACTIVA</h3>
+      <div class="countdown" id="vote-countdown">—</div>
+      <div class="loop-grid" id="loop-buttons"></div>
+      <button class="btn-warning full" id="btn-vote-random">Votar aleatorio (todos)</button>
+    </section>
+
+    <!-- Panel de apagado (visible cando está activo) -->
+    <section class="panel panel-shutdown" id="panel-shutdown" style="display:none">
+      <h3>MODO APAGADO</h3>
+      <button class="btn-danger full" id="btn-shutdown-stagger">Premer con atraso (todos)</button>
+      <button class="btn-danger full" style="margin-top:4px" id="btn-shutdown-force">Premer agora (todos)</button>
+    </section>
+
+    <!-- Filtros de log -->
+    <section class="panel">
+      <h3>FILTRO DE LOGS</h3>
+      <label class="check-row"><input type="checkbox" id="filter-musician" checked> Músicos</label>
+      <label class="check-row"><input type="checkbox" id="filter-public" checked> Público</label>
+      <button class="btn-secondary full" style="margin-top:6px" id="btn-clear-logs">Limpar logs</button>
+    </section>
+
+  </aside>
+
+  <!-- Área de contido con abas -->
+  <main class="content">
+    <nav class="tabs">
+      <button class="tab active" data-tab="musicians">
+        Músicos <span class="badge" id="badge-musicians">0</span>
+      </button>
+      <button class="tab" data-tab="public">
+        Público <span class="badge" id="badge-public">0</span>
+      </button>
+      <button class="tab" data-tab="logs">
+        Logs <span class="badge" id="badge-logs">0</span>
+      </button>
+    </nav>
+
+    <!-- Tab: Músicos -->
+    <div class="tab-pane active" id="tab-musicians">
+      <div class="card-grid" id="musicians-grid"></div>
+    </div>
+
+    <!-- Tab: Público -->
+    <div class="tab-pane" id="tab-public">
+      <div class="card-grid" id="publics-grid"></div>
+    </div>
+
+    <!-- Tab: Logs -->
+    <div class="tab-pane" id="tab-logs">
+      <div class="log-box" id="log-box"></div>
+    </div>
+  </main>
+
+</div><!-- /layout -->
+
+<!-- ── MODAL: pantalla de músico ─────────────────────────────────────── -->
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="m-screen" id="m-screen">
+    <button class="m-close" id="m-close">✕</button>
+    <div class="m-glow" id="m-glow"></div>
+    <div class="m-content">
+      <div class="m-instrument" id="m-instrument">—</div>
+      <div class="m-statustxt" id="m-statustxt">—</div>
+      <div class="m-suffix" id="m-suffix"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
