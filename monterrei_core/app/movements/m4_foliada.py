@@ -20,7 +20,7 @@ from ..core.broadcaster import (
 )
 from ..core.socket_server import sio
 from ..data.loops import LOOPS, LOOP_COLORS, LOOP_SUBTITLES, shared_instruments
-from ..data.led_layout import section_for_loop, led_for_instrument
+from ..data.led_layout import led_for_instrument
 from ..data.dmx_mappings import LOOP_RGBW
 from ..hardware.dmx_controller import dmx
 from ..state import state
@@ -33,22 +33,28 @@ _shutdown_task: Optional[asyncio.Task] = None
 # a forzar apagados se o público vai amodo. Após o splash de 5s no
 # proxector, queremos que comece axiña -> 5s.
 SHUTDOWN_HOLD_SECONDS = 5.0
-# Duración máxima total do apagado supervisor normal.
-MAX_SHUTDOWN_SECONDS = 20.0
-# Duración total do apagado de emerxencia (desde que se preme o botón).
-EMERGENCY_SHUTDOWN_SECONDS = 15.0
+# Duración máxima total do apagado de emerxencia (supervisor server-forced).
+MAX_SHUTDOWN_SECONDS = 15.0
+# No apagado normal o público ten este tempo para actuar antes de que
+# o modo se considere "rematado" e a proxección pode avanzar.
+NORMAL_SHUTDOWN_WINDOW = 30.0
 # Taxa máxima global de apagados activados polo público (apagados/segundo).
 # Con ~60 músicos isto distribúe a extinción en ~20 s aínda que todo o
 # público prime á vez. O supervisor segue funcionando en paralelo como
 # garantía de ritmo mínimo.
-SHUTDOWN_RATE = 3.0
-SHUTDOWN_INTERVAL = 1.0 / SHUTDOWN_RATE   # ≈0.333 s entre slots
+SHUTDOWN_RATE = 4.0
+SHUTDOWN_INTERVAL = 1.0 / SHUTDOWN_RATE   # 0.25 s entre slots
 
 # Estado da cola de apagados (módulo-nivel, reinicializado en cada inicio).
 _queue_task: Optional[asyncio.Task] = None
 _shutdown_queue: Optional[asyncio.Queue] = None
 _queued_sids: set = set()             # public_sids en cola (evita duplicados)
 _next_shutdown_token_at: float = 0.0  # cursor temporal do rate-limit (asyncio-safe)
+# Focos DMX xa usados en M4 (un foco aleatorio permanente por loop asignado).
+_used_m4_fixtures: set[int] = set()
+# Tarea de fade out de LEDs no inicio do apagado.
+_fade_task: Optional[asyncio.Task] = None
+LED_FADE_DURATION = 30.0
 
 
 # ---------------------------------------------------------------- VOTACIÓN ---
@@ -60,6 +66,8 @@ async def open_voting(seconds: int = 15):
     state.snap.voting_active = True
     state.snap.voting_ends_at = time.time() + seconds
     state.snap.votes_by_voter.clear()
+    if state.snap.voting_round == 1:
+        _used_m4_fixtures.clear()
     if not state.snap.available_loops:
         state.snap.available_loops = list(LOOPS.keys())
     choices = list(state.snap.available_loops)
@@ -71,6 +79,7 @@ async def open_voting(seconds: int = 15):
         "round": state.snap.voting_round,
         "choices": choices,
         "colors": {k: LOOP_COLORS[k] for k in choices},
+        "subtitles": {k: LOOP_SUBTITLES.get(k, "") for k in choices},
         "ends_at": state.snap.voting_ends_at,
         "seconds": seconds,
         "current_loop": cur,
@@ -226,15 +235,20 @@ async def assign_loop(new_loop: str, prev_loop: Optional[str]):
         "instruments": list(new_set),
     })
 
-    # DMX: prende a sección correspondente
+    # DMX: acende un foco aleatorio (6 LEDs consecutivos) co color do loop.
     try:
-        loop_index = int(new_loop[1:])
-        leds = section_for_loop(loop_index)
         r, g, b, w = LOOP_RGBW[new_loop]
-        for led in leds:
-            dmx.universe.set_led(led, r, g, b, w)
+        available_fixtures = list(set(range(10)) - _used_m4_fixtures)
+        if not available_fixtures:
+            _used_m4_fixtures.clear()
+            available_fixtures = list(range(10))
+        fixture = random.choice(available_fixtures)
+        _used_m4_fixtures.add(fixture)
+        with dmx._lock:
+            for led in range(fixture * 6, fixture * 6 + 6):
+                dmx.universe.set_led(led, r, g, b, w)
     except Exception as e:
-        log.warning(f"DMX loop section error: {e}")
+        log.warning(f"DMX loop fixture error: {e}")
 
     # DMX por-músico: acende o LED de cada músico que toca o novo loop
     # (cor do loop). Os músicos que xa tocaban quedan iguais; os apagados
@@ -359,8 +373,32 @@ async def _shutdown_queue_processor():
         pass
 
 
+async def _led_fade_out(duration: float = LED_FADE_DURATION):
+    """Fade lineal de todos os LEDs dende os seus valores actuais ata 0 en `duration` segundos."""
+    snap = dmx.universe.snapshot()
+    originals = [(e["r"], e["g"], e["b"], e["w"]) for e in snap]
+    tick = 0.1  # 10 fps — suficiente para un fade suave de 30s
+    start = time.time()
+    try:
+        while True:
+            elapsed = time.time() - start
+            alpha = max(0.0, 1.0 - elapsed / duration)
+            with dmx._lock:
+                for i, (r, g, b, w) in enumerate(originals):
+                    dmx.universe.set_led(
+                        i,
+                        int(r * alpha), int(g * alpha),
+                        int(b * alpha), int(w * alpha),
+                    )
+            if alpha <= 0.0:
+                break
+            await asyncio.sleep(tick)
+    except asyncio.CancelledError:
+        pass
+
+
 async def start_shutdown_mode():
-    global _shutdown_task, _queue_task
+    global _shutdown_task, _queue_task, _fade_task
     musicos = max(1, len(state.musicians_alive()))
     publico = max(1, len(state.public_alive()))
     cooldown = max(0.3, min(1.0, 30.0 * publico / musicos))
@@ -375,6 +413,7 @@ async def start_shutdown_mode():
         "cooldown": cooldown,
         "started_at": now,
         "progressive_starts_at": state.snap.shutdown_progressive_at,
+        "window_seconds": NORMAL_SHUTDOWN_WINDOW,
     }
     await to_public("m4:shutdown_mode", payload)
     await to_admin("m4:shutdown_mode", payload)
@@ -386,47 +425,37 @@ async def start_shutdown_mode():
         alive_count = 0
     await to_projection("projection:musicians_alive", {"count": alive_count})
     await to_admin("admin:musicians_alive", {"count": alive_count})
-    log.info(f"M4 apagado iniciado cooldown={cooldown:.2f}s rate={SHUTDOWN_RATE}/s")
-    # Procesador da cola de apagados (taxa limitada).
+    log.info(f"M4 apagado normal iniciado cooldown={cooldown:.2f}s rate={SHUTDOWN_RATE}/s window={NORMAL_SHUTDOWN_WINDOW}s")
+    # Procesador da cola de apagados (taxa limitada, público só).
     if _queue_task and not _queue_task.done():
         _queue_task.cancel()
     _queue_task = asyncio.create_task(_shutdown_queue_processor())
-    # Supervisor de forzado: garante o ritmo mínimo de extinción.
-    if _shutdown_task and not _shutdown_task.done():
-        _shutdown_task.cancel()
-    _shutdown_task = asyncio.create_task(_shutdown_supervisor())
+    # NON se inicia supervisor: no apagado normal só o público silencia músicos.
+    # Fade out progresivo dos LEDs en 30s dende o inicio do apagado.
+    if _fade_task and not _fade_task.done():
+        _fade_task.cancel()
+    _fade_task = asyncio.create_task(_led_fade_out())
 
 
 async def _shutdown_supervisor(max_seconds: float = MAX_SHUTDOWN_SECONDS):
+    """Só usado en emerxencia: o servidor apaga músicos directamente ata rematar."""
+    # Intervalo: distribuír todos os músicos uniformemente en max_seconds
     try:
         while state.snap.shutdown_active:
-            await asyncio.sleep(0.4)
-            now = time.time()
-            if now < state.snap.shutdown_progressive_at:
-                continue
-            elapsed = now - state.snap.shutdown_started_at
+            await asyncio.sleep(0.15)
             alive = [s for s, m in state.musicians.items() if not m.silenced and not m.is_director]
             if not alive:
                 state.snap.shutdown_active = False
                 break
-            # Tras max_seconds forézase TODO rapidamente.
-            if elapsed >= max_seconds:
-                target = random.choice(alive)
-                await silence_musician(target, by_public_sid=None, server_forced=True)
-                # Burst final: 0.15s entre apagados.
-                await asyncio.sleep(0.15)
-                continue
-            # Progresivo: canto máis preto de max_seconds, máis agresivo o forzado.
-            t_window = max(0.001, max_seconds - SHUTDOWN_HOLD_SECONDS)
-            phase = max(0.0, min(1.0, (elapsed - SHUTDOWN_HOLD_SECONDS) / t_window))
-            publico = max(1, len(state.public_alive()))
-            base_rate = publico / state.snap.shutdown_cooldown
-            expected_rate = base_rate * (1.0 + phase)
-            silenced_count = sum(1 for m in state.musicians.values() if m.silenced)
-            expected = expected_rate * elapsed
-            if silenced_count < expected - 1:
-                target = random.choice(alive)
-                await silence_musician(target, by_public_sid=None, server_forced=True)
+            # Comprobar que non pasou o tempo límite (burn final máis rápido)
+            elapsed = time.time() - state.snap.shutdown_started_at
+            target = random.choice(alive)
+            await silence_musician(target, by_public_sid=None, server_forced=True)
+            # Intervalo adaptativo: máis rápido cara ao final
+            remaining = max(0.0, max_seconds - elapsed)
+            alive_count = len(alive) - 1
+            interval = max(0.10, remaining / max(1, alive_count))
+            await asyncio.sleep(min(interval, 0.5))
     except asyncio.CancelledError:
         pass
 
@@ -434,30 +463,27 @@ async def _shutdown_supervisor(max_seconds: float = MAX_SHUTDOWN_SECONDS):
 async def start_emergency_shutdown():
     """Apaga aleatoriamente tódolos músicos restantes nun máximo de 15s.
 
-    Pode chamarse tanto se o modo apagado xa está activo como se non.
-    Non precisa cooldown nin interacción do público: é o servidor quen
-    silencia directamente. Resetea o reloxo interno para que os 15s
-    empecen a contar desde este momento. Cancela a cola de apagados
-    do público para evitar conflitos co supervisor de emerxencia.
+    O SERVIDOR fai todo: non precisa acción do público.
+    Cancela a cola de apagados para evitar conflitos.
     """
     global _shutdown_task, _queue_task
     if not state.snap.shutdown_active:
         # Activar o modo apagado básico se non estaba xa iniciado
         await start_shutdown_mode()
-    # Cancelar e limpar a cola de apagados do público.
+    # Cancelar a cola do público: agora é o servidor quen apaga.
     if _queue_task and not _queue_task.done():
         _queue_task.cancel()
     _reset_shutdown_queue()
-    # Resetear o temporizador: os EMERGENCY_SHUTDOWN_SECONDS empezan agora.
+    # Resetear o temporizador: os MAX_SHUTDOWN_SECONDS (15s) empezan agora.
     now = time.time()
     state.snap.shutdown_started_at = now
     state.snap.shutdown_progressive_at = now  # Sen período de gracia
-    log.info("M4 apagado de emerxencia: supervisor 15s iniciado")
-    await to_admin("m4:emergency_shutdown", {"duration_ms": int(EMERGENCY_SHUTDOWN_SECONDS * 1000)})
+    log.info("M4 apagado de emerxencia: supervisor 15s iniciado (server-forced)")
+    await to_admin("m4:emergency_shutdown", {"duration_ms": int(MAX_SHUTDOWN_SECONDS * 1000)})
     if _shutdown_task and not _shutdown_task.done():
         _shutdown_task.cancel()
     _shutdown_task = asyncio.create_task(
-        _shutdown_supervisor(max_seconds=EMERGENCY_SHUTDOWN_SECONDS)
+        _shutdown_supervisor(max_seconds=MAX_SHUTDOWN_SECONDS)
     )
 
 

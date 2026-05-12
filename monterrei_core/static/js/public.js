@@ -13,7 +13,7 @@
   let mySelected = null;
   let inQueue = false;  // true cando o usuario está en cola de apagado
 
-  function showVoting(choices, colors) {
+  function showVoting(choices, colors, subtitles) {
     voting.style.display = '';
     idle.style.display = 'none';
     shutdown.style.display = 'none';
@@ -21,7 +21,9 @@
     choices.forEach(c => {
       const b = document.createElement('button');
       b.className = 'vote-btn'; b.dataset.loop = c;
-      b.textContent = c;
+      b.innerHTML = subtitles && subtitles[c]
+        ? `<span class="vote-loop-name">${c}</span><span class="vote-loop-sub">${subtitles[c]}</span>`
+        : c;
       b.style.color = colors[c] || '#fff';
       b.addEventListener('click', () => {
         socket.emit('vote', { sid: SID, loop_id: c });
@@ -76,7 +78,7 @@
     }
   }, 100);
 
-  socket.on('m4:voting_open', d => { endsAt = d.ends_at; showVoting(d.choices, d.colors); });
+  socket.on('m4:voting_open', d => { endsAt = d.ends_at; showVoting(d.choices, d.colors, d.subtitles); });
   socket.on('m4:voting_close', d => {
     endsAt = 0;
     // Mostra durante uns segundos qué loop saíu ganándo

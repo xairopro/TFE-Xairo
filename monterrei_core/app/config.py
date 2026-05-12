@@ -42,7 +42,9 @@ class Settings(BaseSettings):
     bpm_ema_alpha: float = 0.15
 
     # DMX
-    dmx_port_hint: str = ""
+    dmx_port_hint: str = ""        # pista para o 1º porto (universe 1)
+    dmx_port_hint_2: str = ""       # pista para o 2º porto (universe 2)
+    dmx_mk2: bool = False           # True = Enttec USB PRO Mk2 (1 porto, 2 labels: 6 e 202)
     dmx_fps: int = 30
     dmx_led_count: int = 60
     dmx_channels_per_led: int = 4

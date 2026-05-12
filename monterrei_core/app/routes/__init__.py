@@ -70,6 +70,12 @@ def make_main_router() -> APIRouter:
     async def health():
         return JSONResponse({"ok": True})
 
+    @r.get("/api/dmx/snapshot")
+    async def dmx_snapshot():
+        """Estado RGBW dos 60 LEDs en tempo real (para monitor externo)."""
+        from ..hardware.dmx_controller import dmx
+        return JSONResponse(dmx.universe.snapshot())
+
     return r
 
 
@@ -121,6 +127,12 @@ def make_admin_router() -> APIRouter:
     async def health():
         return JSONResponse({"ok": True})
 
+    @r.get("/api/dmx/snapshot")
+    async def dmx_snapshot_admin(_: str = Depends(_check_admin)):
+        """Estado RGBW dos 60 LEDs en tempo real (para monitor externo, sen auth no monitor)."""
+        from ..hardware.dmx_controller import dmx
+        return JSONResponse(dmx.universe.snapshot())
+
     return r
 
 
@@ -131,6 +143,12 @@ def make_public_router() -> APIRouter:
     @r.get("/", response_class=HTMLResponse)
     async def public(request: Request):
         return _render_with_cookie(request, "public.html", {})
+
+    @r.get("/api/dmx/snapshot")
+    async def dmx_snapshot_public():
+        """Estado RGBW dos 60 LEDs (acceso sen autenticación, só LAN)."""
+        from ..hardware.dmx_controller import dmx
+        return JSONResponse(dmx.universe.snapshot())
 
     return r
 

@@ -444,7 +444,7 @@ async def _soft_reset():
             logger.warning(f"soft_reset: {fn.__name__} fallou: {e}")
     try:
         from ..movements import m4_foliada as _m4
-        for attr in ("_voting_task", "_shutdown_task", "_queue_task"):
+        for attr in ("_voting_task", "_shutdown_task", "_queue_task", "_fade_task"):
             t = getattr(_m4, attr, None)
             if t and not t.done():
                 t.cancel()
@@ -518,6 +518,14 @@ async def _stop_clients_overlay():
 
 async def _blackout_all():
     """Apagado total: para color_engine, blackout DMX, blackout M2 (sen tocar musicos)."""
+    # Cancelar fade de apagado se estaba en curso (blackout é instantáneo)
+    try:
+        from ..movements import m4_foliada as _m4
+        t = getattr(_m4, "_fade_task", None)
+        if t and not t.done():
+            t.cancel()
+    except Exception:
+        pass
     try:
         await color_engine.clear()
     except Exception:

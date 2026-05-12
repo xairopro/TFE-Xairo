@@ -45,6 +45,15 @@ MIN_ACTIVATION_INTERVAL = 0.5
 START_GRACE_SECONDS = 1.0
 FORCE_INTERVAL_SECONDS = 0.55
 
+# Total de músicos únicos en M2 (todos os grupos acumulados).
+_TOTAL_M2_MUSICIANS = len({inst for grp in GROUPS.values() for inst in grp})
+
+
+def _gradient_color(n: int, total: int) -> tuple[int, int, int, int]:
+    """Gradiente verde (primeiro músico, n=0) → vermello (último, n=total-1), máxima intensidade."""
+    t = n / max(1, total - 1)
+    return (int(255 * t), int(255 * (1 - t)), 0, 0)
+
 
 class LorenzEngine:
     def __init__(self):
@@ -58,6 +67,8 @@ class LorenzEngine:
         self._next_forced_at: float = 0.0
         self._sx: float = 0.0
         self._sy: float = 0.0
+        self._used_leds: set[int] = set()    # LEDs xa asignados nesta sesión M2
+        self._activation_count: int = 0      # activacións totais (todos os grupos)
 
     def is_running(self) -> bool:
         return self._task is not None and not self._task.done()
@@ -111,6 +122,8 @@ class LorenzEngine:
             state.snap.lorenz_active_instruments.clear()
             for m in state.musicians.values():
                 m.is_active = False
+        self._used_leds.clear()
+        self._activation_count = 0
         # DMX: blackout
         with dmx._lock:
             dmx.universe.blackout()
@@ -201,12 +214,16 @@ class LorenzEngine:
         await to_directors("director:update", {"event": "instrument_activated",
                                                 "instrument": base_id, "group": self.current_group})
 
-        # DMX: enciende o LED máis próximo (proporcional aos músicos vivos)
-        led = led_for_instrument(base_id)
-        if led is not None:
-            r, g, b, w = GROUP_RGBW[self.current_group or "G1"]
-            with dmx._lock:
-                dmx.universe.set_led(led, r, g, b, w)
+        # DMX: LED aleatorio (non consecutivo), cor en gradiente verde→vermello
+        r, g, b, w = _gradient_color(self._activation_count, _TOTAL_M2_MUSICIANS)
+        available = list(set(range(dmx.universe.led_count)) - self._used_leds)
+        if not available:
+            available = list(range(dmx.universe.led_count))
+        led = random.choice(available)
+        self._used_leds.add(led)
+        self._activation_count += 1
+        with dmx._lock:
+            dmx.universe.set_led(led, r, g, b, w)
 
         # Admin: progress X/Y do grupo actual
         group = self.current_group or "G1"
